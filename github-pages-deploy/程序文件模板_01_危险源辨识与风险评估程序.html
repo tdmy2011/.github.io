@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 危险源辨识与风险评估程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width: 100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <!-- 文件头 -->
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">危险源辨识与风险评估程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-001 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：6.1.2</div>
+    </div>
+
+    <!-- 元信息表 -->
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-001</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">危险源辨识与风险评估程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>6.1.2 危险源辨识及风险和机遇的评价</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <!-- 1. 目的 -->
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的危险源辨识与风险评估机制，全面识别工作场所内与健康安全相关的危险源，科学评价风险等级，并制定有效的控制措施，以预防 workplace 伤害和健康损害，特制定本程序。</p>
+        <p>本程序旨在确保本公司在<span style="background:#fff3cd;padding:2pt 4pt;">东南亚/非洲当地法律要求</span>与中国安全管理标准双重框架下，开展规范、可追溯的风险评估工作。</p>
+    </div>
+
+    <!-- 2. 适用范围 -->
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于本公司<span style="background:#fff3cd;padding:2pt 4pt;">所有场所、活动和人员</span>，包括但不限于：</p>
+        <div class="bullet">• 公司所有生产车间、仓库、办公区域及户外作业场所；</div>
+        <div class="bullet">• 生产工艺、设备设施、原材料及成品的储存与运输；</div>
+        <div class="bullet">• 所有正式员工、临时工、实习生及外包承包商人员；</div>
+        <div class="bullet">• 新改扩建项目、设备检修、非常规作业活动；</div>
+        <div class="bullet">• 厂外作业（如出差、现场安装、客户现场服务）。</div>
+        <p style="margin-top:8pt;"><strong>注：</strong>当地法律法规有更严格规定的，以当地法规为准（如印尼要求所有高风险作业必须单独评估并存档）。</p>
+    </div>
+
+    <!-- 3. 职责 -->
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr>
+                <td><strong>总经理/厂长</strong></td>
+                <td>• 批准公司年度风险评估计划<br>• 确保风险评估所需资源（人力、资金、时间）到位<br>• 对重大风险的管控措施承担最终责任</td>
+            </tr>
+            <tr>
+                <td><strong>安全环保部（EHS）</strong></td>
+                <td>• 组织并指导全公司危险源辨识与风险评估工作<br>• 制定风险评估方法与标准，并组织培训<br>• 审核各部门提交的风险评估报告<br>• 建立并维护公司级《危险源辨识与风险评价清单》<br>• 跟踪重大风险管控措施的落实情况</td>
+            </tr>
+            <tr>
+                <td><strong>各部门负责人</strong></td>
+                <td>• 组织本部门人员开展危险源辨识<br>• 确保本部门评估工作的覆盖面和准确性<br>• 制定本部门风险控制措施并实施<br>• 向EHS部门提交本部门风险评估记录</td>
+            </tr>
+            <tr>
+                <td><strong>班组长/车间主任</strong></td>
+                <td>• 带领一线员工参与危险源辨识（JSA方法）<br>• 确保评估覆盖所有操作步骤和设备<br>• 落实本班组风险控制措施</td>
+            </tr>
+            <tr>
+                <td><strong>全体员工</strong></td>
+                <td>• 积极参与危险源辨识，报告发现的危险源<br>• 严格遵守已确定的风险控制措施<br>• 对工作场所的新增危险源及时上报</td>
+            </tr>
+            <tr>
+                <td><strong>承包商负责人</strong></td>
+                <td>• 对其作业人员进行危险源辨识与风险评估<br>• 将评估结果提交EHS部门备案<br>• 确保其作业人员了解并遵守公司风险控制措施</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 4. 工作程序 -->
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 危险源辨识</strong></div>
+        <div class="lettered">a) <strong>辨识范围：</strong>应覆盖常规和非常规活动、所有进入工作场所的人员（包括承包商）、工作场所内的设施（自有和外包）。</div>
+        <div class="lettered">b) <strong>辨识方法：</strong>采用工作安全分析（JSA/JHA）、安全检查表（SCL）、危险与可操作性分析（HAZOP，适用于工艺装置）、询问与交流法等多种方法相结合。</div>
+        <div class="lettered">c) <strong>辨识时机：</strong></div>
+        <div class="bullet">• 新改扩建项目开工前（必须完成）；</div>
+        <div class="bullet">• 新设备/新工艺投入使用前；</div>
+        <div class="bullet">• 每年至少进行一次全面辨识（通常结合管理评审）；</div>
+        <div class="bullet">• 发生事故/未遂事故后（针对事故相关作业）；</div>
+        <div class="bullet">• 法律法规发生重大变更后。</div>
+        <div class="lettered">d) <strong>危险源分类（参考GB/T 13861 / ISO 45001附录A）：</strong></div>
+        <div class="bullet">• 物理性危险和有害因素（设备设施缺陷、防护缺陷、电危害、噪声、振动、电磁辐射、运动物伤害、明火、高温/低温物质、粉尘与气溶胶等）；</div>
+        <div class="bullet">• 化学性危险和有害因素（爆炸品、压缩气体、易燃液体、易燃固体、氧化剂、有毒物品、腐蚀品等）；</div>
+        <div class="bullet">• 生物性危险和有害因素（致病微生物、传染病媒介物等）；</div>
+        <div class="bullet">• 心理生理性危险和有害因素（负荷超限、健康状况异常、从事禁忌作业、心理异常、辨识功能缺陷等）；</div>
+        <div class="bullet">• 行为性危险和有害因素（指挥错误、操作错误、监护失误等）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 风险评估</strong></div>
+        <div class="lettered">a) <strong>评估方法：</strong>采用<span style="background:#fff3cd;padding:2pt 4pt;">风险矩阵法（LS法）</span>，即：风险等级（R）= 可能性（L）× 暴露频次（E）× 后果严重程度（S）。</div>
+        <div class="lettered">b) <strong>评估标准（推荐）：</strong></div>
+        <table class="content-table" style="font-size:10pt;">
+            <tr><th>可能性L</th><th>描述</th><th>取值</th></tr>
+            <tr><td>极不可能</td><td>在正常作业条件下几乎不可能发生</td><td style="text-align:center;">1</td></tr>
+            <tr><td>不可能</td><td>类似事件在行业内极少发生</td><td style="text-align:center;">2</td></tr>
+            <tr><td>可能</td><td>类似事件在行业内偶有发生</td><td style="text-align:center;">3</td></tr>
+            <tr><td>很可能</td><td>类似事件在公司内曾有发生</td><td style="text-align:center;">4</td></tr>
+            <tr><td>极可能</td><td>类似事件在公司内经常发生</td><td style="text-align:center;">5</td></tr>
+        </table>
+        <table class="content-table" style="font-size:10pt;margin-top:8pt;">
+            <tr><th>严重度S</th><th>描述</th><th>取值</th></tr>
+            <tr><td>可忽略</td><td>轻微伤害，不需停工</td><td style="text-align:center;">1</td></tr>
+            <tr><td>轻微</td><td>轻伤，需简单医疗处理</td><td style="text-align:center;">2</td></tr>
+            <tr><td>严重</td><td>重伤，需住院，可能致残</td><td style="text-align:center;">3</td></tr>
+            <tr><td>非常严重</td><td>1-2人死亡或多人重伤</td><td style="text-align:center;">4</td></tr>
+            <tr><td>灾难性</td><td>3人及以上死亡</td><td style="text-align:center;">5</td></tr>
+        </table>
+        <div class="lettered">c) <strong>风险等级判定：</strong></div>
+        <table class="content-table" style="font-size:10pt;">
+            <tr><th rowspan="2">可能性L</th><th colspan="5">严重度S</th></tr>
+            <tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+            <tr><td style="text-align:center;">1</td><td style="background:#22c55e;color:white;text-align:center;">1（低）</td><td style="background:#22c55e;color:white;text-align:center;">2（低）</td><td style="background:#a3e635;color:white;text-align:center;">3（低）</td><td style="background:#facc15;color:black;text-align:center;">4（中）</td><td style="background:#facc15;color:black;text-align:center;">5（中）</td></tr>
+            <tr><td style="text-align:center;">2</td><td style="background:#22c55e;color:white;text-align:center;">2（低）</td><td style="background:#a3e635;color:white;text-align:center;">4（中）</td><td style="background:#facc15;color:black;text-align:center;">6（中）</td><td style="background:#f97316;color:white;text-align:center;">8（高）</td><td style="background:#ef4444;color:white;text-align:center;">10（高）</td></tr>
+            <tr><td style="text-align:center;">3</td><td style="background:#a3e635;color:white;text-align:center;">3（低）</td><td style="background:#facc15;color:black;text-align:center;">6（中）</td><td style="background:#f97316;color:white;text-align:center;">9（高）</td><td style="background:#ef4444;color:white;text-align:center;">12（高）</td><td style="background:#ef4444;color:white;text-align:center;">15（极高）</td></tr>
+            <tr><td style="text-align:center;">4</td><td style="background:#facc15;color:black;text-align:center;">4（中）</td><td style="background:#f97316;color:white;text-align:center;">8（高）</td><td style="background:#ef4444;color:white;text-align:center;">12（高）</td><td style="background:#ef4444;color:white;text-align:center;">16（极高）</td><td style="background:#ef4444;color:white;text-align:center;">20（极高）</td></tr>
+            <tr><td style="text-align:center;">5</td><td style="background:#facc15;color:black;text-align:center;">5（中）</td><td style="background:#ef4444;color:white;text-align:center;">10（高）</td><td style="background:#ef4444;color:white;text-align:center;">15（极高）</td><td style="background:#ef4444;color:white;text-align:center;">20（极高）</td><td style="background:#ef4444;color:white;text-align:center;">25（极高）</td></tr>
+        </table>
+        <div class="lettered">d) <strong>风险分级控制原则（层级控制）：</strong></div>
+        <div class="bullet">• <strong>消除</strong>：尽可能消除危险源（首选措施）；</div>
+        <div class="bullet">• <strong>替代</strong>：用低危害材料/工艺替代高危害材料/工艺；</div>
+        <div class="bullet">• <strong>工程控制</strong>：安装防护装置、通风系统、隔离设施等；</div>
+        <div class="bullet">• <strong>管理控制</strong>：制定安全操作规程、培训、警示标识、作业许可等；</div>
+        <div class="bullet">• <strong>个体防护</strong>：佩戴适当的个人防护装备（PPE）——<span style="color:#ef4444;">最后一道防线</span>。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 风险评估实施步骤</strong></div>
+        <div class="lettered">a) EHS部门每年年初发布《年度风险评估计划》，明确评估范围、责任部门、完成时限；</div>
+        <div class="lettered">b) 各部门按照计划组织JSA分析，填写《工作安全分析（JSA）记录表》；</div>
+        <div class="lettered">c) EHS部门对各部门提交的评估结果进行复核，重点审核重大风险的管控措施合理性；</div>
+        <div class="lettered">d) 评估完成后，各部门建立本部门的《危险源辨识与风险评价清单》，报EHS部门汇总；</div>
+        <div class="lettered">e) EHS部门建立公司级《危险源辨识与风险评价清单》，经安全总监审批后发布。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 风险控制措施的制定与实施</strong></div>
+        <div class="lettered">a) 所有识别出的危险源均须制定控制措施，按照层级控制原则确定优先顺序；</div>
+        <div class="lettered">b) <strong>高风险（R≥15）和极高风险（R≥20）</strong>：必须制定专项控制方案，明确责任人、完成时限，经总经理批准后实施；</div>
+        <div class="lettered">c) <strong>中等风险（8≤R＜15）</strong>：由部门负责人组织制定控制措施，报EHS部门备案；</div>
+        <div class="lettered">d) <strong>低风险（R＜8）</strong>：通过日常操作规程和培训进行控制，并记录在案；</div>
+        <div class="lettered">e) 所有控制措施的实施情况由EHS部门每月跟踪验证，并记录在《风险控制措施跟踪表》中。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 风险评估的更新</strong></div>
+        <div class="lettered">a) 每年至少进行一次全面更新（通常在管理评审之前完成）；</div>
+        <div class="lettered">b) 发生以下情况时，必须在<span style="background:#fff3cd;padding:2pt 4pt;">30日内</span>完成更新：</div>
+        <div class="bullet">• 新改扩建项目、新设备/新工艺投入使用；</div>
+        <div class="bullet">• 发生伤亡事故或重大未遂事故；</div>
+        <div class="bullet">">• 当地法律法规发生重大变更；</div>
+        <div class="bullet">• 员工或其他相关方提出合理投诉或建议。</div>
+    </div>
+
+    <!-- 5. 相关文件 -->
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-002 《法律法规识别与更新程序》</div>
+        <div class="bullet">• HSE-PRO-007 《应急准备与响应程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• 《工作安全分析（JSA）记录表》（表格编号：HSE-FM-001）</div>
+        <div class="bullet">• 《危险源辨识与风险评价清单》（表格编号：HSE-FM-002）</div>
+        <div class="bullet">• 《风险控制措施跟踪表》（表格编号：HSE-FM-003）</div>
+    </div>
+
+    <!-- 6. 记录表单 -->
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>工作安全分析（JSA）记录表</td><td>HSE-FM-001</td><td>3年</td><td>EHS部、各使用部门</td></tr>
+            <tr><td style="text-align:center;">2</td><td>危险源辨识与风险评价清单</td><td>HSE-FM-002</td><td>永久</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">3</td><td>风险控制措施跟踪表</td><td>HSE-FM-003</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>年度风险评估计划</td><td>HSE-FM-004</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>风险评估报告（重大风险）</td><td>HSE-FM-005</td><td>永久</td><td>EHS部、总经理</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 6.1.2。版本更新时请在文件编号后标注版本号（如 A/1, B/0）。
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <!-- 首页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/</loc>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://tdmy2011.github.io/?lang=zh"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://tdmy2011.github.io/?lang=en"/>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 课程产品页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/#products</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- 免费铅磁下载页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/东南亚工厂安全合规自查清单100条完整版.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 程序文件模板（15份） -->
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_01_危险源辨识与风险评估程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_02_法律法规识别与更新程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_03_目标与管理方案控制程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_04_能力意识与培训程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_05_沟通与信息交流程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_06_文件与记录控制程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_07_运行控制程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_08_变更管理程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_09_承包商安全管理程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_10_应急准备与响应程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_11_绩效监视与测量程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_12_合规性评价程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_13_事件调查与不符合控制程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_14_内部审核程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://tdmy2011.github.io/程序文件模板_15_管理评审程序.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- 定价页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/pricing.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- 隐私政策 -->
+    <url>
+        <loc>https://tdmy2011.github.io/privacy.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- 服务条款 -->
+    <url>
+        <loc>https://tdmy2011.github.io/terms.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- YouTube 内容日历 -->
+    <url>
+        <loc>https://tdmy2011.github.io/30天YouTube内容日历_完整版.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- YouTube系列脚本 -->
+    <url>
+        <loc>https://tdmy2011.github.io/YouTube系列脚本_10期完整版.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块2 · ISO 45001 核心条款速通 — 录制脚本 + PPT 大纲</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+  
+  /* 顶部 Hero */
+  .hero { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); border: 1px solid #334155; border-radius: 16px; padding: 48px 40px; margin-bottom: 48px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%); border-radius: 50%; }
+  .hero-tag { display: inline-block; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 20px; padding: 4px 16px; font-size: 13px; font-weight: 600; margin-bottom: 16px; letter-spacing: 1px; }
+  .hero h1 { font-size: 32px; font-weight: 800; color: #f1f5f9; margin-bottom: 12px; line-height: 1.3; }
+  .hero h1 span { color: #38bdf8; }
+  .hero-sub { color: #94a3b8; font-size: 15px; margin-bottom: 28px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-val { font-size: 28px; font-weight: 800; color: #38bdf8; }
+  .hero-stat-label { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  /* 课程信息栏 */
+  .info-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px; }
+  .info-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; text-align: center; }
+  .info-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .info-card-val { font-size: 18px; font-weight: 700; color: #38bdf8; }
+  .info-card-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+
+  /* 课时卡片 */
+  .section-title { font-size: 20px; font-weight: 700; color: #f1f5f9; margin: 40px 0 20px; padding-left: 14px; border-left: 4px solid #38bdf8; }
+  .lesson-card { background: #1e293b; border: 1px solid #334155; border-radius: 14px; margin-bottom: 28px; overflow: hidden; }
+  .lesson-header { background: linear-gradient(90deg, #1e3a5f, #1e293b); padding: 20px 28px; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 16px; }
+  .lesson-num { background: #38bdf8; color: #0f172a; font-weight: 800; font-size: 16px; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lesson-header-text h3 { font-size: 17px; font-weight: 700; color: #f1f5f9; }
+  .lesson-header-text p { font-size: 13px; color: #64748b; margin-top: 2px; }
+  .lesson-body { padding: 24px 28px; }
+  
+  /* PPT 大纲 */
+  .ppt-section { margin-bottom: 20px; }
+  .ppt-slide { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start; }
+  .slide-num { background: #1e3a5f; color: #38bdf8; font-size: 12px; font-weight: 700; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .slide-content { flex: 1; }
+  .slide-title { font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+  .slide-bullets { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+  .slide-bullets li { margin-bottom: 2px; }
+
+  /* 口播脚本 */
+  .script-block { background: #0f172a; border-left: 3px solid #38bdf8; border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 14px 0; }
+  .script-speaker { font-size: 12px; font-weight: 700; color: #38bdf8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+  .script-text { font-size: 14px; color: #cbd5e1; line-height: 1.8; }
+  .script-note { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); border-radius: 8px; padding: 10px 14px; margin-top: 8px; font-size: 12px; color: #fbbf24; }
+
+  /* 案例框 */
+  .case-box { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 10px; padding: 16px 20px; margin: 14px 0; }
+  .case-title { font-size: 13px; font-weight: 700; color: #22c55e; margin-bottom: 8px; }
+  .case-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+
+  /* 转化钩子 */
+  .hook-box { background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.08)); border: 1px solid rgba(56,189,248,0.25); border-radius: 12px; padding: 20px 24px; margin: 18px 0; }
+  .hook-title { font-size: 14px; font-weight: 700; color: #38bdf8; margin-bottom: 8px; }
+  .hook-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+  .hook-cta { display: inline-block; margin-top: 10px; background: linear-gradient(90deg, #38bdf8, #818cf8); color: #0f172a; font-weight: 700; font-size: 13px; padding: 8px 20px; border-radius: 8px; text-decoration: none; }
+
+  /* 流程图 */
+  .flow-diagram { display: flex; align-items: center; gap: 0; margin: 16px 0; flex-wrap: wrap; justify-content: center; }
+  .flow-node { background: #1e293b; border: 1px solid #38bdf8; border-radius: 10px; padding: 10px 16px; font-size: 13px; font-weight: 600; color: #38bdf8; text-align: center; min-width: 110px; }
+  .flow-arrow { color: #38bdf8; font-size: 20px; margin: 0 4px; }
+
+  /* 对比表 */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .compare-table th { background: #1e3a5f; color: #38bdf8; padding: 10px 14px; text-align: left; font-weight: 600; border: 1px solid #334155; }
+  .compare-table td { padding: 9px 14px; border: 1px solid #334155; color: #cbd5e1; vertical-align: top; }
+  .compare-table tr:nth-child(even) td { background: #192030; }
+  .tag-blue { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
+  .tag-red { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.25); border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 600; }
+
+  /* 实操演示 */
+  .demo-box { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px 20px; margin: 14px 0; }
+  .demo-title { font-size: 13px; font-weight: 700; color: #a78bfa; margin-bottom: 8px; }
+  .demo-steps { font-size: 13px; color: #94a3b8; line-height: 1.8; }
+  .demo-steps li { margin-bottom: 4px; }
+
+  /* 底部 CTA */
+  .cta-bottom { background: linear-gradient(135deg, #1e3a5f, #312e81); border: 1px solid rgba(56,189,248,0.3); border-radius: 16px; padding: 40px; text-align: center; margin-top: 48px; }
+  .cta-bottom h2 { font-size: 24px; font-weight: 800; color: #f1f5f9; margin-bottom: 12px; }
+  .cta-bottom p { color: #94a3b8; font-size: 14px; margin-bottom: 24px; }
+  .cta-btn { display: inline-block; background: linear-gradient(90deg, #38bdf8, #818cf8); color: #0f172a; font-weight: 700; font-size: 15px; padding: 14px 36px; border-radius: 10px; text-decoration: none; margin: 0 8px; }
+  
+  /* 提示框 */
+  .tip-box { background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); border-radius: 10px; padding: 14px 18px; margin: 14px 0; display: flex; gap: 12px; align-items: flex-start; }
+  .tip-icon { font-size: 20px; flex-shrink: 0; }
+  .tip-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+  .tip-text strong { color: #fbbf24; }
+
+  /* 屏幕注释 */
+  .screen-note { background: rgba(56,189,248,0.05); border: 1px dashed rgba(56,189,248,0.3); border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12px; color: #64748b; font-style: italic; }
+
+  @media (max-width: 700px) {
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 22px; }
+    .lesson-body { padding: 16px 18px; }
+    .cta-bottom { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">模块 2 · 免费试看</div>
+    <h1>ISO 45001 核心条款速通<br><span>3 小时掌握认证命脉</span></h1>
+    <div class="hero-sub">录制脚本 + PPT 大纲 · 可直接用于直播/录播 · 含转化钩子</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">4</div><div class="hero-stat-label">课时</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">18</div><div class="hero-stat-label">PPT 页</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">3</div><div class="hero-stat-label">真实案例</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-label">转化钩子</div></div>
+    </div>
+  </div>
+
+  <!-- 课程信息 -->
+  <div class="info-bar">
+    <div class="info-card"><div class="info-card-icon">⏱</div><div class="info-card-val">3 小时</div><div class="info-card-label">总时长</div></div>
+    <div class="info-card"><div class="info-card-icon">🎯</div><div class="info-card-val">条款 4–10</div><div class="info-card-label">全覆盖</div></div>
+    <div class="info-card"><div class="info-card-icon">📄</div><div class="info-card-val">15 份</div><div class="info-card-label">配套模板</div></div>
+    <div class="info-card"><div class="info-card-icon">🌏</div><div class="info-card-val">东南亚</div><div class="info-card-label">在地化案例</div></div>
+    <div class="info-card"><div class="info-card-icon">🔓</div><div class="info-card-val">免费试看</div><div class="info-card-label">引流内容</div></div>
+  </div>
+
+  <!-- 录制前说明 -->
+  <div class="tip-box">
+    <div class="tip-icon">💡</div>
+    <div class="tip-text">
+      <strong>录制说明：</strong>本模块定位为「免费试看内容」，目标是让观众看完后感受到专业深度，主动想购买完整课程。每课时结尾都有「转化钩子」，引导到付费产品。口播脚本可直接照着讲，PPT 大纲可直接用于制作幻灯片。
+    </div>
+  </div>
+
+  <!-- ==================== 课时 2.1 ==================== -->
+  <div class="section-title">课时 2.1 · 条款 4–5：组织环境与领导作用（45分钟）</div>
+
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-num">2.1</div>
+      <div class="lesson-header-text">
+        <h3>为什么老板不重视安全？—— 条款 5 的底层逻辑</h3>
+        <p>ISO 45001 最核心的条款 · 领导作用 · 安全方针</p>
+      </div>
+    </div>
+    <div class="lesson-body">
+
+      <!-- PPT 大纲 -->
+      <div class="ppt-section">
+        <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:10px;">📊 PPT 幻灯片大纲（5 页）</div>
+        <div class="ppt-slide">
+          <div class="slide-num">P1</div>
+          <div class="slide-content">
+            <div class="slide-title">封面：为什么国内经验在海外不够用？</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>📌 国内：「安全是安全部门的事」</li>
+                <li>📌 海外（ISO 45001）：「最高管理者的直接责任」</li>
+                <li>📌 关键差异：条款 5.1 的 15 项具体责任</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P2</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 4：理解组织及其环境</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 4.1 外部环境：当地法规 / 社区期望 / 行业标准</li>
+                <li>• 4.2 相关方：员工 / 政府 / 客户 / 周边社区</li>
+                <li>• 东南亚特有问题：当地工会力量强、社区抗议风险</li>
+                <li>• <strong>实操演示</strong>：用 PEST 分析法做一次环境扫描</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P3</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 5：领导作用与工作者参与（核心！）</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 5.1 最高管理者责任（15 项，一条一条过）</li>
+                <li>• 5.2 安全方针：不能只写口号，要有可测量目标</li>
+                <li>• 5.3 角色职责分配：安全主任的汇报线必须直达总经理</li>
+                <li>• 5.4 协商与参与：<strong>当地员工必须参与</strong>（这是中国企业的死穴）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P4</div>
+          <div class="slide-content">
+            <div class="slide-title">中资出海企业的「领导作用」三大坑</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>❌ 坑1：总经理是当地人，不懂中文，安全方针只贴中文版</li>
+                <li>❌ 坑2：安全主任向生产经理汇报，停产时安全永远让位</li>
+                <li>❌ 坑3：当地员工不敢提安全意见（文化差异），协商记录造假</li>
+                <li>✅ 正确做法：三语安全方针 + 独立汇报线 + 匿名安全建议箱</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P5</div>
+          <div class="slide-content">
+            <div class="slide-title">本课时总结 + 安全方针模板</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 条款 4+5 是地基，地基不牢，后面全白做</li>
+                <li>• 现场展示：安全方针 Word 模板（可编辑）</li>
+                <li>• 下一步预告：条款 6 策划——风险评估怎么做才合规</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 口播脚本 -->
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:20px 0 10px;">🎙️ 口播脚本（可直接照读）</div>
+
+      <div class="script-block">
+        <div class="script-speaker">【开场 · 0:00–3:00】</div>
+        <div class="script-text">
+          大家好，欢迎来到《30天ISO 45001体系落地营》的模块二。我是你们的安全顾问。<br><br>
+          在正式开始之前，我想问大家一个问题：<strong>你们工厂的总经理，上次亲自参加安全会议是什么时候？</strong><br><br>
+          如果答案是「从来没有」或者「想不起来了」——那你今天这45分钟，价值可能超过你过去半年学过的安全课程。<br><br>
+          ISO 45001 和旧版 OHSAS 18001 最大的区别，就是它把「领导作用」从一句口号，变成了<strong>15 条必须落地的法律责任</strong>。今天我会把这 15 条一条一条拆给你看，并告诉你——中资企业在东南亚建厂，最容易在这条条款上栽跟头的三个地方。
+        </div>
+        <div class="script-note">⏱ 节奏提示：开场抛出痛点问题，让观众在评论区互动。约 30 秒后展示 P1 封面。</div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-speaker">【核心讲解 · 条款 4 · 约 10 分钟】</div>
+        <div class="script-text">
+          先看条款 4，叫「理解组织及其环境」。这句话听起来很虚，对吧？<br><br>
+          但它的实际意思是：<strong>你必须系统地分析——你的工厂开在这个国家，面临哪些安全相关的外部压力？</strong><br><br>
+          我给大家举个真实例子。2022年，一家中资服装厂在<strong>越南平阳省</strong>，因为没做「社区风险评估」，工厂噪音和化学品气味引发当地居民抗议，最终被省政府责令停产整顿 3 个月，损失超过 200 万人民币。<br><br>
+          如果他们在建厂前做过条款 4.1 的分析，这本是可以避免的。<br><br>
+          （翻到 P2）条款 4 要求你做两件事：第一，识别外部环境——当地法规有什么特殊要求？社区有什么期望？行业有什么标准？第二，识别相关方——员工、政府、客户、周边社区，他们各自对你的安全绩效有什么要求？<br><br>
+          我给大家一个工具：<strong>PEST 分析法</strong>——政治（Political）、经济（Economic）、社会（Social）、技术（Technological）。用这个框架，把你的工厂环境扫描一遍，15 分钟就能发现至少 3 个你之前忽略的风险点。
+        </div>
+      </div>
+
+      <div class="case-box">
+        <div class="case-title">📍 真实案例插片（约 3 分钟）</div>
+        <div class="case-text">
+          「一家在<strong>泰国罗勇府</strong>的中资汽车零部件厂，2023 年接受 ISO 45001 初审时，审核员第一个问题就是：『请展示你们对当地社区安全期望的分析记录。』企业完全没准备，开了重大不符合项。后来补做了社区调研，推迟了 4 个月才通过认证。这个案例告诉我们：条款 4 不是纸上谈兵，审核员一定会查。」
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-speaker">【核心讲解 · 条款 5 · 约 25 分钟】</div>
+        <div class="script-text">
+          好，现在是最核心的条款 5：「领导作用」。<br><br>
+          ISO 45001 的 5.1 条款，列出了最高管理者必须履行的<strong>15 项责任</strong>。我念几条你们感受一下：<br><br>
+          第 1 条：对职业健康安全管理体系的有效性负责。——这意味着，如果出事故，总经理是<strong>第一责任人</strong>，不只是安全主任。<br><br>
+          第 7 条：确保将安全职责分配给所有管理人员。——生产经理、财务经理、人事经理，都要有安全职责，不能只压在安全主任一个人身上。<br><br>
+          第 10 条：促进持续改进。——不能只做到「不违规」，还要每年有进步。<br><br>
+          （翻到 P3）那么，<strong>中资出海企业最容易犯的错是什么</strong>？我总结了三个死穴：<br><br>
+          死穴一：安全方针只贴中文版。ISO 要求安全方针要让「所有员工」理解。如果你的工厂 70% 员工是当地人，安全方针只有中文——这就直接算不符合项。<br><br>
+          死穴二：安全主任向生产经理汇报。这会导致什么？生产赶进度的时候，安全要求一定会被牺牲。ISO 要求安全主任的汇报线必须<strong>独立于生产</strong>，最好直达总经理。<br><br>
+          死穴三：当地员工不敢参与安全协商。条款 5.4 要求「协商和参与」，审核员会<strong>随机访谈当地员工</strong>：「你有没有参与过安全制度的制定？」如果员工说「没有，都是中国老板定的」——不符合项就来了。
+        </div>
+      </div>
+
+      <!-- 实操演示 -->
+      <div class="demo-box">
+        <div class="demo-title">🖥️ 屏幕共享实操演示（约 5 分钟）</div>
+        <div class="demo-steps">
+          <li>打开 Word 模板：「安全方针模板.docx」</li>
+          <li>展示三语版本（中/英/越）的排版格式</li>
+          <li>指出 3 个关键位置：企业名称、安全目标、总经理签字</li>
+          <li>演示如何插入当地语言版本（用翻译软件 + 当地律师审核）</li>
+          <li>提示：安全方针必须张贴在工厂入口、食堂、车间入口三个位置</li>
+        </div>
+      </div>
+
+      <!-- 转化钩子 -->
+      <div class="hook-box">
+        <div class="hook-title">🎯 课时结尾转化钩子（约 2 分钟）</div>
+        <div class="hook-text">
+          好，今天这节课，我们搞懂了条款 4 和条款 5 的核心逻辑。但光搞懂没用，你需要把安全方针写出来、把汇报线改过来、把协商记录做出来。<br><br>
+          我把今天讲到的<strong>安全方针 Word 模板、角色职责分配表、相关方期望记录表</strong>，都放在了课程资料包里。如果你想看完整的 15 份程序文件怎么写，欢迎加入我们的《30天落地营》——我会在模块 5 里，手把手带你写出全部 15 份文件。<br><br>
+          <strong>下节课预告</strong>：条款 6「策划」——危险源辨识到底怎么做才不被审核员开不符合项？我在 2.2 等你。
+        </div>
+        <a href="#" class="hook-cta">📥 领取安全方针模板</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 课时 2.2 ==================== -->
+  <div class="section-title">课时 2.2 · 条款 6：策划——危险源辨识与风险评估（50分钟）</div>
+
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-num">2.2</div>
+      <div class="lesson-header-text">
+        <h3>危险源辨识四步法——审核员挑不出毛病的做法</h3>
+        <p>JSA / HAZOP / 风险矩阵 · 条款 6.1.2 深度拆解</p>
+      </div>
+    </div>
+    <div class="lesson-body">
+
+      <div class="ppt-section">
+        <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:10px;">📊 PPT 幻灯片大纲（5 页）</div>
+        <div class="ppt-slide">
+          <div class="slide-num">P6</div>
+          <div class="slide-content">
+            <div class="slide-title">为什么你做了风险评估，审核员还是开了不符合项？</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 常见原因：只识别了「physical」危险，没识别「psychosocial」危险</li>
+                <li>• 常见原因：风险评估没有「定期更新」的记录</li>
+                <li>• 常见原因：高风险作业没有单独评估（JSA）</li>
+                <li>• 条款 6.1.2 的底层要求：「动态、全员、全覆盖」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P7</div>
+          <div class="slide-content">
+            <div class="slide-title">四步法详解：第一步——危险源辨识（6.1.2.1）</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 传统三步法（人/机/料/法/环）vs ISO 推荐的四维度法</li>
+                <li>• 物理危险：电气/机械/高处/起重/化学品</li>
+                <li>• 健康危险：噪音/粉尘/高温/人机工效</li>
+                <li>• 心理社会危险（新增！）：超时加班/职场霸凌/孤独作业</li>
+                <li>• 🖥️ 实操演示：用 Excel 建立危险源辨识清单</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P8</div>
+          <div class="slide-content">
+            <div class="slide-title">四步法详解：第二步——风险评估（6.1.2.2）</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 可能性 × 严重程度 = 风险等级</li>
+                <li>• 东南亚工厂常用的 5×5 风险矩阵（展示模板）</li>
+                <li>• 高风险（红色）：必须制定专门的控制措施</li>
+                <li>• 中风险（黄色）：限期整改</li>
+                <li>• 低风险（绿色）：保持现状 + 定期监测</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P9</div>
+          <div class="slide-content">
+            <div class="slide-title">四步法详解：第三步——措施制定（6.1.2.3）+ 第四步——残余风险评估</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 措施优先级：消除 → 替代 → 工程控制 → 管理控制 → PPE（最后防线）</li>
+                <li>• 海因里希法则在 ISO 45001 中的体现</li>
+                <li>• 残余风险评估：措施落实后，风险降到了哪一级？</li>
+                <li>• 🖥️ 实操演示：用风险矩阵 Excel 完成一次完整评估</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P10</div>
+          <div class="slide-content">
+            <div class="slide-title">JSA 工作安全分析法 —— 高风险作业的护身符</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 什么作业必须做 JSA：动火/高处/受限空间/吊装/临时用电</li>
+                <li>• JSA 四步：分解步骤 → 识别危险 → 制定措施 → 签字确认</li>
+                <li>• 展示 JSA 表格模板（可编辑 Word）</li>
+                <li>• 审核员最爱查的 3 个 JSA 漏洞</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:20px 0 10px;">🎙️ 口播脚本精选</div>
+
+      <div class="script-block">
+        <div class="script-speaker">【开场 · 承上启下】</div>
+        <div class="script-text">
+          欢迎回到模块二。上节课我们讲了领导作用，搞定了「谁负责」的问题。今天这节课，我们要解决的是<strong>「风险在哪里、怎么管控」</strong>——这是整个 ISO 45001 体系的技术核心。<br><br>
+          我先问大家：你们工厂有没有做过「危险源辨识」？有的话，在评论区打个 1。<br><br>
+          （等待互动约 30 秒）<br><br>
+          好，我看到很多人打了 1。那我再问第二个问题：你们的辨识清单里，有没有包括<strong>「员工超时加班导致的疲劳风险」</strong>？有没有包括<strong>「当地员工因为语言不通看不懂安全标识的风险」</strong>？<br><br>
+          如果这两个都没有——那很遗憾，你们做的危险源辨识，大概率过不了 ISO 45001 的审核。
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-speaker">【核心讲解 · 心理社会危险（新版重点）】</div>
+        <div class="script-text">
+          ISO 45001 和旧版标准最大的区别之一，就是它第一次把<strong>「心理社会危险」</strong>写进了标准。<br><br>
+          什么是心理社会危险？简单说，就是那些<strong>不是物理伤害、但会影响员工安全行为</strong>的因素：<br><br>
+          • 超时加班导致的疲劳（东南亚工厂普遍存在）<br>
+          • 当地员工因为语言障碍不敢报告危险<br>
+          • 职场霸凌或歧视（尤其是中资企业里中方和外方员工的冲突）<br>
+          • 孤独作业（夜班保安、远程巡检）<br><br>
+          2023 年，一家在<strong>印尼莫罗瓦利</strong>的中资镍冶炼厂，因为员工疲劳作业导致一起装载机事故，造成 2 死 1 伤。事后调查显示：事故前一个月，涉事员工连续加班 28 天，每天平均工作 13 小时。<br><br>
+          ISO 45001 审核员现在一定会问：<strong>「你们如何识别和控制疲劳作业的风险？」</strong>如果你们答不上来——不符合项。
+        </div>
+      </div>
+
+      <!-- 实操演示 -->
+      <div class="demo-box">
+        <div class="demo-title">🖥️ 屏幕共享实操：用 Excel 建立危险源辨识清单（约 8 分钟）</div>
+        <div class="demo-steps">
+          <li>打开「危险源辨识清单.xlsx」模板</li>
+          <li>列1：作业活动（如「电焊作业」）</li>
+          <li>列2：潜在危险（如「电弧灼伤 / 有害气体吸入」）</li>
+          <li>列3：危险类型（物理/化学/生物/心理社会/人体工效）</li>
+          <li>列4：现有控制措施（如「有焊接面罩 / 有排风系统」）</li>
+          <li>列5：风险等级（用 5×5 矩阵评估）</li>
+          <li>列6：是否需要额外措施（高风险必须为「是」）</li>
+          <li>✅ 演示：现场填入一条「高处作业」的完整评估过程</li>
+        </div>
+      </div>
+
+      <!-- 对比表 -->
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:16px 0 8px;">📊 控制措施的优先级对比（口播配合 PPT 展示）</div>
+      <table class="compare-table">
+        <thead>
+          <tr><th>优先级</th><th>控制措施</th><th>示例</th><th>效果</th><th>成本</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="tag-green">优先1</span></td><td>消除</td><td>用自动化替代人工搬运</td><td>★★★★★</td><td>高</td></tr>
+          <tr><td><span class="tag-green">优先2</span></td><td>替代</td><td>用低毒化学品替代高毒</td><td>★★★★</td><td>中</td></tr>
+          <tr><td><span class="tag-blue">优先3</span></td><td>工程控制</td><td>安装防护栏/通风系统</td><td>★★★★</td><td>中高</td></tr>
+          <tr><td><span class="tag-blue">优先4</span></td><td>管理控制</td><td>制定作业许可/轮岗制度</td><td>★★★</td><td>低</td></tr>
+          <tr><td><span class="tag-red">最后</span></td><td>PPE</td><td>安全帽/手套/口罩</td><td>★★</td><td>低</td></tr>
+        </tbody>
+      </table>
+      <div class="screen-note">🖥️ 屏幕提示：展示这张表后，强调「如果你们的控制措施里 PPE 占比超过 50%，审核员一定会质疑措施的充分性」。</div>
+
+      <!-- 转化钩子 -->
+      <div class="hook-box">
+        <div class="hook-title">🎯 课时结尾转化钩子</div>
+        <div class="hook-text">
+          今天这 50 分钟，我们跑完了风险评估的完整四步法，还额外讲了 JSA 的实操。这些内容，市面上其他课程要么不讲，要么讲得非常理论。<br><br>
+          我把今天用到的<strong>Excel 风险矩阵模板、JSA 表格 Word 模板、危险源辨识清单</strong>，都整理好了。完整版的《30天落地营》里，我会带你<strong>对每个车间做一次完整的风险评估</strong>，确保你拿到的是一份真正能过审核的文件，而不是模板。<br><br>
+          下节课，我们讲条款 7 和条款 8——「支持」和「运行控制」，也就是安全管理的日常执行层。我在 2.3 等你。
+        </div>
+        <a href="#" class="hook-cta">📥 领取风险矩阵 Excel 模板</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 课时 2.3 ==================== -->
+  <div class="section-title">课时 2.3 · 条款 7–8：支持与运行控制（45分钟）</div>
+
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-num">2.3</div>
+      <div class="lesson-header-text">
+        <h3>安全管理的日常执行层——条款 7 和 8 到底管什么？</h3>
+        <p>培训 / 沟通 / PPE / 承包商 / 应急 / 变更管理</p>
+      </div>
+    </div>
+    <div class="lesson-body">
+
+      <div class="ppt-section">
+        <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:10px;">📊 PPT 幻灯片大纲（4 页）</div>
+        <div class="ppt-slide">
+          <div class="slide-num">P11</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 7：支持——你给安全投入了什么资源？</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 7.2 能力：谁需要具备安全能力？怎么证明？</li>
+                <li>• 7.3 意识：如何让员工「真的知道」而不是「签到了事」？</li>
+                <li>• 7.4 沟通：内部沟通 + 外部沟通（政府/社区/承包商）</li>
+                <li>• 7.5 文件化信息：哪些必须成文？哪些可以灵活？</li>
+                <li>• ⚠️ 东南亚特有问题：培训记录只有中文，当地员工签字「看不懂」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P12</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 8：运行控制——日常安全管理的 6 大抓手</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 8.1 运行策划和控制：消除危险的优先级再次强调</li>
+                <li>• 8.1.1 总则 + 8.1.2 消除危险（层级控制）</li>
+                <li>• 8.1.3 变更管理：设备/工艺/人员变更的安全评审</li>
+                <li>• 8.1.4 采购 + 8.1.4 承包商：外包风险怎么管？</li>
+                <li>• 8.2 应急准备和响应：预案 + 演练 + 评估</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P13</div>
+          <div class="slide-content">
+            <div class="slide-title">中资出海企业「运行控制」的 5 大高频不符合项</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>❌ 变更管理无记录：新设备来了，没人做安全评审</li>
+                <li>❌ 承包商管理空白：外包队的安全，厂里不管</li>
+                <li>❌ 应急演练走过场：每年一次消防演练，员工当演习看热闹</li>
+                <li>❌ PPE 发放无记录：发了等于没发，审核员只看记录</li>
+                <li>❌ 采购不审核安全：买来的设备没有安全认证</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P14</div>
+          <div class="slide-content">
+            <div class="slide-title">本课时总结 + 运行控制检查清单</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 条款 7+8 是「执行层」，前面策划的东西在这里落地</li>
+                <li>• 展示：运行控制检查清单（20 条）</li>
+                <li>• 下一步预告：条款 9–10，体系的「眼睛」和「手」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:20px 0 10px;">🎙️ 口播脚本精选</div>
+
+      <div class="script-block">
+        <div class="script-speaker">【开场】</div>
+        <div class="script-text">
+          欢迎来到模块二的第三节。今天我们要讲的是 ISO 45001 里「最琐碎、也最容易出错」的两个条款：<strong>条款 7「支持」和条款 8「运行控制」</strong>。<br><br>
+          为什么说它们最容易出错？因为前面的条款 4、5、6，你做一次就可以管一年。但条款 7 和 8 是<strong>每天都在发生</strong>的事情——培训要做、沟通要开、PPE 要发、承包商要管、演练要搞……<br><br>
+          做得对不对，审核员一眼就能看出来。因为<strong>他有你过去一年的记录</strong>。
+        </div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-speaker">【核心讲解 · 承包商管理（中资企业死穴）】</div>
+        <div class="script-text">
+          今天这节课，我最想花时间讲的，是<strong>承包商管理</strong>。这是中资出海企业最高的不符合项来源，没有之一。<br><br>
+          我给大家讲一个真实案例。2023 年，一家中资企业在<strong>柬埔寨西哈努克港</strong>的工厂，把厂房装修工程外包给了一家当地施工队。外包合同里<strong>没有任何安全条款</strong>。结果施工过程中，一名当地工人从脚手架跌落，造成脊椎损伤。<br><br>
+          事后调查：这家外包队没有安全资质、工人没有高空作业证、现场没有安全监督。更重要的是：<strong>这家工厂的安全管理体系里，完全没有「承包商管理程序」</strong>。<br><br>
+          ISO 45001 条款 8.1.4 明确规定：组织必须对外包方的安全绩效进行控制。<strong>控制的方式包括：合同安全条款、资质审查、现场监督、定期评估。</strong><br><br>
+          如果你们工厂有外包队，但你们没有一份《承包商安全管理程序》——那你们目前是不合规的。
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <div class="demo-title">🖥️ 屏幕共享实操：承包商管理程序的 6 个关键条款（约 5 分钟）</div>
+        <div class="demo-steps">
+          <li>打开 Word 模板：「承包商安全管理程序.docx」</li>
+          <li>第4章：承包商准入标准（安全资质 / 保险 / 事故记录）</li>
+          <li>第5章：合同安全条款（必须包含 8 条核心内容）</li>
+          <li>第6章：现场监督（谁监督 / 监督频率 / 记录表格）</li>
+          <li>第7章：绩效评估（每季度一次，不合格列入黑名单）</li>
+          <li>✅ 提示：这套程序直接可用于 ISO 审核，不需要修改</li>
+        </div>
+      </div>
+
+      <!-- 转化钩子 -->
+      <div class="hook-box">
+        <div class="hook-title">🎯 课时结尾转化钩子</div>
+        <div class="hook-text">
+          条款 7 和 8 的内容很多，今天我们只讲了最关键的 20%。在完整版课程里，我会用<strong>一整节课专门讲「变更管理」</strong>，再用<strong>一整节课讲「应急演练怎么搞才不被认为是走过场」</strong>。<br><br>
+          今天送大家一份<strong>《运行控制检查清单 20 条》</strong>，你可以拿去对照，看看你们工厂目前运行控制的漏洞在哪。<br><br>
+          下节课，也就是模块二的收官课，我们讲条款 9 和条款 10——绩效评价和持续改进。学完这节课，你就把 ISO 45001 的全部 10 个条款都过了一遍。
+        </div>
+        <a href="#" class="hook-cta">📥 领取运行控制检查清单</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 课时 2.4 ==================== -->
+  <div class="section-title">课时 2.4 · 条款 9–10：绩效评价与改进（40分钟）</div>
+
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-num">2.4</div>
+      <div class="lesson-header-text">
+        <h3>体系的「眼睛」和「手」——内审、管理评审、持续改进</h3>
+        <p>条款 9.1–9.3 + 条款 10.1–10.2 · 认证前最后一关</p>
+      </div>
+    </div>
+    <div class="lesson-body">
+
+      <div class="ppt-section">
+        <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:10px;">📊 PPT 幻灯片大纲（4 页）</div>
+        <div class="ppt-slide">
+          <div class="slide-num">P15</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 9：绩效评价——体系有没有用，用数据说话</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 9.1.1 监视和测量：哪些指标必须跟踪？（LTIR/TRIR等）</li>
+                <li>• 9.1.2 合规性评价：当地法规变了，你怎么知道？</li>
+                <li>• 9.2 内部审核：每年至少一次，审核员不能审自己</li>
+                <li>• 9.3 管理评审：总经理必须主持，不能授权</li>
+                <li>• 📊 展示：安全绩效指标看板（Excel 模板）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P16</div>
+          <div class="slide-content">
+            <div class="slide-title">条款 10：改进——发现问题是起点，解决问题是终点</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 10.1 总则：持续改进不是口号，要有机制</li>
+                <li>• 10.2 事件、不符合和纠正措施：根本原因分析（5Why/鱼骨图）</li>
+                <li>• 10.3 持续改进：如何建立「改善提案」制度？</li>
+                <li>• ⚠️ 常见错误：纠正措施只做了「纠正」，没做「预防」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P17</div>
+          <div class="slide-content">
+            <div class="slide-title">内审全流程实景演练（从计划到报告）</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 内审每年至少一次，覆盖全部部门和全部条款</li>
+                <li>• 内审员不能审核自己负责的部门（独立性原则）</li>
+                <li>• 不符合项报告（NCR）的写法：问题描述 + 根本原因分析 + 纠正措施 + 验证</li>
+                <li>• 🖥️ 实操演示：写一份完整的不符合项报告</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="ppt-slide">
+          <div class="slide-num">P18</div>
+          <div class="slide-content">
+            <div class="slide-title">模块二总结 + 完整课程推介</div>
+            <div class="slide-bullets">
+              <ul style="list-style:none;padding:0;">
+                <li>• 回顾：条款 4→5→6→7→8→9→10 的逻辑链条</li>
+                <li>• ISO 45001 不是「认证拿证」，是「管理提升」</li>
+                <li>• 展示：《30天落地营》全部 10 个模块的内容地图</li>
+                <li>• 限时优惠：今天下单，赠送「ISO 45001 与安全生产法对照表」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:20px 0 10px;">🎙️ 口播脚本精选（结尾转化重点）</div>
+
+      <div class="script-block">
+        <div class="script-speaker">【核心讲解 · 管理评审（总经理必参与）】</div>
+        <div class="script-text">
+          条款 9.3「管理评审」，是中资企业最容易「造假」也最容易被识破的环节。<br><br>
+          为什么？因为管理评审要求<strong>最高管理者亲自主持</strong>。但很多中资企业的总经理，要么不在当地，要么不懂安全，就让安全主任「代签」。<br><br>
+          ISO 审核员现在有一个标准动作：<strong>单独访谈总经理</strong>。「请介绍一下贵公司过去一年的安全绩效趋势？」「你们今年在安全方面投入了多少预算？」「下一年的安全目标是什么？」<br><br>
+          如果总经理答不上来——不管你的文件多漂亮，<strong>直接算「领导作用不到位」的重大不符合项</strong>。<br><br>
+          所以，管理评审不是「写一份报告」那么简单。它要求总经理<strong>真的参与、真的理解、真的决策</strong>。
+        </div>
+      </div>
+
+      <!-- 流程可视化 -->
+      <div style="font-size:13px;font-weight:700;color:#38bdf8;margin:16px 0 8px;">🔄 纠正措施流程（口播时配合手势）</div>
+      <div class="flow-diagram">
+        <div class="flow-node">发现<br>问题</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">根本<br>原因分析</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">制定纠正<br>措施</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">实施<br>措施</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">验证<br>有效性</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">关闭<br>不符合项</div>
+      </div>
+
+      <!-- 结尾重磅转化 -->
+      <div class="hook-box" style="border-color:rgba(168,85,247,0.4);background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(56,189,248,0.08));">
+        <div class="hook-title" style="color:#a78bfa;">🎯 模块二收官 · 重磅转化（约 5 分钟）</div>
+        <div class="hook-text">
+          好，到这里，我们已经把 ISO 45001 的<strong>全部 10 个条款</strong>完整地过了一遍。<br><br>
+          如果你看到这里，说明你是真的想把这套体系学懂、落地，而不是只想要一张证书。<br><br>
+          那我想认真地跟你介绍一下我们的<strong>《30天ISO 45001体系落地营》完整版</strong>：<br><br>
+          ✅ <strong>10 个模块、20 小时</strong>——不只是讲标准，是带你<strong>写出 15 份程序文件</strong><br>
+          ✅ <strong>每节课都有实操演示</strong>——打开 Word/Excel，跟着我一步一步做<br>
+          ✅ <strong>专属答疑群 30 天</strong>——你遇到的问题，我直接回答<br>
+          ✅ <strong>赠送 30 份可编辑模板</strong>——省去你 3 个月的文件编写时间<br>
+          ✅ <strong>适用东南亚 4 国</strong>——越南、泰国、印尼、尼日利亚法规对照<br><br>
+          <strong>现在报名，享受早鸟价 ¥499（原价 ¥799）</strong>。如果看完课程觉得不值，7 天内无条件退款。<br><br>
+          点击下方链接，我们在落地营里见。
+        </div>
+        <a href="#" class="hook-cta" style="background:linear-gradient(90deg,#a78bfa,#38bdf8);">🚀 立即加入《30天落地营》</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 底部 CTA -->
+  <div class="cta-bottom">
+    <h2>🎬 录制准备清单</h2>
+    <p style="max-width:600px;margin:0 auto 24px;">
+      以上脚本和大纲已完整准备。录制前，建议准备以下物料：<br>
+      ① 15 份 Word 程序文件模板（在模块 5 提供）<br>
+      ② 风险矩阵 Excel 文件（在模块 2.2 使用）<br>
+      ③ PPT 按大纲制作（18 页，可用 Canva 或 PowerPoint）<br>
+      ④ 准备 3 个真实案例的详细背景（用于口播时穿插）<br>
+      ⑤ 提前测试屏幕共享（Excel/Word 演示需要清晰画质）
+    </p>
+    <a href="#" class="cta-btn">📥 下载完整 PPT 大纲 PDF</a>
+    <a href="#" class="cta-btn" style="background:linear-gradient(90deg,#22c55e,#38bdf8);">🎯 获取 15 份程序文件模板</a>
+  </div>
+
+</div>
+</body>
+</html>

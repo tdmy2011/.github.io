@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - 安全生产专家</title>
+    <meta name="robots" content="noindex, follow">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f8fafc; color: #1e293b; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { text-align: center; max-width: 600px; padding: 48px; }
+        .error-code { font-size: 120px; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+        h1 { font-size: 28px; color: #1e3a5f; margin-bottom: 12px; }
+        p { color: #64748b; font-size: 16px; margin-bottom: 32px; line-height: 1.8; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #38bdf8, #818cf8); color: white; padding: 16px 32px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 16px; }
+        .btn:hover { transform: translateY(-2px); }
+        .links { margin-top: 24px; }
+        .links a { color: #38bdf8; text-decoration: none; margin: 0 12px; }
+        .links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>页面未找到</h1>
+        <p>抱歉，您访问的页面不存在或已被移动。<br>请检查URL是否正确，或返回首页浏览。</p>
+        <a href="/" class="btn">返回首页</a>
+        <div class="links">
+            <a href="/#products">课程产品</a>
+            <a href="/#faq">常见问题</a>
+            <a href="/#lead-magnet">免费资料</a>
+        </div>
+    </div>
+    <script>
+        // GA4 404 追踪
+        if (typeof gtag === 'function') {
+            gtag('event', 'page_not_found', {
+                page_path: window.location.pathname,
+                page_referrer: document.referrer
+            });
+        }
+    </script>
+</body>
+</html>

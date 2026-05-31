@@ -1,0 +1,12 @@
+# robots.txt for tdmy2011.github.io
+
+User-agent: *
+Allow: /
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://tdmy2011.github.io/sitemap.xml
+
+# 禁止爬取内部/草稿文件
+Disallow: /*_draft*
+Disallow: /tmp/

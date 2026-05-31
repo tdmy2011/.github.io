@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 绩效监视与测量程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">绩效监视与测量程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-011 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：9.1</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-011</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">绩效监视与测量程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>9.1 监视、测量、分析和评价</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">职业健康安全绩效监视与测量机制</span>，通过定性和定量的监视与测量，评价公司职业健康安全管理体系的运行情况和职业健康安全绩效，发现改进机会，特制定本程序。</p>
+        <p>本程序是PDCA循环中<span class="highlight">"C（检查）"</span>环节的核心文件。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司职业健康安全绩效的监视和测量活动，包括：</p>
+        <div class="bullet">• 主动监视（预防性测量）：安全巡检、培训效果评价、目标达成情况跟踪等；</div>
+        <div class="bullet">• 被动监视（事后测量）：事故调查、伤病统计分析、监管部门的处罚记录等；</div>
+        <div class="bullet">• 体系绩效测量：内审、管理评审、合规性评价等。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理绩效监视与测量工作<br>• 制定《职业健康安全绩效监测计划》<br>• 组织实施各项监测活动<br>• 分析监测数据，编制《职业健康安全绩效监测报告》<br>• 向管理层报告监测结果</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 配合EHS部门实施本部门的绩效监测<br>• 对本部门监测发现的问题，及时采取纠正措施</td></tr>
+            <tr><td><strong>设备部</strong></td><td>• 负责安全设备/装置的完好性监测（如压力表、安全阀、漏电保护器的定期检测）</td></tr>
+            <tr><td><strong>人力资源部</strong></td><td>• 负责员工职业健康体检的组织和结果监测</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 监测计划的制定</strong></div>
+        <div class="lettered">a) EHS部门每年<span class="highlight">1月</span>制定《年度职业健康安全绩效监测计划》；</div>
+        <div class="lettered">b) 监测计划须明确：监测项目、监测方法、监测频率、责任部门、判定标准；</div>
+        <div class="lettered">c) 监测项目须覆盖：</div>
+        <div class="bullet">• 职业健康安全目标达成情况；</div>
+        <div class="bullet">• 危险源控制措施的有效性；</div>
+        <div class="bullet">• 运行控制的执行情况；</div>
+        <div class="bullet">• 法律法规 compliance 状况；</div>
+        <div class="bullet">• 事故/事件发生率。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 主动监视（预防性测量）</strong></div>
+        <div class="lettered">a) <strong>安全巡检</strong>：EHS部门每周至少进行一次全厂安全巡检，填写《安全检查记录表》；各部门每周至少进行一次部门级安全巡检；</div>
+        <div class="lettered">b) <strong>专项检查</strong>：针对高风险作业（动火、高处、受限空间等），EHS部门须进行现场监督（通常每天一次）；</div>
+        <div class="lettered">c) <strong>目标监测</strong>：EHS部门每月跟踪《年度职业健康安全目标》的达成情况，填写《安全目标管理方案进度跟踪表》；</div>
+        <div class="lettered">d) <strong>培训效果监测</strong>：每次培训后须进行考试或考核，评价培训效果（参见HSE-PRO-004）；</div>
+        <div class="lettered">e) <strong>设备安全装置检测</strong>：设备部须按法规要求，定期检测安全阀、压力表、漏电保护器、起重机等，取得检测合格证。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 被动监视（事后测量）</strong></div>
+        <div class="lettered">a) <strong>事故/事件统计</strong>：EHS部门须建立《工伤事故登记表》和《未遂事故登记表》，每月统计：</div>
+        <div class="bullet">• 可记录工伤事故率（TRIR = Total Recordable Incident Rate）；</div>
+        <div class="bullet">• 损失工作日事故数；</div>
+        <div class="bullet">• 未遂事故数；</div>
+        <div class="lettered">b) <strong>伤病趋势分析</strong>：人力资源部须定期分析职业健康体检结果，发现职业病损害趋势；</div>
+        <div class="lettered">c) <strong>监管部门的处罚/整改通知</strong>：须记录在案，并作为合规性评价的输入。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 监测数据的分析与评价</strong></div>
+        <div class="lettered">a) EHS部门每季度对监测数据进行统计分析，编制《职业健康安全绩效监测季度报告》；</div>
+        <div class="lettered">b) 分析报告须包含：</div>
+        <div class="bullet">• 各项指标的实际值 vs 目标值；</div>
+        <div class="bullet">• 趋势分析（与去年同期对比、与上月对比）；</div>
+        <div class="bullet">• 发现的问题和原因；</div>
+        <div class="bullet">• 改进建议；</div>
+        <div class="lettered">c) 分析报告提交安全总监审阅，并作为管理评审的输入。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 监测设备的校准</strong></div>
+        <div class="lettered">a) 用于安全监测的设备（如噪声检测仪、气体检测仪、压力表等），须定期校准或检定；</div>
+        <div class="lettered">b) EHS部门建立《监测设备校准清单》，记录：设备名称、校准周期、上次校准日期、下次校准日期；</div>
+        <div class="lettered">c) 校准不合格的监测设备，须立即停止使用，送修或报废。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-003 《目标与管理方案控制程序》</div>
+        <div class="bullet">• HSE-PRO-012 《合规性评价程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• HSE-PRO-014 《内部审核程序》</div>
+        <div class="bullet">• 《职业健康安全绩效监测计划》（表格编号：HSE-FM-110）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>年度职业健康安全绩效监测计划</td><td>HSE-FM-110</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>安全检查记录表</td><td>HSE-FM-111</td><td>3年</td><td>EHS部、各部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>工伤事故登记表</td><td>HSE-FM-112</td><td>永久</td><td>EHS部、人力资源部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>未遂事故登记表</td><td>HSE-FM-113</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>职业健康安全绩效监测季度报告</td><td>HSE-FM-114</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">6</td><td>监测设备校准清单</td><td>HSE-FM-115</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 9.1。主动监视与被动监视的平衡是体系有效性的重要标志。
+    </div>
+</div>
+</body>
+</html>

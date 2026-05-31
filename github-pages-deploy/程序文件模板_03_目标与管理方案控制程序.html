@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 目标与管理方案控制程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">目标与管理方案控制程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-003 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：6.2</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-003</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">目标与管理方案控制程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>6.2 职业健康安全目标及其实现的策划</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">职业健康安全目标设定与实现策划</span>机制，确保公司职业健康安全方针得以落实，持续改进职业健康安全绩效，预防工作场所伤害和健康损害，特制定本程序。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司<span class="highlight">所有层级、所有部门</span>的职业健康安全目标制定、管理方案策划、实施、监测与更新。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 批准公司年度职业健康安全目标<br>• 批准各层级管理方案及所需资源</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 组织制定公司年度职业健康安全目标<br>• 监督各项目标和管理方案的实施进展<br>• 汇总目标达成情况，提交管理评审</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 根据公司目标，制定本部门年度安全目标<br>• 制定并实施本部门管理方案<br>• 确保目标传导至班组和岗位</td></tr>
+            <tr><td><strong>班组长/车间主任</strong></td><td>• 将部门目标分解为可执行的班组指标<br>• 确保员工了解本岗位相关安全目标</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 目标制定原则（SMART原则）</strong></div>
+        <div class="lettered">a) <strong>具体（Specific）：</strong>目标必须明确具体，避免模糊表述；</div>
+        <div class="lettered">b) <strong>可测量（Measurable）：</strong>目标必须可量化或可行为化，以便监测；</div>
+        <div class="lettered">c) <strong>可实现（Achievable）：</strong>目标必须现实可行，考虑资源和时间约束；</div>
+        <div class="lettered">d) <strong>相关性（Relevant）：</strong>目标必须与职业健康安全方针一致，与风险评估结果关联；</div>
+        <div class="lettered">e) <strong>时限性（Time-bound）：</strong>目标必须有明确的完成时限。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 目标制定流程</strong></div>
+        <div class="lettered">a) 每年<span class="highlight">12月</span>，EHS部门启动下一年度安全目标制定工作；</div>
+        <div class="lettered">b) 基于以下输入制定目标：</div>
+        <div class="bullet">• 职业健康安全方针；</div>
+        <div class="bullet">• 危险源辨识与风险评估结果；</div>
+        <div class="bullet">• 上年度目标达成情况；</div>
+        <div class="bullet">• 合规性评价结果；</div>
+        <div class="bullet">• 上年度事故/未遂事故分析结果；</div>
+        <div class="bullet">• 员工及相关方意见和建议。</div>
+        <div class="lettered">c) 制定《年度职业健康安全目标》，明确：目标描述、量化指标、责任部门、完成时限、所需资源；</div>
+        <div class="lettered">d) 《年度职业健康安全目标》经EHS部门审核后，报总经理批准发布。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 管理方案策划</strong></div>
+        <div class="lettered">a) 对每个安全目标，必须制定对应的《职业健康安全管理方案》；</div>
+        <div class="lettered">b) 管理方案应包含：</div>
+        <div class="bullet">• 目标描述（与《年度目标》一致）；</div>
+        <div class="bullet">• 现状与差距分析；</div>
+        <div class="bullet">• 具体措施（做什么、谁来做、什么时候完成、需要多少预算）；</div>
+        <div class="bullet">• 资源需求（人力、资金、设备、培训）；</div>
+        <div class="bullet">• 监测方法（如何验证措施有效）；</div>
+        <div class="bullet">• 验收标准。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 目标与管理方案的实施与监测</strong></div>
+        <div class="lettered">a) 各部门按管理方案执行，EHS部门负责跟踪进度；</div>
+        <div class="lettered">b) 进度监测频率：</div>
+        <div class="bullet">• 公司级目标：EHS部门<span class="highlight">每月</span>监测一次；</div>
+        <div class="bullet">• 部门级目标：部门负责人<span class="highlight">每周</span>监测一次；</div>
+        <div class="lettered">c) 监测结果记录在《安全目标管理方案进度跟踪表》；</div>
+        <div class="lettered">d) 发现目标可能不能按期达成时，责任部门须提前报告EHS部门，及时采取纠正措施。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 目标与管理方案的更新</strong></div>
+        <div class="lettered">a) 每年管理评审时，对目标达成情况进行全面评审；</div>
+        <div class="lettered">b) 以下情况可更新目标和管理方案：</div>
+        <div class="bullet">• 法律法规要求发生重大变化；</div>
+        <div class="bullet">• 公司业务范围、工艺、设备发生重大变更；</div>
+        <div class="bullet">• 目标已达成，需要设定更高目标；</div>
+        <div class="bullet">• 目标不合理，经论证后需要调整。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">5.</span>目标示例（供参考）</div>
+        <table class="content-table" style="font-size:10pt;">
+            <tr><th>目标类别</th><th>目标描述（SMART）</th><th>量化指标</th><th>完成时限</th></tr>
+            <tr><td>事故控制</td><td>杜绝工亡事故，减少可记录工伤事故</td><td>工亡0起；可记录工伤≤3起/年</td><td>本年度12月31日前</td></tr>
+            <tr><td>培训覆盖</td><td>确保100%员工接受年度安全培训</td><td>培训覆盖率100%；考核合格率≥95%</td><td>本年度11月30日前</td></tr>
+            <tr><td>隐患整改</td><td>提高隐患排查整改率</td><td>隐患整改闭环率100%；整改平均周期≤7天</td><td>持续</td></tr>
+            <tr><td>合规达标</td><td>通过ISO 45001年度监督审核</td><td>外部审核不符合项≤2项，且全部按期关闭</td><td>本次审核前</td></tr>
+            <tr><td>健康管理</td><td>减少职业病风险暴露</td><td>职业健康体检覆盖率100%；噪声/粉尘岗位达标率100%</td><td>本年度10月31日前</td></tr>
+        </table>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">6. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-002 《法律法规识别与更新程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">7.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>年度职业健康安全目标</td><td>HSE-FM-020</td><td>永久</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>职业健康安全管理方案</td><td>HSE-FM-021</td><td>3年</td><td>EHS部、各相关部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>安全目标管理方案进度跟踪表</td><td>HSE-FM-022</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 6.2。目标制定须与风险评估结果直接关联。
+    </div>
+</div>
+</body>
+</html>

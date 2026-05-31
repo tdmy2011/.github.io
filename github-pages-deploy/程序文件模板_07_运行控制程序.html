@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 运行控制程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">运行控制程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-007 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：8.1</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-007</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">运行控制程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>8.1 运行策划和控制</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 生产部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为确保公司<span class="highlight">所有运行活动（生产、检修、仓储、运输、承包商作业等）</span>在受控条件下进行，消除或降低职业健康安全风险，特制定本程序。</p>
+        <p>运行控制是ISO 45001体系<span class="highlight">最核心的执行层</span>，所有策划的结果（危险源辨识、法律法规、目标管理方案）最终都要通过运行控制来落实。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司所有运行活动的控制，包括但不限于：</p>
+        <div class="bullet">• 生产工艺操作（各车间日常生产作业）；</div>
+        <div class="bullet">• 设备检维修作业（计划检修、临时抢修）；</div>
+        <div class="bullet">• 危险作业（动火、高处、受限空间、临时用电、起重吊装）；</div>
+        <div class="bullet">• 化学品采购、储存、使用、废弃；</div>
+        <div class="bullet">• 仓储与物流（原材料入库、成品出库、厂内运输）；</div>
+        <div class="bullet">• 承包商作业（施工、安装、保洁、绿化等）；</div>
+        <div class="bullet">• 采购与供应链（供应商安全资质审查）。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 制定运行控制的标准和指导<br>• 监督各部门运行控制措施的落实情况<br>• 组织危险作业许可证审批<br>• 对运行控制中的重大风险进行专项检查</td></tr>
+            <tr><td><strong>生产/设备部门</strong></td><td>• 确保生产操作在受控条件下进行（有操作规程、有PPE、有监护）<br>• 执行危险作业许可制度<br>• 负责设备检维修作业的安全控制</td></tr>
+            <tr><td><strong>采购部门</strong></td><td>• 采购符合安全标准的设备、材料<br>• 审查供应商/承包商的安全资质<br>• 在采购合同中明确安全责任条款</td></tr>
+            <tr><td><strong>仓库部门</strong></td><td>• 危险化学品分类储存、标识清晰<br>• 执行出入库安全检查<br>• 确保仓储场所通风、防爆、防泄漏设施完好</td></tr>
+            <tr><td><strong>承包商负责人</strong></td><td>• 确保作业人员具备相应资质<br>• 遵守公司安全规则，接受EHS监督<br>• 作业前开展JSA分析并提交EHS备案</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 运行控制的策划</strong></div>
+        <div class="lettered">a) 基于<span class="highlight">危险源辨识与风险评估结果</span>，确定需要控制的运行活动清单；</div>
+        <div class="lettered">b) 对每项需要控制的运行活动，制定：</div>
+        <div class="bullet">• 操作规程（SOP）或作业指导书；</div>
+        <div class="bullet">• 安全控制措施（工程控制、管理控制、PPE要求）；</div>
+        <div class="bullet">• 作业人员资质要求；</div>
+        <div class="bullet">• 应急处置措施；</div>
+        <div class="lettered">c) 运行控制策划结果记录在《运行控制策划表》中，经EHS部门审核后实施。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 作业许可制度（PTW）</strong></div>
+        <div class="lettered">a) <span class="highlight">以下危险作业须执行作业许可制度</span>（PTW = Permit to Work），未经批准不得作业：</div>
+        <div class="bullet">• 动火作业（焊接、切割、打磨等产生火花的作业）；</div>
+        <div class="bullet">• 高处作业（坠落高度≥2米）；</div>
+        <div class="bullet">• 受限空间作业（罐、塔、井下等通风不良空间）；</div>
+        <div class="bullet">• 临时用电作业；</div>
+        <div class="bullet">• 起重吊装作业；</div>
+        <div class="bullet">• 破土作业（挖掘深度≥1.2米）；</div>
+        <div class="lettered">b) 作业许可申请流程：</div>
+        <div class="bullet">① 作业负责人填写《作业许可证》；</div>
+        <div class="bullet">② 进行JSA分析，制定安全措施；</div>
+        <div class="bullet">③ EHS部门现场核查措施落实情况；</div>
+        <div class="bullet">④ EHS负责人批准许可证（有效期通常不超过24小时）；</div>
+        <div class="bullet">⑤ 作业完成后，许可证关闭并存档（保存期1年）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 设备检维修安全控制（LOTO）</strong></div>
+        <div class="lettered">a) 设备检维修须执行<span class="highlight">上锁挂牌（LOTO = Lockout/Tagout）</span>程序；</div>
+        <div class="lettered">b) LOTO步骤：</div>
+        <div class="bullet">① 通知所有受影响的操作人员；</div>
+        <div class="bullet">② 关闭设备电源/能量源；</div>
+        <div class="bullet">③ 上锁（每人一把锁，钥匙由本人保管）；</div>
+        <div class="bullet">④ 挂牌（"禁止操作，有人工作"）；</div>
+        <div class="bullet">⑤ 释放残余能量（降压、排液）；</div>
+        <div class="bullet">⑥ 测试确认（尝试启动，确认已完全隔离）；</div>
+        <div class="bullet">⑦ 作业完成后，逐一解锁（谁上的锁谁解除）；</div>
+        <div class="lettered">c) <span class="highlight">"二人确认制"</span>：解锁前须双人确认，防止误操作。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 化学品安全管理</strong></div>
+        <div class="lettered">a) 所有化学品须有<span class="highlight">安全数据表（SDS/MSDS）</span>，且须为当地官方语言（东南亚工厂须有英文或当地语言版本，中文SDS不被当地检查官认可）；</div>
+        <div class="lettered">b) 化学品储存须符合：分类存放（酸碱分开、氧化剂与还原剂分开）、通风良好、防泄漏设施（围堰/防漏托盘）、标识清晰；</div>
+        <div class="lettered">c) 使用化学品的员工须接受专门培训（SDS阅读、PPE使用、应急处理）；</div>
+        <div class="lettered">d) 废弃化学品须交由有资质的单位处理，不得混入普通工业废物。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 变更管理（MOC）</strong></div>
+        <div class="lettered">a) 以下变更须执行<span class="highlight">变更管理（MOC = Management of Change）</span>程序：</div>
+        <div class="bullet">• 工艺变更（原料、配方、反应条件变更）；</div>
+        <div class="bullet">• 设备变更（新设备、设备改造）；</div>
+        <div class="bullet">• 人员变更（关键岗位人员调整）；</div>
+        <div class="bullet">• 法规变更（新的安全健康法规发布）；</div>
+        <div class="lettered">b) MOC流程：变更申请 → 风险评估 → 审批 → 实施 → 培训 → 验证；</div>
+        <div class="lettered">c) <span class="highlight">"……之后才发现……"</span>是变更管理失效的典型表现，所有变更须"先评估，后实施"。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-008 《变更管理程序》</div>
+        <div class="bullet">• HSE-PRO-009 《承包商安全管理程序》</div>
+        <div class="bullet">• HSE-PRO-010 《应急准备与响应程序》</div>
+        <div class="bullet">• 《作业许可证（PTW）》（表格编号：HSE-FM-070）</div>
+        <div class="bullet">• 《上锁挂牌（LOTO）记录表》（表格编号：HSE-FM-071）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>运行控制策划表</td><td>HSE-FM-070</td><td>3年</td><td>EHS部、各使用部门</td></tr>
+            <tr><td style="text-align:center;">2</td><td>作业许可证（PTW）</td><td>HSE-FM-071</td><td>1年</td><td>EHS部、申请部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>上锁挂牌（LOTO）记录表</td><td>HSE-FM-072</td><td>1年</td><td>设备部、EHS部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>化学品出入库检查记录</td><td>HSE-FM-073</td><td>3年</td><td>仓库部、EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>变更管理（MOC）申请表</td><td>HSE-FM-074</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 8.1。作业许可（PTW）和变更管理（MOC）是审核时的高频不符合项，须重点落实。
+    </div>
+</div>
+</body>
+</html>
