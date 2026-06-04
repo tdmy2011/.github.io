@@ -161,8 +161,7 @@
     </script>
 
     <!-- ===== Google Analytics ===== -->
-    <!-- TODO: 取消注释并替换 G-XXXXXXXXXX 为你的实际 GA4 测量 ID -->
-    <!--
+    <!-- TODO: 替换 G-XXXXXXXXXX 为你的实际 GA4 测量 ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -170,10 +169,9 @@
         gtag('js', new Date());
         gtag('config', 'G-XXXXXXXXXX');
     </script>
-    -->
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=Abx9jaJI_yKFrGrq6JcqKH47vWRFOFZWUv8pORx-ZenstcwhaU8qDtReCfoEdzbFDCDrNy3VmnXt37BU&currency=USD&intent=capture" data-namespace="paypal_sdk"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture" data-namespace="paypal_sdk"></script>
 
     <style>
         * { margin:0; padding:0; box-sizing: border-box; }
@@ -350,22 +348,15 @@
         <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
     </div>
 
-
     <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo"><span data-zh="安全" data-en="Safety">安全</span><span data-zh="专家" data-en="Expert">专家</span></div>
             <ul class="nav-links">
                 <li><a href="#home" data-zh="首页" data-en="Home">首页</a></li>
-                <li><a href="blog.html" data-zh="博客" data-en="Blog">博客</a></li>
-                <li><a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a></li>
-                <li><a href="shop.html" data-zh="在线商城" data-en="Shop">在线商城</a></li>
                 <li><a href="#subscribe" data-zh="订阅更新" data-en="Subscribe">订阅更新</a></li>
                 <li><a href="#products" data-zh="课程产品" data-en="Courses">课程产品</a></li>
-                <li><a href="course.html" data-zh="课程大纲" data-en="Syllabus">课程大纲</a></li>
-                <li><a href="pricing.html" data-zh="定价方案" data-en="Pricing">定价方案</a></li>
                 <li><a href="#faq" data-zh="常见问题" data-en="FAQ">常见问题</a></li>
-                <li><a href="contact.html" data-zh="联系我们" data-en="Contact">联系我们</a></li>
                 <li><a href="#about" data-zh="关于专家" data-en="About">关于专家</a></li>
             </ul>
             <button class="nav-cta" onclick="scrollToSection('products')" data-zh="立即咨询" data-en="Get Started">立即咨询</button>
@@ -383,7 +374,7 @@
                     30年安全生产实战经验 · 专注中资企业海外安全合规<br>从危险源辨识到认证通过，一站式解决方案
                 </p>
                 <div class="hero-buttons">
-                    <a href="course.html" class="btn-primary" data-zh="查看完整课程大纲" data-en="View Full Syllabus">查看完整课程大纲</a>
+                    <a href="#products" class="btn-primary" data-zh="查看课程方案" data-en="View Courses">查看课程方案</a>
                     <a href="#lead-magnet" class="btn-secondary" data-zh="免费下载自查清单" data-en="Download Free Checklist">免费下载自查清单</a>
                 </div>
             </div>
@@ -398,11 +389,13 @@
             <p class="subscribe-subtitle" data-zh="每周接收最新的东南亚/非洲安全法规更新、事故案例分析和高价值安全管理工作指南" data-en="Receive the latest Southeast Asia/Africa safety regulations, accident case studies and management guides every week">
                 每周接收最新的东南亚/非洲安全法规更新、事故案例分析和高价值安全管理工作指南
             </p>
-            <!-- Mailchimp 订阅表单 -->
-            <form class="subscribe-form" id="mc-embedded-subscribe-form" action="https://yigeworks.us12.list-manage.com/subscribe/post?u=cd9cbd2a66f5d8071405ea72e&amp;id=f0f3448e1a&amp;f_id=00bd4fe0f0" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-                <input type="email" name="EMAIL" class="subscribe-input required email" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
+            <!-- TODO: 将 action 替换为你的 Mailchimp 表单 URL -->
+            <!-- 获取方式: Mailchimp → Audience → Signup forms → Embedded forms → 复制 action URL -->
+            <form class="subscribe-form" id="mc-embedded-subscribe-form" action="https://yourdomain.us1.list-manage.com/subscribe/post?u=XXXXX&id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+                <input type="email" name="EMAIL" class="subscribe-input" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
+                <!-- Mailchimp anti-bot (隐藏) -->
                 <div style="position:absolute;left:-5000px;" aria-hidden="true">
-                    <input type="text" name="b_cd9cbd2a66f5d8071405ea72e_f0f3448e1a" tabindex="-1" value="">
+                    <input type="text" name="b_XXXXX_XXXXX" tabindex="-1" value="">
                 </div>
                 <button type="submit" class="subscribe-btn" data-zh="立即订阅" data-en="Subscribe Now">立即订阅</button>
             </form>
@@ -621,12 +614,8 @@
     <footer class="footer">
         <div class="footer-links">
             <a href="#home" data-zh="首页" data-en="Home">首页</a>
-            <a href="blog.html" data-zh="博客" data-en="Blog">博客</a>
-            <a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a>
-            <a href="shop.html" data-zh="在线商城" data-en="Shop">在线商城</a>
             <a href="#products" data-zh="课程产品" data-en="Courses">课程产品</a>
             <a href="#faq" data-zh="常见问题" data-en="FAQ">常见问题</a>
-            <a href="contact.html" data-zh="联系我们" data-en="Contact">联系我们</a>
             <a href="#lead-magnet" data-zh="免费资料" data-en="Free Resources">免费资料</a>
             <a href="#about" data-zh="关于专家" data-en="About">关于专家</a>
             <a href="privacy.html" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
@@ -642,8 +631,7 @@
             <h2 class="payment-title" data-zh="选择支付方式" data-en="Choose Payment Method">选择支付方式</h2>
             <div class="payment-price" id="paymentPrice">¥499</div>
 
-            <!-- Stripe 信用卡支付（暂未配置，跳过） -->
-            <!--
+            <!-- Stripe 信用卡支付 -->
             <div class="payment-method" onclick="showStripePanel()">
                 <div class="payment-method-icon">🟣</div>
                 <div>
@@ -658,7 +646,6 @@
                 <div class="stripe-error" id="stripeError"></div>
                 <button class="btn-primary" style="width:100%;" onclick="handleStripePayment()" id="stripePayBtn" data-zh="确认支付" data-en="Pay Now">确认支付</button>
             </div>
-            -->
 
             <!-- PayPal 支付 -->
             <div class="payment-method" onclick="showPayPalPanel()">
@@ -699,13 +686,13 @@
             <p class="lead-desc" data-zh="输入您的邮箱地址，我们将把《东南亚工厂安全合规自查清单100条》发送到您的邮箱。" data-en="Enter your email address, and we will send the Southeast Asia Factory Safety Compliance Checklist (100 Items) to your inbox.">
                 输入您的邮箱地址，我们将把《东南亚工厂安全合规自查清单100条》发送到您的邮箱。
             </p>
-            <!-- Mailchimp Lead Magnet 表单 -->
-            <form class="lead-form" id="mc-lead-form" action="https://yigeworks.us12.list-manage.com/subscribe/post?u=cd9cbd2a66f5d8071405ea72e&amp;id=f0f3448e1a&amp;f_id=00bd4fe0f0" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+            <!-- TODO: 替换为 Mailchimp 的 lead magnet 专用表单 action URL -->
+            <form class="lead-form" id="mc-lead-form" action="https://yourdomain.us1.list-manage.com/subscribe/post?u=XXXXX&id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
                 <input type="text" name="FNAME" class="lead-input" placeholder="请输入您的姓名" data-zh-placeholder="请输入您的姓名" data-en-placeholder="Enter your name" required>
-                <input type="email" name="EMAIL" class="lead-input required email" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
+                <input type="email" name="EMAIL" class="lead-input" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
                 <input type="text" name="COMPANY" class="lead-input" placeholder="您的企业名称（选填）" data-zh-placeholder="您的企业名称（选填）" data-en-placeholder="Your enterprise name (optional)">
                 <div style="position:absolute;left:-5000px;" aria-hidden="true">
-                    <input type="text" name="b_cd9cbd2a66f5d8071405ea72e_f0f3448e1a" tabindex="-1" value="">
+                    <input type="text" name="b_XXXXX_XXXXX" tabindex="-1" value="">
                 </div>
                 <button type="submit" class="btn-primary" style="width:100%;" data-zh="立即发送" data-en="Send Now">立即发送</button>
             </form>
@@ -715,12 +702,12 @@
     <!-- 成功提示 -->
     <div class="toast" id="toast"></div>
 
-    <!-- ===== Stripe.js SDK (暂未配置，跳过) ===== -->
-    <!--
+    <!-- ===== Stripe.js SDK ===== -->
+    <!-- TODO: 替换 pk_test_XXXXX 为你的 Stripe Publishable Key -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // ============================
-        // Stripe 配置 (暂未配置，跳过)
+        // Stripe 配置
         // ============================
         // TODO: 替换为你的 Stripe Publishable Key
         // 获取方式: Stripe Dashboard → Developers → API keys → Publishable key
@@ -844,7 +831,6 @@
         }
 
         // 显示 Stripe 面板
-        /*
         function showStripePanel() {
             document.getElementById('stripePanel').classList.add('active');
             document.getElementById('paypalPanel').classList.remove('active');
@@ -862,8 +848,7 @@
             }
         }
 
-        // Stripe 支付处理 (暂未配置)
-        /*
+        // Stripe 支付处理
         async function handleStripePayment() {
             if (!stripe || STRIPE_PK.includes('XXXX')) {
                 showToast(currentLang === 'zh' ? 'Stripe 正在配置中，请稍后再试' : 'Stripe is being configured, please try again later');
@@ -897,7 +882,6 @@
                 payBtn.textContent = currentLang === 'zh' ? '确认支付' : 'Pay Now';
             }
         }
-        */
 
         // PayPal 按钮渲染
         function renderPayPalButtons() {
@@ -925,8 +909,7 @@
             }).render('#paypal-button-container');
         }
 
-        // 微信/支付宝 (暂未配置，跳过)
-        /*
+        // 微信/支付宝 (国内支付)
         function handleChinaPay(method) {
             // TODO: 替换为实际的支付链接
             // 微信支付: 使用微信支付商户平台生成 Native 支付链接
@@ -940,7 +923,6 @@
                 : 'Redirecting to payment...');
             // window.location.href = payLinks[method];
         }
-        */
 
         // ============================
         // 铅磁弹窗
