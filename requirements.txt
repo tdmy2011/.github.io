@@ -1,0 +1,23 @@
+Django>=3.2,<4.1
+gunicorn>=21.2.0
+paramiko>=2.11.0
+Pillow>=9.3.0
+requests>=2.28.0
+
+# Celery 异步任务
+celery>=5.3.0
+redis>=4.5.0
+django-celery-beat>=2.5.0
+django-celery-results>=2.5.0
+
+# 邮件营销
+django-simple-mail>=2.0.0
+
+# SEO / GEO
+bleach>=6.0.0
+markdown>=3.4.0
+python-dateutil>=2.8.0
+
+# 主题集群 & 知识图谱
+jieba>=0.42.1
+numpy>=1.24.0
