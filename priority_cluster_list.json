@@ -1,0 +1,209 @@
+[
+  {
+    "pillar_slug": "compliance-management-guide",
+    "pillar_title": "安全生产合规管理完全指南",
+    "cluster_slug": "iso45001-implementation",
+    "cluster_title": "ISO 45001职业健康安全管理体系实施",
+    "priority": 1,
+    "geo_potential": 93,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "soc-construction-guide",
+    "pillar_title": "安全运营中心（SOC）建设完全指南",
+    "cluster_slug": "siem-selection",
+    "cluster_title": "SIEM平台选型指南",
+    "priority": 1,
+    "geo_potential": 92,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "emergency-response-guide",
+    "pillar_title": "应急管理体系建设完全指南",
+    "cluster_slug": "emergency-plan-writing",
+    "cluster_title": "应急预案编制规范与模板",
+    "priority": 1,
+    "geo_potential": 91,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "process-safety-guide",
+    "pillar_title": "工艺安全管理（PSM）完全指南",
+    "cluster_slug": "pha-methodology",
+    "cluster_title": "工艺危害分析（PHA）方法",
+    "priority": 1,
+    "geo_potential": 91,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "risk-assessment-guide",
+    "pillar_title": "企业风险评估与管控完全指南",
+    "cluster_slug": "risk-identification",
+    "cluster_title": "风险识别方法论与工具",
+    "priority": 1,
+    "geo_potential": 90,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "safety-training-guide",
+    "pillar_title": "安全培训教育体系建设完全指南",
+    "cluster_slug": "three-level-safety-education",
+    "cluster_title": "三级安全教育实施规范",
+    "priority": 1,
+    "geo_potential": 90,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "emergency-response-guide",
+    "pillar_title": "应急管理体系建设完全指南",
+    "cluster_slug": "incident-investigation",
+    "cluster_title": "事故调查方法与根因分析",
+    "priority": 1,
+    "geo_potential": 89,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "cybersecurity-guide",
+    "pillar_title": "网络安全与数据保护完全指南",
+    "cluster_slug": "personal-information-protection",
+    "cluster_title": "个人信息保护合规（PIPL）",
+    "priority": 1,
+    "geo_potential": 89,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "soc-construction-guide",
+    "pillar_title": "安全运营中心（SOC）建设完全指南",
+    "cluster_slug": "soc-incident-response",
+    "cluster_title": "SOC事件响应流程与SOP制定",
+    "priority": 1,
+    "geo_potential": 88,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "compliance-management-guide",
+    "pillar_title": "安全生产合规管理完全指南",
+    "cluster_slug": "work-safety-law",
+    "cluster_title": "安全生产法律法规解读",
+    "priority": 1,
+    "geo_potential": 88,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "risk-assessment-guide",
+    "pillar_title": "企业风险评估与管控完全指南",
+    "cluster_slug": "risk-matrix",
+    "cluster_title": "风险矩阵设计与等级评定",
+    "priority": 1,
+    "geo_potential": 87,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "cybersecurity-guide",
+    "pillar_title": "网络安全与数据保护完全指南",
+    "cluster_slug": "data-classification",
+    "cluster_title": "数据分类分级与安全治理",
+    "priority": 1,
+    "geo_potential": 87,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "emergency-response-guide",
+    "pillar_title": "应急管理体系建设完全指南",
+    "cluster_slug": "emergency-drill",
+    "cluster_title": "应急演练策划与评估",
+    "priority": 1,
+    "geo_potential": 86,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "compliance-management-guide",
+    "pillar_title": "安全生产合规管理完全指南",
+    "cluster_slug": "djb-2-0-guide",
+    "cluster_title": "等保2.0合规实施指南",
+    "priority": 1,
+    "geo_potential": 86,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "soc-construction-guide",
+    "pillar_title": "安全运营中心（SOC）建设完全指南",
+    "cluster_slug": "log-source-integration",
+    "cluster_title": "日志源接入规范与最佳实践",
+    "priority": 1,
+    "geo_potential": 85,
+    "article_count": 2
+  },
+  {
+    "pillar_slug": "risk-assessment-guide",
+    "pillar_title": "企业风险评估与管控完全指南",
+    "cluster_slug": "risk-control-measures",
+    "cluster_title": "风险管控措施层级与实施",
+    "priority": 1,
+    "geo_potential": 85,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "process-safety-guide",
+    "pillar_title": "工艺安全管理（PSM）完全指南",
+    "cluster_slug": "management-of-change",
+    "cluster_title": "变更管理（MOC）程序设计",
+    "priority": 1,
+    "geo_potential": 84,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "safety-culture-guide",
+    "pillar_title": "安全文化建设与行为安全完全指南",
+    "cluster_slug": "safety-culture-assessment",
+    "cluster_title": "安全文化评估工具与方法",
+    "priority": 2,
+    "geo_potential": 83,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "risk-assessment-guide",
+    "pillar_title": "企业风险评估与管控完全指南",
+    "cluster_slug": "dynamic-risk-assessment",
+    "cluster_title": "动态风险评估与实时监控",
+    "priority": 2,
+    "geo_potential": 82,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "soc-construction-guide",
+    "pillar_title": "安全运营中心（SOC）建设完全指南",
+    "cluster_slug": "soc-compliance",
+    "cluster_title": "SOC合规要求与等保映射",
+    "priority": 2,
+    "geo_potential": 80,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "safety-culture-guide",
+    "pillar_title": "安全文化建设与行为安全完全指南",
+    "cluster_slug": "behavioral-safety",
+    "cluster_title": "行为安全观察（BBS）实施指南",
+    "priority": 2,
+    "geo_potential": 80,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "safety-training-guide",
+    "pillar_title": "安全培训教育体系建设完全指南",
+    "cluster_slug": "safety-training-effectiveness",
+    "cluster_title": "安全培训效果评估与改进",
+    "priority": 2,
+    "geo_potential": 79,
+    "article_count": 1
+  },
+  {
+    "pillar_slug": "soc-construction-guide",
+    "pillar_title": "安全运营中心（SOC）建设完全指南",
+    "cluster_slug": "soc-staffing",
+    "cluster_title": "SOC团队人员配置与能力模型",
+    "priority": 2,
+    "geo_potential": 78,
+    "article_count": 1
+  }
+]
