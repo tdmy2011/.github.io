@@ -1,0 +1,1164 @@
+# -*- coding: utf-8 -*-
+"""
+仪哥安全智库 - 主题集群知识架构管理器
+Hub-and-Spoke Model（支柱-集群模型）GEO内容架构系统
+
+架构说明：
+  支柱（Pillar）= 核心主题的"完全指南"页面，是GEO流量的锚点
+  集群（Cluster）= 围绕支柱的子主题深度文章，是长尾流量入口
+  集群互联（Cross-link）= 集群间的双向链接网络，增强语义关联
+
+模型关系：
+  Pillar (1) ──┬── Cluster A (N) ── Cluster A-1 ... (M)
+                ├── Cluster B (N)
+                ├── Cluster C (N)
+                └── ...
+"""
+
+import json
+import os
+from dataclasses import dataclass, field
+from typing import Optional
+
+
+# ═══════════════════════════════════════════════════════════
+# 数据模型
+# ═══════════════════════════════════════════════════════════
+
+@dataclass
+class ArticleSpec:
+    """集群内单篇文章的规格定义"""
+    title_zh: str
+    title_en: str
+    slug: str
+    section_type: str          # definition/regulation/procedure/case/checklist/template/faq
+    content_outline_zh: str    # 文章内容大纲（中文）
+    target_keywords_zh: list  # 目标关键词（中文）
+    target_keywords_en: list  # 目标关键词（英文）
+    schema_types: list = field(default_factory=lambda: ['Article'])
+    geo_intent: str = 'informational'  # informational/transactional/navigational
+    word_count_target: int = 3000
+    internal_links: list = field(default_factory=list)  # 推荐内链目标slug
+
+    def to_dict(self):
+        return {
+            'title_zh': self.title_zh,
+            'title_en': self.title_en,
+            'slug': self.slug,
+            'section_type': self.section_type,
+            'content_outline_zh': self.content_outline_zh,
+            'target_keywords_zh': self.target_keywords_zh,
+            'target_keywords_en': self.target_keywords_en,
+            'schema_types': self.schema_types,
+            'geo_intent': self.geo_intent,
+            'word_count_target': self.word_count_target,
+            'internal_links': self.internal_links,
+        }
+
+
+@dataclass
+class Cluster:
+    """集群 - 围绕支柱的子主题"""
+    slug: str
+    title_zh: str
+    title_en: str
+    description_zh: str
+    description_en: str
+    geo_potential: float       # GEO流量潜力评分 0-100
+    search_volume_estimate: str  # 预估搜索量
+    priority: int              # 优先级 1-5（1最高）
+    articles: list = field(default_factory=list)  # ArticleSpec 列表
+
+    def add_article(self, article: ArticleSpec):
+        self.articles.append(article)
+        return self
+
+    def to_dict(self):
+        return {
+            'slug': self.slug,
+            'title_zh': self.title_zh,
+            'title_en': self.title_en,
+            'description_zh': self.description_zh,
+            'description_en': self.description_en,
+            'geo_potential': self.geo_potential,
+            'search_volume_estimate': self.search_volume_estimate,
+            'priority': self.priority,
+            'article_count': len(self.articles),
+            'articles': [a.to_dict() for a in self.articles],
+        }
+
+
+@dataclass
+class Pillar:
+    """支柱 - 核心主题的完全指南"""
+    slug: str
+    title_zh: str
+    title_en: str
+    description_zh: str
+    description_en: str
+    primary_keyword_zh: str
+    primary_keyword_en: str
+    secondary_keywords_zh: list
+    secondary_keywords_en: list
+    schema_types: list = field(default_factory=lambda: ['Article', 'BreadcrumbList', 'FAQPage'])
+    word_count_target: int = 8000
+    clusters: list = field(default_factory=list)  # Cluster 列表
+    cross_link_pillars: list = field(default_factory=list)  # 跨支柱链接
+
+    def add_cluster(self, cluster: Cluster):
+        self.clusters.append(cluster)
+        return self
+
+    def add_cross_link(self, pillar_slug: str):
+        self.cross_link_pillars.append(pillar_slug)
+        return self
+
+    def to_dict(self):
+        return {
+            'slug': self.slug,
+            'title_zh': self.title_zh,
+            'title_en': self.title_en,
+            'description_zh': self.description_zh,
+            'description_en': self.description_en,
+            'primary_keyword_zh': self.primary_keyword_zh,
+            'primary_keyword_en': self.primary_keyword_en,
+            'secondary_keywords_zh': self.secondary_keywords_zh,
+            'secondary_keywords_en': self.secondary_keywords_en,
+            'schema_types': self.schema_types,
+            'word_count_target': self.word_count_target,
+            'cluster_count': len(self.clusters),
+            'clusters': [c.to_dict() for c in self.clusters],
+            'cross_link_pillars': self.cross_link_pillars,
+        }
+
+    @property
+    def total_articles(self):
+        return 1 + sum(len(c.articles) for c in self.clusters)  # 1 = 支柱本身
+
+
+# ═══════════════════════════════════════════════════════════
+# 集群管理器
+# ═══════════════════════════════════════════════════════════
+
+class ClusterManager:
+    """主题集群管理器 - 管理所有支柱和集群"""
+
+    def __init__(self):
+        self.pillars: dict[str, Pillar] = {}
+
+    def add_pillar(self, pillar: Pillar):
+        self.pillars[pillar.slug] = pillar
+        return pillar
+
+    def get_pillar(self, slug: str) -> Optional[Pillar]:
+        return self.pillars.get(slug)
+
+    def get_all_pillars(self) -> list:
+        return list(self.pillars.values())
+
+    def get_clusters_by_priority(self, min_priority=3) -> list:
+        """按优先级获取需要优先创作的集群"""
+        clusters = []
+        for pillar in self.pillars.values():
+            for cluster in pillar.clusters:
+                if cluster.priority <= min_priority:
+                    clusters.append({
+                        'pillar_slug': pillar.slug,
+                        'pillar_title': pillar.title_zh,
+                        'cluster_slug': cluster.slug,
+                        'cluster_title': cluster.title_zh,
+                        'priority': cluster.priority,
+                        'geo_potential': cluster.geo_potential,
+                        'article_count': len(cluster.articles),
+                    })
+        return sorted(clusters, key=lambda x: (x['priority'], -x['geo_potential']))
+
+    def export_json(self, filepath: str):
+        """导出为JSON"""
+        data = {
+            'architecture': 'hub-and-spoke',
+            'version': '1.0.0',
+            'total_pillars': len(self.pillars),
+            'total_clusters': sum(len(p.clusters) for p in self.pillars.values()),
+            'total_articles': sum(p.total_articles for p in self.pillars.values()),
+            'pillars': [p.to_dict() for p in self.pillars.values()],
+        }
+        os.makedirs(os.path.dirname(filepath) or '.', exist_ok=True)
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return data
+
+    def generate_cross_link_matrix(self):
+        """生成交叉链接矩阵"""
+        slugs = list(self.pillars.keys())
+        matrix = {}
+        for p_slug in slugs:
+            pillar = self.pillars[p_slug]
+            matrix[p_slug] = {
+                'title': pillar.title_zh,
+                'links_to': pillar.cross_link_pillars,
+                'linked_from': [],
+            }
+        for p_slug in slugs:
+            for target in self.pillars[p_slug].cross_link_pillars:
+                if target in matrix:
+                    matrix[target]['linked_from'].append(p_slug)
+        return matrix
+
+    def print_summary(self):
+        """打印架构摘要"""
+        total_clusters = sum(len(p.clusters) for p in self.pillars.values())
+        total_articles = sum(p.total_articles for p in self.pillars.values())
+        print(f"\n{'='*60}")
+        print(f"  仪哥安全智库 - 主题集群知识架构（Hub-and-Spoke Model）")
+        print(f"{'='*60}")
+        print(f"  支柱数: {len(self.pillars)}")
+        print(f"  集群数: {total_clusters}")
+        print(f"  总文章: {total_articles}")
+        print(f"{'='*60}\n")
+
+        for pillar in self.pillars.values():
+            print(f"  [{pillar.primary_keyword_zh}]")
+            print(f"  {pillar.title_zh}")
+            print(f"  集群: {len(pillar.clusters)} | 文章: {pillar.total_articles}")
+            print(f"  交叉链接: {', '.join(pillar.cross_link_pillars) or '无'}")
+            for cluster in pillar.clusters:
+                print(f"    |- P{cluster.priority} {cluster.title_zh} ({len(cluster.articles)}篇, GEO={cluster.geo_potential})")
+            print()
+
+
+# ═══════════════════════════════════════════════════════════
+# 安全智库支柱-集群定义
+# ═══════════════════════════════════════════════════════════
+
+def build_safety_knowledge_graph() -> ClusterManager:
+    """构建仪哥安全智库完整知识图谱"""
+    mgr = ClusterManager()
+
+    # ─────────────────────────────────────────────
+    # 支柱1: 安全运营中心（SOC）建设完全指南
+    # ─────────────────────────────────────────────
+    p1 = Pillar(
+        slug='soc-construction-guide',
+        title_zh='安全运营中心（SOC）建设完全指南',
+        title_en='Complete Guide to Building a Security Operations Center (SOC)',
+        description_zh='从零到一搭建企业安全运营中心的系统性指南，涵盖组织架构、技术选型、运营流程和持续改进',
+        description_en='A comprehensive guide to building enterprise SOC from scratch, covering org structure, technology selection, operations, and continuous improvement',
+        primary_keyword_zh='安全运营中心建设',
+        primary_keyword_en='SOC construction guide',
+        secondary_keywords_zh=['SOC架构设计', '安全运营团队组建', 'SOC技术选型'],
+        secondary_keywords_en=['SOC architecture design', 'security operations team building', 'SOC technology selection'],
+        cross_link_pillars=['risk-assessment-guide', 'emergency-response-guide', 'compliance-management-guide'],
+    )
+    p1.add_cluster(Cluster(
+        slug='siem-selection',
+        title_zh='SIEM平台选型指南',
+        title_en='SIEM Platform Selection Guide',
+        description_zh='主流SIEM平台对比与选型方法论',
+        description_en='Comparison and selection methodology for mainstream SIEM platforms',
+        geo_potential=92, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='Splunk vs Elastic SIEM vs QRadar：企业级SIEM全面对比',
+                title_en='Splunk vs Elastic SIEM vs QRadar: Enterprise SIEM Comparison',
+                slug='siem-platform-comparison',
+                section_type='case',
+                content_outline_zh='1. 三大平台核心架构对比\n2. 日志采集能力对比\n3. 关联分析引擎对比\n4. 许可证成本对比\n5. 部署复杂度对比\n6. 适合场景推荐',
+                target_keywords_zh=['SIEM选型', 'Splunk对比', 'Elastic SIEM', 'QRadar'],
+                target_keywords_en=['SIEM selection', 'Splunk comparison', 'Elastic SIEM', 'QRadar'],
+                schema_types=['Article', 'FAQPage'],
+            ),
+            ArticleSpec(
+                title_zh='SIEM部署架构设计：集中式 vs 分布式 vs 混合式',
+                title_en='SIEM Deployment Architecture: Centralized vs Distributed vs Hybrid',
+                slug='siem-deployment-architecture',
+                section_type='definition',
+                content_outline_zh='1. 三种部署模式详解\n2. 各模式优缺点分析\n3. 不同企业规模的推荐方案\n4. 日志吞吐量评估方法\n5. 高可用设计要点',
+                target_keywords_zh=['SIEM部署', 'SIEM架构', '日志平台设计'],
+                target_keywords_en=['SIEM deployment', 'SIEM architecture', 'log platform design'],
+            ),
+        ],
+    ))
+    p1.add_cluster(Cluster(
+        slug='log-source-integration',
+        title_zh='日志源接入规范与最佳实践',
+        title_en='Log Source Integration Standards and Best Practices',
+        description_zh='各类安全日志源的标准化接入方法',
+        description_en='Standardized integration methods for various security log sources',
+        geo_potential=85, search_volume_estimate='中高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='Windows事件日志接入：安全审计事件全解析',
+                title_en='Windows Event Log Integration: Security Audit Events Analysis',
+                slug='windows-event-log-integration',
+                section_type='procedure',
+                content_outline_zh='1. Windows安全事件ID分类\n2. 需采集的关键事件清单\n3. WEF集中收集配置\n4. Syslog转发配置\n5. 常见接入问题排查',
+                target_keywords_zh=['Windows安全日志', '事件ID', 'WEF配置'],
+                target_keywords_en=['Windows security logs', 'event ID', 'WEF configuration'],
+            ),
+            ArticleSpec(
+                title_zh='Linux系统日志与云原生日志接入指南',
+                title_en='Linux System Logs and Cloud-Native Log Integration Guide',
+                slug='linux-cloud-log-integration',
+                section_type='procedure',
+                content_outline_zh='1. syslog/rsyslog配置\n2. Docker容器日志采集\n3. K8s集群日志采集\n4. 云平台日志API接入\n5. 日志格式标准化规范',
+                target_keywords_zh=['Linux日志', '容器日志采集', 'K8s日志'],
+                target_keywords_en=['Linux logs', 'container log collection', 'K8s logs'],
+            ),
+        ],
+    ))
+    p1.add_cluster(Cluster(
+        slug='soc-incident-response',
+        title_zh='SOC事件响应流程与SOP制定',
+        title_en='SOC Incident Response Procedures and SOP Development',
+        description_zh='标准化安全事件响应流程设计',
+        description_en='Standardized security incident response process design',
+        geo_potential=88, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='安全事件分级分类标准与响应SLA制定',
+                title_en='Security Incident Classification Standards and Response SLA',
+                slug='incident-classification-sla',
+                section_type='regulation',
+                content_outline_zh='1. 事件严重性分级标准（P1-P4）\n2. 事件类型分类（恶意软件/数据泄露/DDoS等）\n3. 各级别响应时间SLA\n4. 升级机制设计\n5. SLA监控与度量',
+                target_keywords_zh=['事件分级', '响应SLA', '安全事件分类'],
+                target_keywords_en=['incident classification', 'response SLA', 'security incident categorization'],
+            ),
+            ArticleSpec(
+                title_zh='SOC事件响应SOP模板：从检测到闭环的完整流程',
+                title_en='SOC Incident Response SOP Template: Detection to Closure',
+                slug='soc-incident-sop-template',
+                section_type='template',
+                content_outline_zh='1. 检测与告警阶段SOP\n2. 初步研判阶段SOP\n3. 事件处置阶段SOP\n4. 根因分析阶段SOP\n5. 恢复与复盘阶段SOP\n6. SOP维护更新机制',
+                target_keywords_zh=['事件响应SOP', 'SOC流程', '安全事件处置'],
+                target_keywords_en=['incident response SOP', 'SOC process', 'security incident handling'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    p1.add_cluster(Cluster(
+        slug='soc-compliance',
+        title_zh='SOC合规要求与等保映射',
+        title_en='SOC Compliance Requirements and Classiﬁed Protection Mapping',
+        description_zh='SOC建设相关的合规标准要求',
+        description_en='Compliance standards related to SOC construction',
+        geo_potential=80, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='等保2.0对安全运营中心的具体要求解读',
+                title_en='Classiﬁed Protection 2.0 Requirements for SOC',
+                slug='djb-2-0-soc-requirements',
+                section_type='regulation',
+                content_outline_zh='1. 等保三级安全运维要求\n2. SOC建设对应控制点\n3. 审计日志留存要求\n4. 事件通报要求\n5. 合规差距分析方法',
+                target_keywords_zh=['等保2.0 SOC', '安全运维合规', '等保三级'],
+                target_keywords_en=['Classified Protection SOC', 'security ops compliance', 'level 3 protection'],
+            ),
+        ],
+    ))
+    p1.add_cluster(Cluster(
+        slug='soc-staffing',
+        title_zh='SOC团队人员配置与能力模型',
+        title_en='SOC Team Staﬃng and Competency Model',
+        description_zh='SOC团队角色定义、人员编制和能力要求',
+        description_en='SOC team role definitions, staffing levels, and competency requirements',
+        geo_potential=78, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='SOC岗位体系设计：L1/L2/L3分析师能力模型',
+                title_en='SOC Role System Design: L1/L2/L3 Analyst Competency Model',
+                slug='soc-analyst-competency-model',
+                section_type='definition',
+                content_outline_zh='1. SOC组织架构模式（集中式/分布式/混合式）\n2. L1初级分析师职责与技能\n3. L2高级分析师职责与技能\n4. L3威胁猎手职责与技能\n5. 人员编制计算方法\n6. 值班排班最佳实践',
+                target_keywords_zh=['SOC岗位', '安全分析师', 'SOC人员配置'],
+                target_keywords_en=['SOC roles', 'security analyst', 'SOC staffing'],
+            ),
+        ],
+    ))
+    p1.add_cluster(Cluster(
+        slug='soc-budget',
+        title_zh='SOC建设预算估算与ROI分析',
+        title_en='SOC Budget Estimation and ROI Analysis',
+        description_zh='SOC建设各阶段成本估算与投资回报分析',
+        description_en='Cost estimation and ROI analysis for each SOC construction phase',
+        geo_potential=75, search_volume_estimate='中低', priority=3,
+        articles=[
+            ArticleSpec(
+                title_zh='SOC建设预算清单：硬件/软件/人力/运营四维成本',
+                title_en='SOC Budget Breakdown: Hardware/Software/Staffing/Operations',
+                slug='soc-budget-breakdown',
+                section_type='checklist',
+                content_outline_zh='1. 一次性投入（硬件/软件许可/实施）\n2. 年度运营成本（人力/维护/培训）\n3. 不同规模企业预算参考\n4. 隐性成本容易被忽略的项\n5. ROI量化评估方法',
+                target_keywords_zh=['SOC预算', '安全运营成本', 'SOC ROI'],
+                target_keywords_en=['SOC budget', 'security operations cost', 'SOC ROI'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p1)
+
+    # ─────────────────────────────────────────────
+    # 支柱2: 企业风险评估与管控完全指南
+    # ─────────────────────────────────────────────
+    p2 = Pillar(
+        slug='risk-assessment-guide',
+        title_zh='企业风险评估与管控完全指南',
+        title_en='Complete Guide to Enterprise Risk Assessment and Management',
+        description_zh='系统化的企业风险识别、评估、管控和持续监控方法论',
+        description_en='Systematic methodology for enterprise risk identification, assessment, control, and continuous monitoring',
+        primary_keyword_zh='企业风险评估',
+        primary_keyword_en='enterprise risk assessment',
+        secondary_keywords_zh=['风险管理', '风险矩阵', '安全风险评估方法'],
+        secondary_keywords_en=['risk management', 'risk matrix', 'safety risk assessment methods'],
+        cross_link_pillars=['soc-construction-guide', 'compliance-management-guide', 'safety-culture-guide'],
+    )
+    p2.add_cluster(Cluster(
+        slug='risk-identification',
+        title_zh='风险识别方法论与工具',
+        title_en='Risk Identiﬁcation Methodology and Tools',
+        description_zh='系统化风险识别的流程和方法',
+        description_en='Processes and methods for systematic risk identification',
+        geo_potential=90, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='JSA/HAZOP/LOTO/LER：四大风险识别方法对比与适用场景',
+                title_en='JSA/HAZOP/LOTO/LER: Four Risk Identiﬁcation Methods Compared',
+                slug='risk-identification-methods-comparison',
+                section_type='definition',
+                content_outline_zh='1. JSA工作安全分析法详解\n2. HAZOP危险与可操作性研究\n3. LOTO锁标管理\n4. LER岗位风险评估\n5. 各方法适用场景对照表\n6. 组合使用最佳实践',
+                target_keywords_zh=['JSA方法', 'HAZOP分析', 'LOTO管理', '风险识别'],
+                target_keywords_en=['JSA method', 'HAZOP analysis', 'LOTO management', 'risk identification'],
+            ),
+            ArticleSpec(
+                title_zh='企业风险登记册（Risk Register）建立与维护指南',
+                title_en='Enterprise Risk Register: Creation and Maintenance Guide',
+                slug='risk-register-guide',
+                section_type='template',
+                content_outline_zh='1. 风险登记册核心字段设计\n2. 风险编号与分类规则\n3. 评估标准定义（可能性x后果）\n4. 风险登记册模板\n5. 动态更新与评审机制',
+                target_keywords_zh=['风险登记册', '风险清单', '风险管理模板'],
+                target_keywords_en=['risk register', 'risk inventory', 'risk management template'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    p2.add_cluster(Cluster(
+        slug='risk-matrix',
+        title_zh='风险矩阵设计与等级评定',
+        title_en='Risk Matrix Design and Rating',
+        description_zh='定量与定性风险评估矩阵的设计方法',
+        description_en='Design methods for quantitative and qualitative risk assessment matrices',
+        geo_potential=87, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='5x5风险矩阵设计详解：从可能性到后果的量化评分',
+                title_en='5x5 Risk Matrix Design: Quantitative Scoring from Likelihood to Consequence',
+                slug='risk-matrix-5x5-design',
+                section_type='definition',
+                content_outline_zh='1. 风险矩阵原理\n2. 可能性等级定义（1-5级）\n3. 后果严重性等级定义（1-5级）\n4. 风险等级划分（可接受/需管控/不可接受）\n5. ALARP原则\n6. 风险矩阵局限性及改进',
+                target_keywords_zh=['风险矩阵', '5x5矩阵', '风险评估等级'],
+                target_keywords_en=['risk matrix', '5x5 matrix', 'risk rating'],
+            ),
+        ],
+    ))
+    p2.add_cluster(Cluster(
+        slug='risk-control-measures',
+        title_zh='风险管控措施层级与实施',
+        title_en='Hierarchy of Risk Controls and Implementation',
+        description_zh='基于控制层级的风险管控措施选择与实施',
+        description_en='Risk control measure selection and implementation based on hierarchy of controls',
+        geo_potential=85, search_volume_estimate='中高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='本质安全到个人防护：风险管控措施五层级详解',
+                title_en='Inherent Safety to PPE: Five Levels of Risk Control Measures',
+                slug='hierarchy-of-controls',
+                section_type='definition',
+                content_outline_zh='1. 第一层：消除/替代（本质安全）\n2. 第二层：工程控制\n3. 第三层：管理控制\n4. 第四层：行政控制\n5. 第五层：个人防护装备\n6. 各层级有效性对比\n7. 组合控制措施设计方法',
+                target_keywords_zh=['风险管控层级', '本质安全', '工程控制', '安全措施'],
+                target_keywords_en=['hierarchy of controls', 'inherent safety', 'engineering controls', 'safety measures'],
+            ),
+        ],
+    ))
+    p2.add_cluster(Cluster(
+        slug='dynamic-risk-assessment',
+        title_zh='动态风险评估与实时监控',
+        title_en='Dynamic Risk Assessment and Real-time Monitoring',
+        description_zh='作业现场动态风险评估方法',
+        description_en='Dynamic risk assessment methods for operational sites',
+        geo_potential=82, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='作业前动态风险评估（Take 5 / STA）实施指南',
+                title_en='Pre-task Dynamic Risk Assessment (Take 5 / STA) Guide',
+                slug='take-5-risk-assessment',
+                section_type='procedure',
+                content_outline_zh='1. Take 5五步法\n2. STA安全任务分析\n3. 动态风险 vs 静态风险\n4. 现场快速评估工具\n5. 数字化动态风险评估方案',
+                target_keywords_zh=['动态风险评估', 'Take 5', 'STA安全分析'],
+                target_keywords_en=['dynamic risk assessment', 'Take 5', 'STA safety analysis'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p2)
+
+    # ─────────────────────────────────────────────
+    # 支柱3: 应急管理体系建设完全指南
+    # ─────────────────────────────────────────────
+    p3 = Pillar(
+        slug='emergency-response-guide',
+        title_zh='应急管理体系建设完全指南',
+        title_en='Complete Guide to Emergency Response Management System',
+        description_zh='企业应急预案编制、演练、响应和恢复的完整体系',
+        description_en='Complete system for enterprise emergency plan development, drills, response, and recovery',
+        primary_keyword_zh='应急管理体系建设',
+        primary_keyword_en='emergency response management system',
+        secondary_keywords_zh=['应急预案编制', '应急演练', '事故调查'],
+        secondary_keywords_en=['emergency plan development', 'emergency drill', 'incident investigation'],
+        cross_link_pillars=['soc-construction-guide', 'risk-assessment-guide', 'process-safety-guide'],
+    )
+    p3.add_cluster(Cluster(
+        slug='emergency-plan-writing',
+        title_zh='应急预案编制规范与模板',
+        title_en='Emergency Plan Writing Standards and Templates',
+        description_zh='各类应急预案的标准编写方法',
+        description_en='Standard writing methods for various emergency plans',
+        geo_potential=91, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='生产安全事故应急预案编制指南（GB/T 29639对照）',
+                title_en='Production Safety Incident Emergency Plan Writing Guide (GB/T 29639)',
+                slug='emergency-plan-gb-29639',
+                section_type='regulation',
+                content_outline_zh='1. GB/T 29639核心要求\n2. 综合应急预案结构\n3. 专项应急预案模板\n4. 现场处置方案模板\n5. 应急资源调查清单\n6. 预案评审与备案流程',
+                target_keywords_zh=['应急预案编制', 'GB/T 29639', '事故应急预案'],
+                target_keywords_en=['emergency plan writing', 'GB/T 29639', 'incident emergency plan'],
+                schema_types=['Article', 'HowTo'],
+            ),
+            ArticleSpec(
+                title_zh='消防应急预案编制要点与实战模板',
+                title_en='Fire Emergency Plan: Key Points and Practical Templates',
+                slug='fire-emergency-plan-template',
+                section_type='template',
+                content_outline_zh='1. 消防应急预案必备要素\n2. 火灾风险场景分类\n3. 疏散路线设计方法\n4. 应急组织架构\n5. 消防设施联动清单\n6. 预案模板下载',
+                target_keywords_zh=['消防应急预案', '火灾应急预案', '疏散方案'],
+                target_keywords_en=['fire emergency plan', 'fire evacuation plan'],
+            ),
+        ],
+    ))
+    p3.add_cluster(Cluster(
+        slug='emergency-drill',
+        title_zh='应急演练策划与评估',
+        title_en='Emergency Drill Planning and Evaluation',
+        description_zh='应急演练的设计、执行和效果评估',
+        description_en='Emergency drill design, execution, and effectiveness evaluation',
+        geo_potential=86, search_volume_estimate='中高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='应急演练类型选择：桌面推演 vs 功能演练 vs 全面演练',
+                title_en='Emergency Drill Types: Tabletop vs Functional vs Full-scale',
+                slug='emergency-drill-types',
+                section_type='definition',
+                content_outline_zh='1. 桌面推演（Tabletop）\n2. 功能演练（Functional）\n3. 全面演练（Full-scale）\n4. 各类型适用场景\n5. 演练频率建议\n6. 演练计划模板',
+                target_keywords_zh=['应急演练', '桌面推演', '全面演练', '功能演练'],
+                target_keywords_en=['emergency drill', 'tabletop exercise', 'full-scale drill'],
+            ),
+        ],
+    ))
+    p3.add_cluster(Cluster(
+        slug='incident-investigation',
+        title_zh='事故调查方法与根因分析',
+        title_en='Incident Investigation Methods and Root Cause Analysis',
+        description_zh='系统化的事故调查与根因分析方法',
+        description_en='Systematic incident investigation and root cause analysis methods',
+        geo_potential=89, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='事故调查5Why法、鱼骨图与故障树分析实战',
+                title_en='Incident Investigation: 5-Why, Fishbone, and Fault Tree in Practice',
+                slug='incident-investigation-rca-methods',
+                section_type='procedure',
+                content_outline_zh='1. 事故调查基本流程\n2. 5Why分析法详解与案例\n3. 鱼骨图（石川图）绘制方法\n4. 故障树分析（FTA）入门\n5. 根因 vs 直接原因 vs 贡献因素\n6. 调查报告撰写规范',
+                target_keywords_zh=['事故调查', '根因分析', '5Why', '鱼骨图', '故障树'],
+                target_keywords_en=['incident investigation', 'root cause analysis', '5-Why', 'fishbone', 'fault tree'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p3)
+
+    # ─────────────────────────────────────────────
+    # 支柱4: 安全生产合规管理完全指南
+    # ─────────────────────────────────────────────
+    p4 = Pillar(
+        slug='compliance-management-guide',
+        title_zh='安全生产合规管理完全指南',
+        title_en='Complete Guide to Work Safety Compliance Management',
+        description_zh='等保、ISO 45001、安全生产法等法规标准的合规实施',
+        description_en='Compliance implementation for Classiﬁed Protection, ISO 45001, Work Safety Law, etc.',
+        primary_keyword_zh='安全生产合规管理',
+        primary_keyword_en='work safety compliance management',
+        secondary_keywords_zh=['等保2.0', 'ISO 45001', '安全生产法'],
+        secondary_keywords_en=['Classiﬁed Protection', 'ISO 45001', 'Work Safety Law'],
+        cross_link_pillars=['soc-construction-guide', 'risk-assessment-guide', 'safety-training-guide'],
+    )
+    p4.add_cluster(Cluster(
+        slug='iso45001-implementation',
+        title_zh='ISO 45001职业健康安全管理体系实施',
+        title_en='ISO 45001 OH&S Management System Implementation',
+        description_zh='ISO 45001标准解读与认证实施',
+        description_en='ISO 45001 standard interpretation and certification implementation',
+        geo_potential=93, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='ISO 45001:2018条款逐条解读与实施要点',
+                title_en='ISO 45001:2018 Clause-by-Clause Interpretation and Implementation',
+                slug='iso-45001-clauses-guide',
+                section_type='regulation',
+                content_outline_zh='1. 范围与引用标准\n2. 组织环境与相关方\n3. 领导作用与工作人员协商\n4. 策划（风险机遇）\n5. 支持（资源/能力/意识/沟通/文件）\n6. 运行（消除危险/变更管理/采购）\n7. 绩效评价（监视/内审/管理评审）\n8. 改进（事件/不符合/纠正措施）',
+                target_keywords_zh=['ISO 45001', '职业健康安全', 'OHSE体系'],
+                target_keywords_en=['ISO 45001', 'OH&S management', 'OHS system'],
+                schema_types=['Article', 'FAQPage'],
+            ),
+            ArticleSpec(
+                title_zh='ISO 45001认证全流程：从准备到拿证的完整攻略',
+                title_en='ISO 45001 Certification: Complete Guide from Preparation to Certificate',
+                slug='iso-45001-certification-process',
+                section_type='procedure',
+                content_outline_zh='1. 认证条件与适用范围\n2. 体系建立阶段（差距分析→文件编制→试运行）\n3. 内部审核准备\n4. 管理评审\n5. 外部审核流程\n6. 常见不符合项与整改\n7. 证书维护与监督审核',
+                target_keywords_zh=['ISO 45001认证', '体系认证流程', '职业安全认证'],
+                target_keywords_en=['ISO 45001 certification', 'system certification process'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    p4.add_cluster(Cluster(
+        slug='work-safety-law',
+        title_zh='安全生产法律法规解读',
+        title_en='Work Safety Laws and Regulations Interpretation',
+        description_zh='核心安全生产法律法规条文解读',
+        description_en='Interpretation of core work safety laws and regulations',
+        geo_potential=88, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='《安全生产法》2024修订版企业责任条款全解析',
+                title_en='Work Safety Law 2024 Revision: Enterprise Responsibility Clauses',
+                slug='work-safety-law-2024-enterprise',
+                section_type='regulation',
+                content_outline_zh='1. 企业的七项法定责任\n2. 主要负责人职责\n3. 安全管理机构与人员配置要求\n4. 安全生产投入保障\n5. 事故隐患排查治理义务\n6. 法律责任与处罚标准\n7. 企业合规自查清单',
+                target_keywords_zh=['安全生产法', '企业安全责任', '安全法修订'],
+                target_keywords_en=['Work Safety Law', 'enterprise safety responsibility'],
+                schema_types=['Article', 'FAQPage'],
+            ),
+        ],
+    ))
+    p4.add_cluster(Cluster(
+        slug='djb-2-0-guide',
+        title_zh='等保2.0合规实施指南',
+        title_en='Classiﬁed Protection 2.0 Compliance Implementation Guide',
+        description_zh='等保2.0三级要求解读与实施路径',
+        description_en='Classiﬁed Protection 2.0 Level 3 requirements interpretation and implementation path',
+        geo_potential=86, search_volume_estimate='中高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='等保2.0三级测评要点与企业应对策略',
+                title_en='Classiﬁed Protection 2.0 Level 3 Assessment Key Points',
+                slug='djb-2-0-level3-assessment',
+                section_type='regulation',
+                content_outline_zh='1. 等保2.0三级标准框架\n2. 安全物理环境要求\n3. 安全通信网络\n4. 安全区域边界\n5. 安全计算环境\n6. 安全管理中心\n7. 测评流程与准备\n8. 常见扣分项分析',
+                target_keywords_zh=['等保2.0三级', '等级保护测评', '网络安全等级保护'],
+                target_keywords_en=['Classiﬁed Protection Level 3', 'cybersecurity classiﬁed protection'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p4)
+
+    # ─────────────────────────────────────────────
+    # 支柱5: 工艺安全管理（PSM）完全指南
+    # ─────────────────────────────────────────────
+    p5 = Pillar(
+        slug='process-safety-guide',
+        title_zh='工艺安全管理（PSM）完全指南',
+        title_en='Complete Guide to Process Safety Management (PSM)',
+        description_zh='化工及高危行业工艺安全管理的14要素实施指南',
+        description_en='Implementation guide for 14 elements of process safety management in chemical and high-risk industries',
+        primary_keyword_zh='工艺安全管理',
+        primary_keyword_en='process safety management',
+        secondary_keywords_zh=['PSM要素', '变更管理', '工艺危害分析'],
+        secondary_keywords_en=['PSM elements', 'MOC', 'process hazard analysis'],
+        cross_link_pillars=['emergency-response-guide', 'risk-assessment-guide', 'compliance-management-guide'],
+    )
+    p5.add_cluster(Cluster(
+        slug='pha-methodology',
+        title_zh='工艺危害分析（PHA）方法',
+        title_en='Process Hazard Analysis (PHA) Methods',
+        description_zh='HAZOP、LOPA、FMEA等PHA方法详解',
+        description_en='Detailed guide to PHA methods including HAZOP, LOPA, FMEA',
+        geo_potential=91, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='HAZOP分析方法详解：引导词、偏差与保护层',
+                title_en='HAZOP Analysis: Guide Words, Deviations, and Protection Layers',
+                slug='hazop-analysis-guide',
+                section_type='definition',
+                content_outline_zh='1. HAZOP基本原理\n2. 引导词与参数矩阵\n3. 偏差识别方法\n4. 原因-后果-保护层分析\n5. HAZOP会议组织\n6. HAZOP报告模板\n7. HAZOP vs 其他PHA方法',
+                target_keywords_zh=['HAZOP', '工艺危害分析', '偏差分析'],
+                target_keywords_en=['HAZOP', 'process hazard analysis', 'deviation analysis'],
+            ),
+            ArticleSpec(
+                title_zh='LOPA保护层分析：从场景到可接受风险的量化方法',
+                title_en='LOPA: Quantitative Method from Scenario to Acceptable Risk',
+                slug='lopa-analysis-guide',
+                section_type='definition',
+                content_outline_zh='1. LOPA基本概念\n2. 独立保护层（IPL）识别\n3. IPL可信度评估\n4. 风险频率计算\n5. 可接受风险标准\n6. LOPA vs 定性 vs QRA\n7. LOPA案例实战',
+                target_keywords_zh=['LOPA', '保护层分析', '独立保护层', 'IPL'],
+                target_keywords_en=['LOPA', 'layer of protection', 'IPL'],
+            ),
+        ],
+    ))
+    p5.add_cluster(Cluster(
+        slug='management-of-change',
+        title_zh='变更管理（MOC）程序设计',
+        title_en='Management of Change (MOC) Procedure Design',
+        description_zh='工艺变更、设备变更的安全管理流程',
+        description_en='Safety management process for process and equipment changes',
+        geo_potential=84, search_volume_estimate='中高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='变更管理（MOC）全流程：从申请到关闭的闭环控制',
+                title_en='Management of Change (MOC): Full Process from Request to Closure',
+                slug='moc-full-process',
+                section_type='procedure',
+                content_outline_zh='1. 变更定义与分类（重大/一般/紧急）\n2. 变更申请与审批流程\n3. PHA风险评估\n4. 变更实施管理\n5. 投用前安全检查（PSSR）\n6. 变更关闭与文档更新\n7. MOC常见失败原因',
+                target_keywords_zh=['变更管理', 'MOC流程', 'PSSR'],
+                target_keywords_en=['management of change', 'MOC process', 'PSSR'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p5)
+
+    # ─────────────────────────────────────────────
+    # 支柱6: 安全文化建设与行为安全完全指南
+    # ─────────────────────────────────────────────
+    p6 = Pillar(
+        slug='safety-culture-guide',
+        title_zh='安全文化建设与行为安全完全指南',
+        title_en='Complete Guide to Safety Culture and Behavioral Safety',
+        description_zh='企业安全文化评估、建设和持续改进方法论',
+        description_en='Methodology for enterprise safety culture assessment, development, and continuous improvement',
+        primary_keyword_zh='安全文化建设',
+        primary_keyword_en='safety culture development',
+        secondary_keywords_zh=['行为安全', '安全领导力', '安全文化评估'],
+        secondary_keywords_en=['behavioral safety', 'safety leadership', 'safety culture assessment'],
+        cross_link_pillars=['risk-assessment-guide', 'compliance-management-guide', 'safety-training-guide'],
+    )
+    p6.add_cluster(Cluster(
+        slug='safety-culture-assessment',
+        title_zh='安全文化评估工具与方法',
+        title_en='Safety Culture Assessment Tools and Methods',
+        description_zh='安全文化成熟度评估与测量',
+        description_en='Safety culture maturity assessment and measurement',
+        geo_potential=83, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='Bradley安全文化成熟度模型：从病态到 generative 的五级演进',
+                title_en='Bradley Safety Culture Maturity Model: Five Levels from Pathological to Generative',
+                slug='bradley-safety-culture-model',
+                section_type='definition',
+                content_outline_zh='1. 病态型（Pathological）\n2. 反应型（Reactive）\n3. 计算型（Calculative）\n4. 主动型（Proactive）\n5. 生成型（Generative）\n6. 评估工具设计\n7. 评估结果解读与行动建议',
+                target_keywords_zh=['安全文化模型', '安全成熟度', 'Bradley模型'],
+                target_keywords_en=['safety culture model', 'safety maturity', 'Bradley model'],
+            ),
+        ],
+    ))
+    p6.add_cluster(Cluster(
+        slug='behavioral-safety',
+        title_zh='行为安全观察（BBS）实施指南',
+        title_en='Behavior-Based Safety (BBS) Implementation Guide',
+        description_zh='基于行为的安全管理方法实施',
+        description_en='Implementation of behavior-based safety management methods',
+        geo_potential=80, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='行为安全观察（BBS）从设计到落地的完整方案',
+                title_en='Behavior-Based Safety (BBS): Design to Implementation',
+                slug='bbs-implementation-guide',
+                section_type='procedure',
+                content_outline_zh='1. BBS原理与核心要素\n2. 关键行为识别方法\n3. 观察清单设计\n4. 观察员培训\n5. 数据收集与分析\n6. 正向反馈与强化\n7. BBS项目常见失败原因与对策',
+                target_keywords_zh=['行为安全', 'BBS', '安全观察'],
+                target_keywords_en=['behavioral safety', 'BBS', 'safety observation'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p6)
+
+    # ─────────────────────────────────────────────
+    # 支柱7: 安全培训教育体系建设完全指南
+    # ─────────────────────────────────────────────
+    p7 = Pillar(
+        slug='safety-training-guide',
+        title_zh='安全培训教育体系建设完全指南',
+        title_en='Complete Guide to Safety Training System Development',
+        description_zh='企业安全培训需求分析、课程设计、效果评估和数字化培训平台建设',
+        description_en='Enterprise safety training needs analysis, course design, effectiveness evaluation, and digital training platform',
+        primary_keyword_zh='安全培训体系',
+        primary_keyword_en='safety training system',
+        secondary_keywords_zh=['安全培训课程', '三级安全教育', '安全培训评估'],
+        secondary_keywords_en=['safety training courses', 'three-level safety education', 'training evaluation'],
+        cross_link_pillars=['compliance-management-guide', 'safety-culture-guide', 'risk-assessment-guide'],
+    )
+    p7.add_cluster(Cluster(
+        slug='three-level-safety-education',
+        title_zh='三级安全教育实施规范',
+        title_en='Three-Level Safety Education Implementation Standards',
+        description_zh='厂级、车间级、班组级三级安全教育',
+        description_en='Plant-level, workshop-level, and team-level three-tier safety education',
+        geo_potential=90, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='三级安全教育内容大纲与课时标准（最新版）',
+                title_en='Three-Level Safety Education Syllabus and Hour Standards (Latest Edition)',
+                slug='three-level-education-syllabus',
+                section_type='regulation',
+                content_outline_zh='1. 厂级安全教育内容（法规/风险/权利义务）\n2. 车间级安全教育内容（现场风险/防护/应急）\n3. 班组级安全教育内容（岗位风险/操作规程/PPE）\n4. 各级课时要求\n5. 考核标准\n6. 特种作业人员附加要求',
+                target_keywords_zh=['三级安全教育', '入厂安全教育', '安全培训大纲'],
+                target_keywords_en=['three-level safety education', 'safety induction', 'safety training syllabus'],
+                schema_types=['Article', 'FAQPage'],
+            ),
+        ],
+    ))
+    p7.add_cluster(Cluster(
+        slug='safety-training-effectiveness',
+        title_zh='安全培训效果评估与改进',
+        title_en='Safety Training Effectiveness Evaluation and Improvement',
+        description_zh='Kirkpatrick四层评估模型在安全培训中的应用',
+        description_en='Application of Kirkpatrick Four-Level Evaluation Model in safety training',
+        geo_potential=79, search_volume_estimate='中', priority=2,
+        articles=[
+            ArticleSpec(
+                title_zh='Kirkpatrick四层模型评估安全培训效果的方法论',
+                title_en='Evaluating Safety Training with Kirkpatrick Four-Level Model',
+                slug='kirkpatrick-safety-training-evaluation',
+                section_type='definition',
+                content_outline_zh='1. 第一层：反应层（满意度）\n2. 第二层：学习层（知识掌握）\n3. 第三层：行为层（行为改变）\n4. 第四层：结果层（安全绩效）\n5. 各层评估工具设计\n6. 培训效果数据的收集与分析',
+                target_keywords_zh=['培训效果评估', 'Kirkpatrick', '安全培训评估'],
+                target_keywords_en=['training evaluation', 'Kirkpatrick model', 'safety training evaluation'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p7)
+
+    # ─────────────────────────────────────────────
+    # 支柱8: 网络安全与数据保护完全指南
+    # ─────────────────────────────────────────────
+    p8 = Pillar(
+        slug='cybersecurity-guide',
+        title_zh='网络安全与数据保护完全指南',
+        title_en='Complete Guide to Cybersecurity and Data Protection',
+        description_zh='企业网络安全体系规划、威胁防护、数据安全治理和个人信息保护合规',
+        description_en='Enterprise cybersecurity planning, threat protection, data governance, and personal information protection compliance',
+        primary_keyword_zh='网络安全与数据保护',
+        primary_keyword_en='cybersecurity and data protection',
+        secondary_keywords_zh=['数据安全', '个人信息保护', '网络安全建设'],
+        secondary_keywords_en=['data security', 'personal information protection', 'cybersecurity construction'],
+        cross_link_pillars=['soc-construction-guide', 'compliance-management-guide'],
+    )
+    p8.add_cluster(Cluster(
+        slug='data-classification',
+        title_zh='数据分类分级与安全治理',
+        title_en='Data Classiﬁcation and Security Governance',
+        description_zh='企业数据资产分类分级方法与安全治理',
+        description_en='Enterprise data asset classification and security governance methods',
+        geo_potential=87, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='企业数据分类分级实施指南：从资产盘点到标签落地',
+                title_en='Enterprise Data Classification: From Asset Inventory to Labeling',
+                slug='data-classification-implementation',
+                section_type='procedure',
+                content_outline_zh='1. 数据资产盘点方法\n2. 数据分类标准设计\n3. 数据分级标准（公开/内部/机密/绝密）\n4. 自动化标签技术\n5. 数据生命周期管理\n6. 数据安全治理组织架构',
+                target_keywords_zh=['数据分类分级', '数据安全治理', '数据资产'],
+                target_keywords_en=['data classification', 'data security governance', 'data assets'],
+                schema_types=['Article', 'HowTo'],
+            ),
+        ],
+    ))
+    p8.add_cluster(Cluster(
+        slug='personal-information-protection',
+        title_zh='个人信息保护合规（PIPL）',
+        title_en='Personal Information Protection Compliance (PIPL)',
+        description_zh='个人信息保护法合规实施',
+        description_en='Personal Information Protection Law compliance implementation',
+        geo_potential=89, search_volume_estimate='高', priority=1,
+        articles=[
+            ArticleSpec(
+                title_zh='《个人信息保护法》企业合规实施全攻略',
+                title_en='PIPL Enterprise Compliance: Complete Implementation Guide',
+                slug='pipl-compliance-guide',
+                section_type='regulation',
+                content_outline_zh='1. PIPL核心义务梳理\n2. 个人信息处理合法性基础\n3. 知情同意机制设计\n4. 数据处理者义务\n5. 跨境数据传输合规\n6. 隐私政策撰写规范\n7. 合规自查清单',
+                target_keywords_zh=['个人信息保护法', 'PIPL', '数据合规', '隐私保护'],
+                target_keywords_en=['PIPL', 'data compliance', 'privacy protection'],
+                schema_types=['Article', 'FAQPage'],
+            ),
+        ],
+    ))
+    mgr.add_pillar(p8)
+
+    return mgr
+
+
+# ═══════════════════════════════════════════════════════════
+# Django 管理命令种子数据生成器
+# ═══════════════════════════════════════════════════════════
+
+def generate_django_seed_commands(mgr: ClusterManager) -> str:
+    """生成可用于Django management command的Python种子数据代码"""
+    lines = [
+        '# -*- coding: utf-8 -*-',
+        '"""',
+        'Django Management Command 种子数据',
+        '使用方式: python manage.py seed_knowledge_clusters',
+        '',
+        '此文件由 cluster_manager.py 自动生成',
+        '"""',
+        'from django.core.management.base import BaseCommand',
+        'from django.contrib.auth.models import User',
+        'from knowledge.models import KnowledgeCategory, KnowledgeTag, KnowledgeArticle, ArticleSection',
+        '',
+        '',
+        'class Command(BaseCommand):',
+        '    help = "种子数据：导入主题集群知识架构"',
+        '',
+        '    def handle(self, *args, **options):',
+        '        # 获取或创建管理员用户',
+        '        admin, _ = User.objects.get_or_create(username="admin", defaults={"is_superuser": True, "is_staff": True})',
+        '',
+    ]
+
+    # 生成每个支柱对应的分类和文章数据
+    for pillar in mgr.pillars.values():
+        lines.append(f'        # ═══════════════════════════════════════')
+        lines.append(f'        # 支柱: {pillar.title_zh}')
+        lines.append(f'        # ═══════════════════════════════════════')
+        lines.append(f'')
+        # 创建一级分类（领域）
+        lines.append(f'        pillar_cat, _ = KnowledgeCategory.objects.get_or_create(')
+        lines.append(f'            slug="{pillar.slug}",')
+        lines.append(f'            defaults={{')
+        lines.append(f'                "name_zh": "{pillar.title_zh}",')
+        lines.append(f'                "name_en": "{pillar.title_en}",')
+        lines.append(f'                "tier": "domain",')
+        lines.append(f'                "description_zh": "{pillar.description_zh}",')
+        lines.append(f'                "order": 0,')
+        lines.append(f'            }}')
+        lines.append(f'        )')
+        lines.append(f'')
+
+        for cluster in pillar.clusters:
+            # 创建二级分类
+            lines.append(f'        # 集群: {cluster.title_zh}')
+            lines.append(f'        cat_{cluster.slug}, _ = KnowledgeCategory.objects.get_or_create(')
+            lines.append(f'            slug="{cluster.slug}",')
+            lines.append(f'            defaults={{')
+            lines.append(f'                "name_zh": "{cluster.title_zh}",')
+            lines.append(f'                "name_en": "{cluster.title_en}",')
+            lines.append(f'                "tier": "category",')
+            lines.append(f'                "parent": pillar_cat,')
+            lines.append(f'                "description_zh": "{cluster.description_zh}",')
+            lines.append(f'                "order": {cluster.priority},')
+            lines.append(f'            }}')
+            lines.append(f'        )')
+            lines.append(f'')
+
+            for article in cluster.articles:
+                lines.append(f'        # 文章: {article.title_zh}')
+                lines.append(f'        article_{article.slug}, _ = KnowledgeArticle.objects.get_or_create(')
+                lines.append(f'            slug="{article.slug}",')
+                lines.append(f'            defaults={{')
+                lines.append(f'                "title_zh": "{article.title_zh}",')
+                lines.append(f'                "title_en": "{article.title_en}",')
+                lines.append(f'                "category": cat_{cluster.slug},')
+                lines.append(f'                "summary_zh": "{article.content_outline_zh.split(chr(10))[0]}",')
+                lines.append(f'                "content_zh": "# {article.title_zh}\\n\\n{article.content_outline_zh.replace(chr(10), chr(92)+chr(110))}",')
+                lines.append(f'                "ai_keywords": "{",".join(article.target_keywords_zh)}",')
+                lines.append(f'                "author": admin,')
+                lines.append(f'                "status": "draft",')
+                lines.append(f'                "access_level": "free",')
+                lines.append(f'            }}')
+                lines.append(f'        )')
+
+                # 创建标签
+                for kw in article.target_keywords_zh[:3]:
+                    slug = kw.lower().replace(' ', '-').replace('/', '-')
+                    lines.append(f'        tag, _ = KnowledgeTag.objects.get_or_create(slug="{slug}", defaults={{"name_zh": "{kw}"}})')
+                    lines.append(f'        article_{article.slug}.tags.add(tag)')
+
+                lines.append(f'')
+        lines.append(f'')
+
+    lines.append(f'        self.stdout.write(self.style.SUCCESS("主题集群种子数据导入完成"))')
+
+    return '\n'.join(lines)
+
+
+def _generate_architecture_doc(mgr: ClusterManager, filepath: str):
+    """生成Markdown格式的架构文档"""
+    lines = [
+        '# 仪哥安全智库 - 主题集群知识架构',
+        '',
+        '> **架构模型**: Hub-and-Spoke（支柱-集群模型）',
+        '> **用途**: GEO内容架构优化，提升AI搜索引擎可见性和权威性',
+        '',
+        '---',
+        '',
+        '## 架构说明',
+        '',
+        '### 核心概念',
+        '',
+        '| 概念 | 英文 | 说明 |',
+        '|------|------|------|',
+        '| 支柱（Pillar） | Pillar Page | 核心主题的"完全指南"页面，3000-8000字，覆盖主题全貌，是GEO流量锚点 |',
+        '| 集群（Cluster） | Cluster | 围绕支柱的子主题深度文章，2000-5000字，覆盖具体场景和实操方法，是长尾流量入口 |',
+        '| 集群互联（Cross-link） | Cross-linking | 集群之间的双向语义链接，增强整个主题权威度 |',
+        '',
+        '### 模型优势',
+        '',
+        '1. **权威性信号**：支柱页面作为主题权威中心，AI搜索引擎识别为该领域的完整知识源',
+        '2. **语义覆盖**：集群覆盖长尾关键词，形成完整的语义网络',
+        '3. **内部链接**：支柱→集群→集群的链接结构，传递语义权重',
+        '4. **结构化数据**：每个支柱配备 FAQPage + Article JSON-LD，增强AI理解',
+        '',
+        '---',
+        '',
+        '## 支柱总览',
+        '',
+        f'| # | 支柱主题 | 集群数 | 总文章数 | Schema类型 |',
+        f'|---|----------|--------|----------|------------|',
+    ]
+
+    for i, pillar in enumerate(mgr.pillars.values(), 1):
+        lines.append(f'| {i} | {pillar.title_zh} | {len(pillar.clusters)} | {pillar.total_articles} | {", ".join(pillar.schema_types)} |')
+
+    lines.extend([
+        '',
+        '---',
+        '',
+        '## 支柱详情',
+        '',
+    ])
+
+    for pillar in mgr.pillars.values():
+        lines.append(f'### {pillar.title_zh}')
+        lines.append(f'> {pillar.description_zh}')
+        lines.append(f'>')
+        lines.append(f'> - **主关键词**: {pillar.primary_keyword_zh}')
+        lines.append(f'> - **目标字数**: {pillar.word_count_target}')
+        lines.append(f'> - **Schema**: {", ".join(pillar.schema_types)}')
+        lines.append(f'> - **交叉链接**: {", ".join(pillar.cross_link_pillars) or "无"}')
+        lines.append('')
+
+        # 集群表格
+        lines.append('| 优先级 | 集群主题 | 文章数 | GEO潜力 | 搜索量预估 |')
+
+        for cluster in sorted(pillar.clusters, key=lambda c: c.priority):
+            lines.append(
+                f'| P{cluster.priority} | {cluster.title_zh} | '
+                f'{len(cluster.articles)} | {cluster.geo_potential}/100 | '
+                f'{cluster.search_volume_estimate} |'
+            )
+        lines.append('')
+
+    # 优先创作清单
+    priority_list = mgr.get_clusters_by_priority(min_priority=2)
+    lines.extend([
+        '---',
+        '',
+        '## 优先创作清单（P1-P2）',
+        '',
+        '以下集群建议优先创作内容：',
+        '',
+        '| # | 支柱 | 集群 | 优先级 | GEO潜力 | 文章数 |',
+        '|---|------|------|--------|---------|--------|',
+    ])
+    for i, item in enumerate(priority_list, 1):
+        lines.append(
+            f'| {i} | {item["pillar_title"]} | {item["cluster_title"]} | '
+            f'P{item["priority"]} | {item["geo_potential"]}/100 | {item["article_count"]} |'
+        )
+
+    lines.extend([
+        '',
+        '---',
+        '',
+        '## 文件说明',
+        '',
+        '| 文件 | 说明 |',
+        '|------|------|',
+        '| `knowledge_graph.json` | 完整知识图谱JSON数据 |',
+        '| `seed_knowledge_clusters.py` | Django Management Command种子数据 |',
+        '| `cross_link_matrix.json` | 支柱间交叉链接矩阵 |',
+        '| `priority_cluster_list.json` | 优先创作清单（P1-P2） |',
+        '| `ARCHITECTURE.md` | 本架构文档 |',
+        '',
+        '## 使用方式',
+        '',
+        '```bash',
+        '# 1. 运行cluster_manager生成所有文件',
+        'python knowledge_graph/cluster_manager.py',
+        '',
+        '# 2. 将seed文件复制到Django项目',
+        'cp knowledge_graph/subject_clusters/seed_knowledge_clusters.py yigeworks_django/knowledge/management/commands/',
+        '',
+        '# 3. 在服务器上执行种子数据导入',
+        'python manage.py seed_knowledge_clusters',
+        '```',
+    ])
+
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+
+
+# ═══════════════════════════════════════════════════════════
+# 主入口
+# ═══════════════════════════════════════════════════════════
+
+if __name__ == '__main__':
+    # 构建知识图谱
+    mgr = build_safety_knowledge_graph()
+
+    # 打印摘要
+    mgr.print_summary()
+
+    # 导出JSON
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(base_dir, 'subject_clusters', 'knowledge_graph.json')
+
+    data = mgr.export_json(json_path)
+    print(f"JSON已导出: {json_path}")
+
+    # 导出Django种子数据
+    seed_path = os.path.join(base_dir, 'subject_clusters', 'seed_knowledge_clusters.py')
+    seed_code = generate_django_seed_commands(mgr)
+    with open(seed_path, 'w', encoding='utf-8') as f:
+        f.write(seed_code)
+    print(f"Django种子数据已导出: {seed_path}")
+
+    # 导出交叉链接矩阵
+    matrix_path = os.path.join(base_dir, 'subject_clusters', 'cross_link_matrix.json')
+    matrix = mgr.generate_cross_link_matrix()
+    with open(matrix_path, 'w', encoding='utf-8') as f:
+        json.dump(matrix, f, ensure_ascii=False, indent=2)
+    print(f"交叉链接矩阵已导出: {matrix_path}")
+
+    # 导出优先集群创作清单
+    priority_path = os.path.join(base_dir, 'subject_clusters', 'priority_cluster_list.json')
+    priority_list = mgr.get_clusters_by_priority(min_priority=2)
+    with open(priority_path, 'w', encoding='utf-8') as f:
+        json.dump(priority_list, f, ensure_ascii=False, indent=2)
+    print(f"优先创作清单已导出: {priority_path}")
+
+    # 导出架构文档
+    doc_path = os.path.join(base_dir, 'subject_clusters', 'ARCHITECTURE.md')
+    _generate_architecture_doc(mgr, doc_path)
+    print(f"架构文档已导出: {doc_path}")
+
