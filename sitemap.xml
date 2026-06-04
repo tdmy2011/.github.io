@@ -102,9 +102,44 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- 课程详情页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/course.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- 定价页 -->
+    <url>
+        <loc>https://tdmy2011.github.io/pricing.html</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- 隐私政策 -->
+    <url>
+        <loc>https://tdmy2011.github.io/privacy.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- 服务条款 -->
+    <url>
+        <loc>https://tdmy2011.github.io/terms.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
     <!-- YouTube 内容日历 -->
     <url>
         <loc>https://tdmy2011.github.io/30天YouTube内容日历_完整版.html</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- YouTube系列脚本 -->
+    <url>
+        <loc>https://tdmy2011.github.io/YouTube系列脚本_10期完整版.html</loc>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>

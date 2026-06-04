@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 获取安全合规解决方案报价 | 安全生产专家</title>
+    <meta name="description" content="联系我们获取ISO 45001+ISO 14001安全合规解决方案报价。30年实战专家为您提供东南亚/非洲中资企业安全管理体系建设咨询。">
+    <meta name="keywords" content="安全专家联系方式,ISO 45001咨询,ISO 14001咨询,安全合规咨询,HSE咨询">
+    <link rel="canonical" href="https://yigeworks.com/contact.html">
+    <meta property="og:title" content="联系我们 - 安全生产专家">
+    <meta property="og:description" content="30年安全环保实战专家，为您提供中资出海企业安全合规一站式解决方案。">
+    <meta property="og:url" content="https://yigeworks.com/contact.html">
+    <meta property="og:type" content="website">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; background:#f8fafc; color:#1e293b; line-height:1.6; }
+
+        .lang-switch { position:fixed; top:80px; right:24px; z-index:1001; background:white; border-radius:50px; box-shadow:0 4px 20px rgba(0,0,0,0.1); display:flex; overflow:hidden; }
+        .lang-btn { padding:8px 16px; border:none; background:transparent; cursor:pointer; font-size:14px; font-weight:600; transition:all 0.3s; }
+        .lang-btn.active { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; }
+
+        .navbar { background:white; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:fixed; top:0; left:0; right:0; z-index:1000; }
+        .nav-container { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; height:70px; }
+        .logo { font-size:20px; font-weight:800; color:#1e3a5f; cursor:pointer; }
+        .logo span { color:#38bdf8; }
+        .nav-links { display:flex; gap:32px; list-style:none; }
+        .nav-links a { text-decoration:none; color:#64748b; font-weight:500; font-size:14px; transition:color 0.3s; }
+        .nav-links a:hover { color:#38bdf8; }
+        .nav-cta { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; padding:10px 24px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; border:none; cursor:pointer; }
+
+        .hero { background:linear-gradient(135deg,#1e3a5f 0%,#312e81 100%); padding:120px 24px 60px; color:white; text-align:center; }
+        .hero h1 { font-size:42px; font-weight:800; margin-bottom:16px; }
+        .hero h1 em { font-style:normal; color:#38bdf8; }
+        .hero p { font-size:18px; color:#94a3b8; max-width:700px; margin:0 auto; line-height:1.8; }
+
+        .contact-section { padding:80px 24px; }
+        .contact-container { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+
+        /* 左侧 - 联系方式 */
+        .contact-info { }
+        .contact-info h2 { font-size:32px; font-weight:800; color:#1e3a5f; margin-bottom:24px; }
+        .contact-info>p { color:#64748b; font-size:16px; margin-bottom:32px; line-height:1.8; }
+
+        .contact-card { background:white; border-radius:16px; padding:28px; margin-bottom:20px; box-shadow:0 4px 20px rgba(0,0,0,0.05); display:flex; align-items:flex-start; gap:20px; transition:transform 0.3s; }
+        .contact-card:hover { transform:translateY(-3px); }
+        .contact-icon { font-size:36px; flex-shrink:0; width:60px; height:60px; background:linear-gradient(135deg,#f0f9ff,#ede9fe); border-radius:16px; display:flex; align-items:center; justify-content:center; }
+        .contact-label { font-size:13px; color:#94a3b8; margin-bottom:4px; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+        .contact-value { font-size:16px; font-weight:600; color:#1e293b; line-height:1.6; }
+        .contact-value a { color:#38bdf8; text-decoration:none; }
+        .contact-value a:hover { text-decoration:underline; }
+
+        .work-hours { background:white; border-radius:16px; padding:28px; margin-top:20px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border-left:4px solid #38bdf8; }
+        .work-hours h4 { font-size:16px; font-weight:700; color:#1e3a5f; margin-bottom:8px; }
+        .work-hours p { color:#64748b; font-size:14px; }
+
+        /* 右侧 - 表单 */
+        .contact-form-wrapper { background:white; border-radius:20px; padding:48px; box-shadow:0 8px 40px rgba(0,0,0,0.08); }
+        .form-title { font-size:24px; font-weight:800; color:#1e3a5f; margin-bottom:8px; }
+        .form-subtitle { color:#64748b; font-size:14px; margin-bottom:32px; }
+        .form-group { margin-bottom:20px; }
+        .form-label { display:block; font-size:14px; font-weight:600; color:#1e3a5f; margin-bottom:8px; }
+        .form-label .required { color:#ef4444; }
+        .form-input, .form-select, .form-textarea { width:100%; padding:14px 18px; border:2px solid #e2e8f0; border-radius:10px; font-size:15px; outline:none; transition:border-color 0.3s; font-family:inherit; background:white; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:#38bdf8; }
+        .form-textarea { min-height:100px; resize:vertical; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .form-submit { width:100%; padding:16px; background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; transition:transform 0.3s; font-family:inherit; }
+        .form-submit:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(56,189,248,0.3); }
+        .form-note { text-align:center; font-size:12px; color:#94a3b8; margin-top:16px; }
+
+        .success-msg { display:none; background:#f0fdf4; border:2px solid #22c55e; border-radius:12px; padding:24px; text-align:center; color:#166534; font-weight:600; font-size:16px; }
+
+        /* 地图区域 */
+        .map-section { padding:80px 24px; background:white; }
+        .map-container { max-width:1200px; margin:0 auto; text-align:center; }
+        .map-title { font-size:36px; font-weight:800; color:#1e3a5f; margin-bottom:16px; }
+        .map-subtitle { color:#64748b; font-size:16px; margin-bottom:48px; }
+        .map-visual { background:linear-gradient(135deg,#1e3a5f,#0f172a); border-radius:20px; padding:60px 40px; color:white; }
+        .map-regions { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:32px; margin-top:32px; }
+        .map-region { background:rgba(255,255,255,0.08); border-radius:16px; padding:32px; text-align:center; border:1px solid rgba(255,255,255,0.15); transition:all 0.3s; }
+        .map-region:hover { background:rgba(56,189,248,0.15); border-color:#38bdf8; transform:translateY(-3px); }
+        .map-region-icon { font-size:48px; margin-bottom:16px; }
+        .map-region h3 { font-size:20px; font-weight:700; margin-bottom:8px; }
+        .map-region p { color:#94a3b8; font-size:14px; }
+
+        .footer { background:#0f172a; color:#94a3b8; padding:48px 24px; text-align:center; font-size:14px; }
+        .footer-links { display:flex; justify-content:center; gap:24px; margin-bottom:24px; flex-wrap:wrap; }
+        .footer-links a { color:#94a3b8; text-decoration:none; transition:color 0.3s; }
+        .footer-links a:hover { color:#38bdf8; }
+
+        @media(max-width:768px){
+            .contact-container { grid-template-columns:1fr; }
+            .form-row { grid-template-columns:1fr; }
+            .hero h1 { font-size:28px; }
+            .nav-links { display:none; }
+            .contact-form-wrapper { padding:32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 语言切换 -->
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('zh',this)">中文</button>
+        <button class="lang-btn" onclick="switchLang('en',this)">EN</button>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><span data-zh="安全" data-en="Safety">安全</span><span data-zh="专家" data-en="Expert">专家</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-zh="首页" data-en="Home">首页</a></li>
+                <li><a href="blog.html" data-zh="博客" data-en="Blog">博客</a></li>
+                <li><a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a></li>
+                <li><a href="course.html" data-zh="课程大纲" data-en="Syllabus">课程大纲</a></li>
+                <li><a href="pricing.html" data-zh="定价方案" data-en="Pricing">定价方案</a></li>
+                <li><a href="contact.html" style="color:#38bdf8;font-weight:700" data-zh="联系我们" data-en="Contact">联系我们</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta" data-zh="立即咨询" data-en="Get Started">立即咨询</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 data-zh="联系我们，开启<em>安全合规</em>之旅" data-en="Contact Us to Start Your <em>Safety Compliance</em> Journey">联系我们，开启<em>安全合规</em>之旅</h1>
+        <p data-zh="30年安全环保实战专家团队，为您提供ISO 45001+ISO 14001双体系建设、设备风险辨识、消防安全设计等一站式咨询解决方案" data-en="30 years of HSE expertise. ISO 45001+ISO 14001 dual system, equipment risk identification, fire safety design — one-stop consulting solution">30年安全环保实战专家团队，为您提供ISO 45001+ISO 14001双体系建设、设备风险辨识、消防安全设计等一站式咨询解决方案</p>
+    </section>
+
+    <!-- 联系方式 + 表单 -->
+    <section class="contact-section">
+        <div class="contact-container">
+
+            <!-- 左侧：联系方式 -->
+            <div class="contact-info">
+                <h2 data-zh="联系方式" data-en="Contact Information">联系方式</h2>
+                <p data-zh="欢迎通过以下方式联系我们，我们的专家团队将在工作时间内尽快回复您的咨询。" en="Feel free to reach out through any of the channels below. Our expert team will respond promptly during business hours.">欢迎通过以下方式联系我们，我们的专家团队将在工作时间内尽快回复您的咨询。</p>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <div class="contact-label" data-zh="电子邮箱" data-en="Email">电子邮箱</div>
+                        <div class="contact-value">
+                            <a href="mailto:yjurado860@gmail.com">yjurado860@gmail.com</a><br>
+                            <a href="mailto:fjfacxy@163.com">fjfacxy@163.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <div class="contact-label" data-zh="联系电话" data-en="Phone">联系电话</div>
+                        <div class="contact-value">
+                            <a href="tel:+85246664920">00852-46664920</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <div class="contact-label" data-zh="微信客服" data-en="WeChat">微信客服</div>
+                        <div class="contact-value">
+                            18060522680<br>13814839118
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-hours">
+                    <h4 data-zh="工作时间" data-en="Business Hours">🕐 工作时间</h4>
+                    <p data-zh="周一至周五 9:00-18:00 (HKT 香港时间)" data-en="Monday to Friday 9:00-18:00 (HKT)">周一至周五 9:00-18:00 (HKT 香港时间)</p>
+                </div>
+            </div>
+
+            <!-- 右侧：表单 -->
+            <div class="contact-form-wrapper">
+                <h2 class="form-title" data-zh="在线留言" data-en="Leave a Message">在线留言</h2>
+                <p class="form-subtitle" data-zh="请填写以下信息，我们将尽快与您联系" data-en="Please fill in the following information and we will contact you soon">请填写以下信息，我们将尽快与您联系</p>
+
+                <div id="successMessage" class="success-msg">
+                    <p data-zh="您的留言已提交成功！我们将尽快与您联系。" data-en="Your message has been submitted successfully! We will contact you soon.">您的留言已提交成功！我们将尽快与您联系。</p>
+                </div>
+
+                <form id="contactForm" onsubmit="submitContactForm(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" data-zh="公司名称" data-en="Company Name">公司名称 <span class="required">*</span></label>
+                            <input type="text" class="form-input" name="company" required placeholder="请输入公司全称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-zh="联系人姓名及职位" data-en="Name & Position">联系人姓名及职位 <span class="required">*</span></label>
+                            <input type="text" class="form-input" name="contact_name" required placeholder="例：张三 安全主管">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-zh="联系邮箱" data-en="Email">联系邮箱 <span class="required">*</span></label>
+                        <input type="email" class="form-input" name="email" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" data-zh="所在国家/地区" data-en="Country/Region">所在国家/地区 <span class="required">*</span></label>
+                            <select class="form-select" name="country" required>
+                                <option value="" data-zh="请选择" data-en="Select">请选择</option>
+                                <option value="CN" data-zh="中国大陆" data-en="China">中国大陆</option>
+                                <option value="HK" data-zh="中国香港" data-en="Hong Kong">中国香港</option>
+                                <option value="TW" data-zh="中国台湾" data-en="Taiwan">中国台湾</option>
+                                <option value="VN">越南 Vietnam</option>
+                                <option value="TH">泰国 Thailand</option>
+                                <option value="ID">印度尼西亚 Indonesia</option>
+                                <option value="MY">马来西亚 Malaysia</option>
+                                <option value="PH">菲律宾 Philippines</option>
+                                <option value="MM">缅甸 Myanmar</option>
+                                <option value="KH">柬埔寨 Cambodia</option>
+                                <option value="LA">老挝 Laos</option>
+                                <option value="SG">新加坡 Singapore</option>
+                                <option value="NG">尼日利亚 Nigeria</option>
+                                <option value="KE">肯尼亚 Kenya</option>
+                                <option value="ET">埃塞俄比亚 Ethiopia</option>
+                                <option value="TZ">坦桑尼亚 Tanzania</option>
+                                <option value="ZA">南非 South Africa</option>
+                                <option value="EG">埃及 Egypt</option>
+                                <option value="GH">加纳 Ghana</option>
+                                <option value="OTHER" data-zh="其他" data-en="Other">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" data-zh="预计年采购量" data-en="Annual Budget">预计年采购量</label>
+                            <select class="form-select" name="budget">
+                                <option value="" data-zh="请选择" data-en="Select">请选择</option>
+                                <option value="5k" data-zh="5,000元以下" data-en="Below 5,000 CNY">5,000元以下</option>
+                                <option value="5k-20k">5,000 - 20,000元</option>
+                                <option value="20k-50k">20,000 - 50,000元</option>
+                                <option value="50k+">50,000元以上</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-zh="感兴趣的产品系列" data-en="Interested Products">感兴趣的产品系列</label>
+                        <select class="form-select" name="product">
+                            <option value="" data-zh="请选择" data-en="Select">请选择</option>
+                            <option value="iso45001">ISO 45001 职业健康安全管理体系</option>
+                            <option value="iso14001">ISO 14001 环境管理体系</option>
+                            <option value="dual">ISO 45001 + ISO 14001 双体系</option>
+                            <option value="risk">设备风险辨识专项</option>
+                            <option value="fire">消防安全设计与验收</option>
+                            <option value="template">程序文件模板套装</option>
+                            <option value="enterprise" data-zh="企业定制培训" data-en="Enterprise Custom Training">企业定制培训</option>
+                            <option value="other" data-zh="其他" data-en="Other">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-zh="补充说明" data-en="Additional Notes">补充说明</label>
+                        <textarea class="form-textarea" name="message" placeholder="请描述您的具体需求、工厂规模、目前遇到的合规挑战等..." rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit" data-zh="提交留言" data-en="Submit Message">提交留言</button>
+                    <p class="form-note" data-zh="我们尊重您的隐私，信息仅用于回复您的咨询" data-en="We respect your privacy. Your information is only used to respond to your inquiry">我们尊重您的隐私，信息仅用于回复您的咨询</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务区域 -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2 class="map-title" data-zh="我们的服务覆盖" data-en="Our Service Coverage">我们的服务覆盖</h2>
+            <p class="map-subtitle" data-zh="专注东南亚和非洲中资出海企业，提供本地化安全合规解决方案" data-en="Focusing on Chinese enterprises in Southeast Asia and Africa, providing localized safety compliance solutions">专注东南亚和非洲中资出海企业，提供本地化安全合规解决方案</p>
+            <div class="map-visual">
+                <div style="font-size:80px;text-align:center;margin-bottom:16px;">🌏</div>
+                <div class="map-regions">
+                    <div class="map-region">
+                        <div class="map-region-icon">🇻🇳</div>
+                        <h3>越南 Vietnam</h3>
+                        <p>MOLISA劳动安全规定<br>ISO体系本地化落地</p>
+                    </div>
+                    <div class="map-region">
+                        <div class="map-region-icon">🇹🇭</div>
+                        <h3>泰国 Thailand</h3>
+                        <p>OSHA泰国标准对标<br>工厂安全审查与整改</p>
+                    </div>
+                    <div class="map-region">
+                        <div class="map-region-icon">🇮🇩</div>
+                        <h3>印尼 Indonesia</h3>
+                        <p>K3法规合规<br>环境管理体系建设</p>
+                    </div>
+                    <div class="map-region">
+                        <div class="map-region-icon">🇲🇾</div>
+                        <h3>马来西亚 Malaysia</h3>
+                        <p>OSHA Malaysia<br>DOSH合规审查</p>
+                    </div>
+                    <div class="map-region">
+                        <div class="map-region-icon">🇳🇬</div>
+                        <h3>尼日利亚 Nigeria</h3>
+                        <p>NIOSH标准合规<br>Factories Act对标</p>
+                    </div>
+                    <div class="map-region">
+                        <div class="map-region-icon">🇪🇹</div>
+                        <h3>埃塞俄比亚 Ethiopia</h3>
+                        <p>中资工业园安全评估<br>ISO体系认证辅导</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" data-zh="首页" data-en="Home">首页</a>
+            <a href="blog.html" data-zh="博客" data-en="Blog">博客</a>
+            <a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a>
+            <a href="contact.html" data-zh="联系我们" data-en="Contact">联系我们</a>
+            <a href="privacy.html" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
+            <a href="terms.html" data-zh="服务条款" data-en="Terms">服务条款</a>
+        </div>
+        <p data-zh="© 2026 安全生产专家. 保留所有权利. | 专注中资出海企业安全合规解决方案" data-en="© 2026 Safety Expert. All rights reserved.">© 2026 安全生产专家. 保留所有权利. | 专注中资出海企业安全合规解决方案</p>
+    </footer>
+
+    <script>
+    // 语言切换
+    function switchLang(lang, btn) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            el.textContent = el.getAttribute('data-' + lang);
+        });
+        document.querySelectorAll('[data-' + lang + '-placeholder]').forEach(el => {
+            el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
+        });
+    }
+
+    // 表单提交
+    function submitContactForm(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        const body = Object.fromEntries(data.entries());
+        console.log('Contact form submitted:', body);
+
+        // 构建邮件链接作为备选方案
+        const mailSubject = encodeURIComponent('来自网站的联系咨询 - ' + (body.company || '未填写'));
+        const mailBody = encodeURIComponent(
+            '公司名称: ' + (body.company || '') + '\n' +
+            '联系人姓名及职位: ' + (body.contact_name || '') + '\n' +
+            '联系邮箱: ' + (body.email || '') + '\n' +
+            '所在国家/地区: ' + (body.country || '') + '\n' +
+            '预计年采购量: ' + (body.budget || '') + '\n' +
+            '感兴趣的产品系列: ' + (body.product || '') + '\n' +
+            '补充说明: ' + (body.message || '')
+        );
+
+        // 显示成功消息
+        document.getElementById('successMessage').style.display = 'block';
+        form.style.display = 'none';
+
+        // 同时尝试打开邮件客户端
+        window.open('mailto:yjurado860@gmail.com?subject=' + mailSubject + '&body=' + mailBody, '_blank');
+    }
+    </script>
+</body>
+</html>

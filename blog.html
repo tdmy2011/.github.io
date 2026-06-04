@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全合规博客 - 东南亚/非洲中资企业安全法规解读 | 安全生产专家</title>
+    <meta name="description" content="安全合规专业博客，分享东南亚/非洲中资企业安全法规解读、ISO 45001/ISO 14001体系建设经验、设备风险辨识案例、消防安全设计要点等实用内容。">
+    <meta name="keywords" content="安全合规博客,东南亚安全法规,ISO 45001,ISO 14001,中资出海安全,设备风险辨识,消防安全">
+    <link rel="canonical" href="https://yigeworks.com/blog.html">
+    <meta property="og:title" content="安全合规博客 - 安全生产专家">
+    <meta property="og:description" content="东南亚/非洲中资企业安全法规解读与实战经验分享">
+    <meta property="og:url" content="https://yigeworks.com/blog.html">
+    <meta property="og:type" content="website">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; background:#f8fafc; color:#1e293b; line-height:1.6; }
+
+        .lang-switch { position:fixed; top:80px; right:24px; z-index:1001; background:white; border-radius:50px; box-shadow:0 4px 20px rgba(0,0,0,0.1); display:flex; overflow:hidden; }
+        .lang-btn { padding:8px 16px; border:none; background:transparent; cursor:pointer; font-size:14px; font-weight:600; transition:all 0.3s; }
+        .lang-btn.active { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; }
+
+        .navbar { background:white; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:fixed; top:0; left:0; right:0; z-index:1000; }
+        .nav-container { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; height:70px; }
+        .logo { font-size:20px; font-weight:800; color:#1e3a5f; cursor:pointer; }
+        .logo span { color:#38bdf8; }
+        .nav-links { display:flex; gap:32px; list-style:none; }
+        .nav-links a { text-decoration:none; color:#64748b; font-weight:500; font-size:14px; transition:color 0.3s; }
+        .nav-links a:hover { color:#38bdf8; }
+        .nav-cta { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; padding:10px 24px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; border:none; cursor:pointer; }
+
+        .hero { background:linear-gradient(135deg,#1e3a5f 0%,#312e81 100%); padding:120px 24px 60px; color:white; text-align:center; }
+        .hero h1 { font-size:42px; font-weight:800; margin-bottom:16px; }
+        .hero h1 em { font-style:normal; color:#38bdf8; }
+        .hero p { font-size:18px; color:#94a3b8; max-width:700px; margin:0 auto; line-height:1.8; }
+
+        /* 分类标签 */
+        .categories { padding:40px 24px; background:white; border-bottom:1px solid #e2e8f0; position:sticky; top:70px; z-index:99; }
+        .cat-container { max-width:1200px; margin:0 auto; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+        .cat-btn { padding:10px 24px; border-radius:50px; border:2px solid #e2e8f0; background:white; color:#64748b; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.3s; font-family:inherit; }
+        .cat-btn:hover, .cat-btn.active { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; border-color:transparent; }
+
+        /* 博客列表 */
+        .blog-section { padding:60px 24px; }
+        .blog-container { max-width:1200px; margin:0 auto; }
+        .blog-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:32px; }
+
+        .blog-card { background:white; border-radius:20px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.05); transition:all 0.3s; }
+        .blog-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(0,0,0,0.12); }
+        .blog-card-featured { grid-column:span 2; }
+        .blog-thumb { height:220px; display:flex; align-items:center; justify-content:center; font-size:80px; }
+        .blog-thumb-featured { height:320px; }
+        .blog-content { padding:32px; }
+        .blog-meta { display:flex; gap:16px; margin-bottom:12px; flex-wrap:wrap; }
+        .blog-tag { background:linear-gradient(90deg,#f0f9ff,#ede9fe); color:#6366f1; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; }
+        .blog-date { color:#94a3b8; font-size:13px; }
+        .blog-title { font-size:22px; font-weight:800; color:#1e3a5f; margin-bottom:12px; line-height:1.4; }
+        .blog-title a { color:inherit; text-decoration:none; transition:color 0.3s; }
+        .blog-title a:hover { color:#38bdf8; }
+        .blog-excerpt { color:#64748b; font-size:15px; margin-bottom:20px; line-height:1.8; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+        .blog-read-more { color:#38bdf8; font-weight:600; text-decoration:none; font-size:14px; display:inline-flex; align-items:center; gap:6px; transition:gap 0.3s; }
+        .blog-read-more:hover { gap:10px; }
+
+        /* 精选文章大卡 */
+        .featured-content { padding:40px; }
+        .featured-title { font-size:28px; font-weight:800; color:#1e3a5f; margin-bottom:16px; line-height:1.4; }
+        .featured-excerpt { color:#64748b; font-size:16px; margin-bottom:24px; line-height:1.8; }
+
+        /* 订阅 */
+        .blog-subscribe { padding:60px 24px; background:white; }
+        .sub-box { max-width:600px; margin:0 auto; text-align:center; background:linear-gradient(135deg,#f0f9ff,#ede9fe); border-radius:20px; padding:48px; }
+        .sub-title { font-size:24px; font-weight:800; color:#1e3a5f; margin-bottom:8px; }
+        .sub-desc { color:#64748b; font-size:15px; margin-bottom:24px; }
+        .sub-form { display:flex; gap:12px; }
+        .sub-input { flex:1; padding:14px 18px; border:2px solid #e2e8f0; border-radius:10px; font-size:15px; outline:none; }
+        .sub-input:focus { border-color:#38bdf8; }
+        .sub-btn { background:linear-gradient(90deg,#38bdf8,#818cf8); color:white; padding:14px 28px; border:none; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer; font-family:inherit; white-space:nowrap; }
+
+        .footer { background:#0f172a; color:#94a3b8; padding:48px 24px; text-align:center; font-size:14px; }
+        .footer-links { display:flex; justify-content:center; gap:24px; margin-bottom:24px; flex-wrap:wrap; }
+        .footer-links a { color:#94a3b8; text-decoration:none; transition:color 0.3s; }
+        .footer-links a:hover { color:#38bdf8; }
+
+        @media(max-width:768px){
+            .blog-grid { grid-template-columns:1fr; }
+            .blog-card-featured { grid-column:span 1; }
+            .hero h1 { font-size:28px; }
+            .nav-links { display:none; }
+            .sub-form { flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('zh',this)">中文</button>
+        <button class="lang-btn" onclick="switchLang('en',this)">EN</button>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><span data-zh="安全" data-en="Safety">安全</span><span data-zh="专家" data-en="Expert">专家</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-zh="首页" data-en="Home">首页</a></li>
+                <li><a href="blog.html" style="color:#38bdf8;font-weight:700" data-zh="博客" data-en="Blog">博客</a></li>
+                <li><a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a></li>
+                <li><a href="course.html" data-zh="课程大纲" data-en="Syllabus">课程大纲</a></li>
+                <li><a href="pricing.html" data-zh="定价方案" data-en="Pricing">定价方案</a></li>
+                <li><a href="contact.html" data-zh="联系我们" data-en="Contact">联系我们</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta" data-zh="立即咨询" data-en="Get Started">立即咨询</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 data-zh="安全合规<em>博客</em>" data-en="Safety Compliance <em>Blog</em>">安全合规<em>博客</em></h1>
+        <p data-zh="东南亚/非洲中资企业安全法规解读、ISO体系建设实战经验、设备风险辨识案例分享" data-en="Safety regulation insights for Chinese enterprises in Southeast Asia/Africa, ISO system implementation tips, and risk identification case studies">东南亚/非洲中资企业安全法规解读、ISO体系建设实战经验、设备风险辨识案例分享</p>
+    </section>
+
+    <!-- 分类标签 -->
+    <div class="categories">
+        <div class="cat-container">
+            <button class="cat-btn active" data-zh="全部" data-en="All">全部</button>
+            <button class="cat-btn" data-zh="ISO 45001" data-en="ISO 45001">ISO 45001</button>
+            <button class="cat-btn" data-zh="ISO 14001" data-en="ISO 14001">ISO 14001</button>
+            <button class="cat-btn" data-zh="法规解读" data-en="Regulations">法规解读</button>
+            <button class="cat-btn" data-zh="设备安全" data-en="Equipment">设备安全</button>
+            <button class="cat-btn" data-zh="消防安全" data-en="Fire Safety">消防安全</button>
+            <button class="cat-btn" data-zh="案例分享" data-en="Case Studies">案例分享</button>
+        </div>
+    </div>
+
+    <!-- 博客列表 -->
+    <section class="blog-section">
+        <div class="blog-container">
+            <div class="blog-grid">
+
+                <!-- 精选文章 -->
+                <article class="blog-card blog-card-featured">
+                    <div class="blog-thumb blog-thumb-featured" style="background:linear-gradient(135deg,#1e3a5f,#312e81);">
+                        🏭
+                    </div>
+                    <div class="blog-content featured-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag" data-zh="精选" data-en="Featured">精选</span>
+                            <span class="blog-tag">ISO 45001 + ISO 14001</span>
+                            <span class="blog-date">2026-05-20</span>
+                        </div>
+                        <h2 class="featured-title" data-zh="中资出海企业如何30天完成ISO 45001+ISO 14001双体系落地？完整路线图" data-en="How Can Chinese Overseas Enterprises Complete ISO 45001+ISO 14001 Dual System in 30 Days? Full Roadmap">中资出海企业如何30天完成ISO 45001+ISO 14001双体系落地？完整路线图</h2>
+                        <p class="featured-excerpt" data-zh="从零开始到认证就绪，30天双体系落地的详细步骤与时间表。包括前期诊断、危险源辨识、文件编写、内部审核和管理评审的完整流程。本文结合多个东南亚中资工厂的实战经验，提供可复制的一站式落地指南。" en="Detailed 30-day roadmap from zero to certification-ready for dual ISO system implementation. Including preliminary diagnosis, hazard identification, documentation, internal audit, and management review. Based on real experience from multiple Chinese factories in Southeast Asia.">从零开始到认证就绪，30天双体系落地的详细步骤与时间表。包括前期诊断、危险源辨识、文件编写、内部审核和管理评审的完整流程。本文结合多个东南亚中资工厂的实战经验，提供可复制的一站式落地指南。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章2 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">⚗️</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">设备安全</span>
+                            <span class="blog-date">2026-05-15</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="东南亚工厂设备风险辨识：10个最常见的致命隐患" data-en="Equipment Risk Identification in SE Asia Factories: 10 Most Common Fatal Hazards">东南亚工厂设备风险辨识：10个最常见的致命隐患</a></h3>
+                        <p class="blog-excerpt" data-zh="在东南亚建厂的中资企业，普遍存在设备安全标准与中国差异的问题。本文总结了越南、泰国、印尼工厂中最常见的10类设备安全隐患，包括机械防护缺失、电气接地不规范、特种设备超期服役等。" en="Chinese enterprises setting up factories in SE Asia commonly face equipment safety standard differences. This article summarizes the 10 most common equipment hazards in Vietnam, Thailand, and Indonesia factories.">在东南亚建厂的中资企业，普遍存在设备安全标准与中国差异的问题。本文总结了越南、泰国、印尼工厂中最常见的10类设备安全隐患，包括机械防护缺失、电气接地不规范、特种设备超期服役等。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章3 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#22c55e,#38bdf8);">🇻🇳</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">法规解读</span>
+                            <span class="blog-date">2026-05-10</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="越南MOLISA 2026新规解读：中资工厂必须知道的6项安全变更" data-en="Vietnam MOLISA 2026 New Regulations: 6 Safety Changes Chinese Factories Must Know">越南MOLISA 2026新规解读：中资工厂必须知道的6项安全变更</a></h3>
+                        <p class="blog-excerpt" data-zh="越南劳动荣军与社会事务部（MOLISA）近期更新了多项劳动安全法规。本文详细解读了与中资工厂密切相关的6项重要变更，包括安全员配置要求、风险评估频次、事故报告时限等。" en="Vietnam's MOLISA has recently updated several labor safety regulations. This article details 6 important changes relevant to Chinese factories, including safety officer requirements, risk assessment frequency, and accident reporting deadlines.">越南劳动荣军与社会事务部（MOLISA）近期更新了多项劳动安全法规。本文详细解读了与中资工厂密切相关的6项重要变更，包括安全员配置要求、风险评估频次、事故报告时限等。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章4 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#ef4444,#f97316);">🔥</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">消防安全</span>
+                            <span class="blog-date">2026-05-05</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="中资海外工厂消防验收不过关？五大原因与整改方案" data-en="Fire Safety Inspection Failed? Five Root Causes and Remediation Plans">中资海外工厂消防验收不过关？五大原因与整改方案</a></h3>
+                        <p class="blog-excerpt" data-zh="大量中资海外工厂在消防验收环节卡壳，主要原因包括：消防设计未按当地标准执行、逃生通道设置不合规、灭火系统配置不足、消防培训缺失、应急预案流于形式。本文给出针对性整改方案。" en="Many Chinese overseas factories fail fire safety inspection. Main reasons: fire design not following local standards, inadequate escape routes, insufficient fire suppression systems, lack of training, and formalistic emergency plans. This article provides targeted remediation.">大量中资海外工厂在消防验收环节卡壳，主要原因包括：消防设计未按当地标准执行、逃生通道设置不合规、灭火系统配置不足、消防培训缺失、应急预案流于形式。本文给出针对性整改方案。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章5 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">📋</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">ISO 45001</span>
+                            <span class="blog-date">2026-04-28</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="危险源辨识与风险评估：从JSA到Hierarchy of Controls的实战应用" data-en="Hazard Identification & Risk Assessment: Practical Application from JSA to Hierarchy of Controls">危险源辨识与风险评估：从JSA到Hierarchy of Controls的实战应用</a></h3>
+                        <p class="blog-excerpt" data-zh="危险源辨识是ISO 45001的核心要求，也是许多企业最容易出问题的地方。本文从工作安全分析（JSA）入手，结合风险矩阵法和控制层级原则，手把手教你建立高效的风险评估体系。" en="Hazard identification is the core requirement of ISO 45001 and where many enterprises struggle. Starting from Job Safety Analysis (JSA), combined with risk matrix and hierarchy of controls, this guide walks you through building an efficient risk assessment system.">危险源辨识是ISO 45001的核心要求，也是许多企业最容易出问题的地方。本文从工作安全分析（JSA）入手，结合风险矩阵法和控制层级原则，手把手教你建立高效的风险评估体系。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章6 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#14b8a6,#06b6d4);">🌍</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">案例分享</span>
+                            <span class="blog-date">2026-04-20</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="案例分享：某越南中资纺织厂如何3个月通过ISO 14001认证" data-en="Case Study: How a Chinese Textile Factory in Vietnam Passed ISO 14001 in 3 Months">案例分享：某越南中资纺织厂如何3个月通过ISO 14001认证</a></h3>
+                        <p class="blog-excerpt" data-zh="客户背景：某大型中资纺织企业越南工厂，3000+员工，面临当地环保局日益严格的废水排放和危废管理要求。从体系诊断到最终通过认证，仅用3个月。本文拆解关键步骤和经验教训。" en="Client background: A large Chinese textile factory in Vietnam with 3000+ employees facing increasingly strict wastewater and hazardous waste requirements. From diagnosis to certification in just 3 months. This article breaks down the key steps and lessons learned.">客户背景：某大型中资纺织企业越南工厂，3000+员工，面临当地环保局日益严格的废水排放和危废管理要求。从体系诊断到最终通过认证，仅用3个月。本文拆解关键步骤和经验教训。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章7 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#f43f5e,#ec4899);">🇳🇬</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">法规解读</span>
+                            <span class="blog-date">2026-04-12</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="尼日利亚工厂安全合规指南：NIOSH标准与中国GB标准对照" data-en="Nigeria Factory Safety Compliance Guide: NIOSH vs Chinese GB Standards">尼日利亚工厂安全合规指南：NIOSH标准与中国GB标准对照</a></h3>
+                        <p class="blog-excerpt" data-zh="越来越多中资企业在尼日利亚投资建厂。但尼日利亚的安全法规体系（NIOSH、Factories Act）与中国GB标准存在显著差异。本文提供详细的标准对照表，帮助工厂快速了解合规差距。" en="More Chinese enterprises are investing in Nigeria. But Nigeria's safety regulation system (NIOSH, Factories Act) differs significantly from Chinese GB standards. This article provides a detailed comparison table to help factories quickly identify compliance gaps.">越来越多中资企业在尼日利亚投资建厂。但尼日利亚的安全法规体系（NIOSH、Factories Act）与中国GB标准存在显著差异。本文提供详细的标准对照表，帮助工厂快速了解合规差距。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+                <!-- 文章8 -->
+                <article class="blog-card">
+                    <div class="blog-thumb" style="background:linear-gradient(135deg,#a855f7,#3b82f6);">🧪</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">ISO 14001</span>
+                            <span class="blog-date">2026-04-05</span>
+                        </div>
+                        <h3 class="blog-title"><a href="contact.html" data-zh="ISO 14001环境管理体系：中资出海企业的环境合规利器" data-en="ISO 14001 EMS: The Environmental Compliance Weapon for Chinese Enterprises Going Global">ISO 14001环境管理体系：中资出海企业的环境合规利器</a></h3>
+                        <p class="blog-excerpt" data-zh="东南亚各国环保法规日趋严格，环境罚款和停产风险日益增大。ISO 14001环境管理体系不仅帮助企业系统化管控环境风险，还能有效降低合规成本。本文解读ISO 14001的核心要素。" en="Environmental regulations in SE Asia are becoming stricter, with increasing risks of fines and shutdowns. ISO 14001 not only helps enterprises systematically manage environmental risks but also effectively reduces compliance costs.">东南亚各国环保法规日趋严格，环境罚款和停产风险日益增大。ISO 14001环境管理体系不仅帮助企业系统化管控环境风险，还能有效降低合规成本。本文解读ISO 14001的核心要素。</p>
+                        <a href="contact.html" class="blog-read-more" data-zh="阅读全文 →" data-en="Read More →">阅读全文 →</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 订阅 -->
+    <section class="blog-subscribe">
+        <div class="sub-box">
+            <h3 class="sub-title" data-zh="订阅安全合规周报" data-en="Subscribe to Safety Compliance Weekly">订阅安全合规周报</h3>
+            <p class="sub-desc" data-zh="每周一篇深度文章，助您保持合规领先" data-en="One in-depth article per week to keep you ahead in compliance">每周一篇深度文章，助您保持合规领先</p>
+            <form class="sub-form" action="https://yourdomain.us1.list-manage.com/subscribe/post?u=XXXXX&id=XXXXX" method="post" target="_blank">
+                <input type="email" name="EMAIL" class="sub-input" placeholder="输入您的邮箱地址" required>
+                <button type="submit" class="sub-btn" data-zh="立即订阅" data-en="Subscribe">立即订阅</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" data-zh="首页" data-en="Home">首页</a>
+            <a href="blog.html" data-zh="博客" data-en="Blog">博客</a>
+            <a href="geo.html" data-zh="全球服务" data-en="Global">全球服务</a>
+            <a href="contact.html" data-zh="联系我们" data-en="Contact">联系我们</a>
+            <a href="privacy.html" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
+            <a href="terms.html" data-zh="服务条款" data-en="Terms">服务条款</a>
+        </div>
+        <p data-zh="© 2026 安全生产专家. 保留所有权利. | 专注中资出海企业安全合规解决方案" data-en="© 2026 Safety Expert. All rights reserved.">© 2026 安全生产专家. 保留所有权利. | 专注中资出海企业安全合规解决方案</p>
+    </footer>
+
+    <script>
+    function switchLang(lang, btn) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+            el.textContent = el.getAttribute('data-' + lang);
+        });
+    }
+    // 分类过滤（前端示例）
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    </script>
+</body>
+</html>
