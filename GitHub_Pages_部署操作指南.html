@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 部署操作指南 | China Safety Pro</title>
+    <meta name="description" content="从零开始，手把手教你把网站部署到GitHub Pages，含注册账号、创建仓库、上传文件、启用Pages、绑定自定义域名的完整步骤">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.8}
+        .header{background:linear-gradient(135deg,#1e3a5f,#312e81);padding:48px 24px;text-align:center;position:relative;overflow:hidden}
+        .header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(56,189,248,0.1) 0%,transparent 70%)}
+        .header h1{font-size:32px;color:#fff;margin-bottom:12px;position:relative}
+        .header p{font-size:16px;color:#94a3b8;position:relative}
+        .header .badge{display:inline-block;margin-top:16px;padding:6px 16px;background:rgba(56,189,248,0.2);border:1px solid rgba(56,189,248,0.3);border-radius:20px;font-size:13px;color:#38bdf8;position:relative}
+        .container{max-width:900px;margin:0 auto;padding:32px 24px}
+        .progress-bar{display:flex;gap:4px;margin-bottom:40px;flex-wrap:wrap}
+        .progress-step{flex:1;min-width:80px;padding:12px 8px;text-align:center;background:#1e293b;border-radius:8px;font-size:12px;color:#64748b;position:relative;transition:all .3s}
+        .progress-step .num{display:block;font-size:18px;font-weight:800;color:#334155;margin-bottom:4px}
+        .progress-step.done{background:#0f172a;color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
+        .progress-step.done .num{color:#38bdf8}
+        .progress-step.current{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid #38bdf8}
+        .progress-step.current .num{color:#38bdf8}
+        .section{background:#1e293b;border-radius:16px;padding:32px;margin-bottom:32px;border:1px solid #334155}
+        .section h2{font-size:24px;color:#f1f5f9;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+        .section h2 .step-num{width:40px;height:40px;border-radius:10px;background:#0ea5e9;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
+        .section .subtitle{font-size:14px;color:#64748b;margin-bottom:24px;padding-left:52px}
+        .step{margin-bottom:24px;padding:20px 24px;background:#0f172a;border-radius:12px;border-left:3px solid #0ea5e9}
+        .step h3{font-size:16px;color:#38bdf8;margin-bottom:12px}
+        .step p{margin-bottom:8px;font-size:14px;color:#cbd5e1}
+        .step ul,.step ol{margin:8px 0 12px 20px;color:#cbd5e1;font-size:14px}
+        .step li{margin-bottom:6px}
+        .code-box{background:#0c0a1a;border:1px solid #334155;border-radius:8px;padding:16px;margin:12px 0;font-family:'Consolas','Monaco',monospace;font-size:13px;color:#a5b4fc;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
+        .code-box .comment{color:#64748b}
+        .code-box .cmd{color:#34d399}
+        .code-box .url{color:#38bdf8}
+        .tip{background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13px;color:#38bdf8}
+        .warning{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13px;color:#f59e0b}
+        .success{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13px;color:#22c55e}
+        .screenshot{background:#1e3a5f;border-radius:8px;padding:16px;margin:12px 0;text-align:center;font-size:13px;color:#94a3b8;border:1px dashed #334155}
+        .screenshot img{max-width:100%;border-radius:4px}
+        .two-ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+        .way-card{background:#0f172a;border-radius:10px;padding:20px;border:1px solid #334155}
+        .way-card h4{font-size:15px;margin-bottom:8px;color:#f1f5f9}
+        .way-card.recommended{border-color:#0ea5e9}
+        .way-card.recommended h4::before{content:'推荐 ';color:#0ea5e9;font-weight:600}
+        .way-card p{font-size:13px;color:#94a3b8}
+        .file-list{background:#0c0a1a;border-radius:8px;padding:16px;margin:12px 0;font-size:13px;font-family:monospace;color:#94a3b8}
+        .file-list .file{padding:3px 0}
+        .file-list .folder{color:#38bdf8;font-weight:600}
+        .faq-item{background:#0f172a;border-radius:10px;padding:20px;margin:12px 0;border:1px solid #334155}
+        .faq-item h4{font-size:15px;color:#f59e0b;margin-bottom:8px}
+        .faq-item p{font-size:13px;color:#94a3b8}
+        .toc{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;margin-bottom:32px}
+        .toc h3{font-size:16px;color:#38bdf8;margin-bottom:12px}
+        .toc a{display:block;padding:6px 0;color:#94a3b8;text-decoration:none;font-size:14px;transition:color .2s}
+        .toc a:hover{color:#38bdf8}
+        .checklist{list-style:none;padding:0}
+        .checklist li{padding:8px 0 8px 32px;position:relative;font-size:14px;color:#cbd5e1;border-bottom:1px solid #1e293b}
+        .checklist li::before{content:'';position:absolute;left:0;top:12px;width:20px;height:20px;border:2px solid #334155;border-radius:4px;background:#0f172a}
+        .btn{display:inline-block;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+        .btn-primary{background:#0ea5e9;color:#fff}
+        .btn-primary:hover{background:#0284c7}
+        .btn-outline{background:transparent;color:#38bdf8;border:1px solid #38bdf8}
+        .btn-outline:hover{background:rgba(56,189,248,0.1)}
+        @media(max-width:640px){
+            .two-ways{grid-template-columns:1fr}
+            .header h1{font-size:24px}
+            .section{padding:20px}
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GitHub Pages 部署操作指南</h1>
+    <p>从零开始，手把手把 China Safety Pro 网站上线</p>
+    <div class="badge">已准备好 32 个网站文件 · 预计 20 分钟完成</div>
+</div>
+
+<div class="container">
+    <!-- 进度条 -->
+    <div class="progress-bar">
+        <div class="progress-step"><span class="num">1</span>注册GitHub</div>
+        <div class="progress-step"><span class="num">2</span>创建仓库</div>
+        <div class="progress-step"><span class="num">3</span>上传文件</div>
+        <div class="progress-step"><span class="num">4</span>启用Pages</div>
+        <div class="progress-step"><span class="num">5</span>绑定域名</div>
+        <div class="progress-step"><span class="num">6</span>配置服务</div>
+        <div class="progress-step"><span class="num">7</span>验证上线</div>
+    </div>
+
+    <!-- 目录 -->
+    <div class="toc">
+        <h3>目录导航</h3>
+        <a href="#step1">第1步：注册GitHub账号</a>
+        <a href="#step2">第2步：创建仓库</a>
+        <a href="#step3">第3步：上传网站文件</a>
+        <a href="#step4">第4步：启用GitHub Pages</a>
+        <a href="#step5">第5步：绑定自定义域名（可选）</a>
+        <a href="#step6">第6步：配置第三方服务</a>
+        <a href="#step7">第7步：验证上线</a>
+        <a href="#faq">常见问题</a>
+    </div>
+
+    <!-- ============ 第1步 ============ -->
+    <div class="section" id="step1">
+        <h2><span class="step-num">1</span>注册GitHub账号</h2>
+        <div class="subtitle">如果已有GitHub账号，跳过此步</div>
+
+        <div class="step">
+            <h3>操作步骤</h3>
+            <ol>
+                <li>打开浏览器，访问 <strong>https://github.com</strong></li>
+                <li>点击右上角的 <strong>"Sign up"</strong> 按钮</li>
+                <li>输入邮箱地址，设置密码，输入用户名
+                    <div class="tip">建议用户名：<code>chinasafetypro</code>（如果你注册了这个用户名，后续可以用 chinasafetypro.github.io 直接访问网站）</div>
+                </li>
+                <li>完成验证题（拖动方块到正确位置）</li>
+                <li>去邮箱点击验证链接</li>
+                <li>回到GitHub，按提示设置偏好（全选默认即可）</li>
+            </ol>
+        </div>
+
+        <div class="tip">GitHub在国内可以直接访问，不用翻墙。加载图片可能稍慢，不影响操作。</div>
+    </div>
+
+    <!-- ============ 第2步 ============ -->
+    <div class="section" id="step2">
+        <h2><span class="step-num">2</span>创建仓库</h2>
+        <div class="subtitle">仓库是用来存放网站文件的地方</div>
+
+        <div class="step">
+            <h3>操作步骤</h3>
+            <ol>
+                <li>登录GitHub后，点击右上角 <strong>+</strong> 图标 → <strong>"New repository"</strong></li>
+                <li>填写表单：
+                    <ul>
+                        <li><strong>Repository name</strong>（仓库名）：<code>你的用户名.github.io</code>
+                            <br>例如：如果你的用户名是 chinasafetypro，就填 <code>chinasafetypro.github.io</code>
+                            <div class="warning">这个格式很重要！只有仓库名是"用户名.github.io"才能用免费域名直接访问。</div>
+                        </li>
+                        <li><strong>Description</strong>（描述）：填 <code>China Safety Pro - 东南亚工厂安全合规专家</code></li>
+                        <li><strong>Public / Private</strong>：选 <strong>Public</strong>（公开），GitHub Pages免费版只支持公开仓库</li>
+                        <li><strong>Initialize</strong>：勾选 <strong>"Add a README file"</strong></li>
+                    </ul>
+                </li>
+                <li>点击 <strong>"Create repository"</strong>（绿色按钮）</li>
+            </ol>
+        </div>
+
+        <div class="screenshot">
+            [仓库创建页面示意]<br>
+            ┌──────────────────────────────────────┐<br>
+            │ Repository name: chinasafetypro.github.io │<br>
+            │ Description: China Safety Pro          │<br>
+            │ ○ Public ● Private                    │<br>
+            │ ☑ Add a README file                  │<br>
+            │                                      │<br>
+            │ [Create repository] (绿色按钮)        │<br>
+            └──────────────────────────────────────┘
+        </div>
+
+        <div class="tip">如果你后续购买了自定义域名（如 chinasafetypro.com），仓库名不一定要用"用户名.github.io"格式，但用这个格式最简单，可以先上线再改。</div>
+    </div>
+
+    <!-- ============ 第3步 ============ -->
+    <div class="section" id="step3">
+        <h2><span class="step-num">3</span>上传网站文件</h2>
+        <div class="subtitle">共32个文件，约620KB，一次性上传</div>
+
+        <div class="two-ways">
+            <div class="way-card recommended">
+                <h4>方法A：浏览器上传（推荐）</h4>
+                <p>最简单，不用安装任何软件。适合第一次部署。</p>
+            </div>
+            <div class="way-card">
+                <h4>方法B：Git命令行推送</h4>
+                <p>适合后续更新。需要安装Git并配置Personal Access Token。</p>
+            </div>
+        </div>
+
+        <!-- 方法A -->
+        <div class="step">
+            <h3>方法A：浏览器上传（推荐新手）</h3>
+            <ol>
+                <li>进入你刚创建的仓库页面</li>
+                <li>点击 <strong>"Add file"</strong> → <strong>"Upload files"</strong></li>
+                <li>打开你电脑上的文件夹：<code>github-pages-deploy</code>
+                    <div class="tip">这个文件夹在 WorkBuddy 工作区目录下，路径类似：<br>C:\Users\Administrator\WorkBuddy\2026-05-31-11-24-40\github-pages-deploy</div>
+                </li>
+                <li>选中文件夹里的<strong>所有32个文件</strong>（包括点开头的隐藏文件 .nojekyll），拖拽到上传区域
+                    <div class="file-list">
+<span class="folder">需要上传的32个文件清单：</span>
+<span class="file">.nojekyll          ← 告诉GitHub不要用Jekyll处理</span>
+<span class="file">CNAME               ← 自定义域名指向</span>
+<span class="file">robots.txt          ← 搜索引擎爬虫指令</span>
+<span class="file">sitemap.xml         ← 站点地图</span>
+<span class="file">index.html          ← 网站首页</span>
+<span class="file">pricing.html        ← 产品定价页</span>
+<span class="file">404.html            ← 404错误页</span>
+<span class="file">privacy.html        ← 隐私政策</span>
+<span class="file">terms.html          ← 服务条款</span>
+<span class="file">东南亚工厂安全合规自查清单50条.html</span>
+<span class="file">东南亚工厂安全合规自查清单100条完整版.html</span>
+<span class="file">30天YouTube内容日历_完整版.html</span>
+<span class="file">30天YouTube内容日历_完整脚本版.html</span>
+<span class="file">YouTube系列脚本_10期完整版.html</span>
+<span class="file">模块2_ISO45001核心条款速通_录制脚本+PPT大纲.html</span>
+<span class="file">视频录制生产指南.html</span>
+<span class="file">部署上线指南.html</span>
+<span class="file">程序文件模板_01 ~ 15（共15个.html文件）</span>
+                    </div>
+                </li>
+                <li>在底部 <strong>Commit message</strong> 框里输入：<code>首次上传网站文件</code></li>
+                <li>点击 <strong>"Commit changes"</strong>（绿色按钮）</li>
+                <li>等待几秒钟，文件上传完成</li>
+            </ol>
+
+            <div class="warning">注意：浏览器上传有单次100个文件的限制，32个文件没问题。但如果后续要一次性上传很多文件，建议用方法B。</div>
+        </div>
+
+        <!-- 方法B -->
+        <div class="step">
+            <h3>方法B：Git命令行推送</h3>
+            <p>部署包文件夹（github-pages-deploy）里已经初始化了Git仓库并做好了首次提交。你只需要：</p>
+
+            <div class="code-box"><span class="comment"># 1. 先在GitHub上创建Personal Access Token</span>
+<span class="comment">#    GitHub → Settings → Developer settings → Personal access tokens</span>
+<span class="comment">#    → Generate new token → 勾选 repo → 生成并复制token</span>
+
+<span class="comment"># 2. 在github-pages-deploy文件夹中执行：</span>
+<span class="cmd">git remote add origin https://github.com/你的用户名/chinasafetypro.github.io.git</span>
+<span class="cmd">git push -u origin main</span>
+<span class="comment"># 会提示输入用户名和token（token就是密码）</span></div>
+
+            <div class="tip">方法B的好处是后续更新网站只需要改文件 → git add → git commit → git push，比浏览器拖拽方便得多。</div>
+        </div>
+    </div>
+
+    <!-- ============ 第4步 ============ -->
+    <div class="section" id="step4">
+        <h2><span class="step-num">4</span>启用GitHub Pages</h2>
+        <div class="subtitle">让GitHub知道"把这个仓库当网站来部署"</div>
+
+        <div class="step">
+            <h3>操作步骤</h3>
+            <ol>
+                <li>进入你的仓库页面（刚才上传文件的那个页面）</li>
+                <li>点击页面顶部的 <strong>"Settings"</strong>（设置标签）</li>
+                <li>在左侧菜单找到 <strong>"Pages"</strong>（在 "Code and automation" 下面）</li>
+                <li>找到 <strong>"Build and deployment"</strong> 区域</li>
+                <li>在 <strong>Source</strong> 下拉菜单中选择 <strong>"Deploy from a branch"</strong></li>
+                <li>在 <strong>Branch</strong> 下拉菜单中选择 <strong>"main"</strong>，文件夹选择 <strong>"/ (root)"</strong></li>
+                <li>点击 <strong>"Save"</strong></li>
+            </ol>
+        </div>
+
+        <div class="screenshot">
+            [Pages设置页面示意]<br>
+            ┌──────────────────────────────────────┐<br>
+            │ Build and deployment                 │<br>
+            │ Source: [Deploy from a branch ▼]      │<br>
+            │ Branch: [main ▼] / [(root) ▼]        │<br>
+            │                                      │<br>
+            │ [Save]                              │<br>
+            └──────────────────────────────────────┘
+        </div>
+
+        <div class="success">
+            几秒钟后，页面顶部会出现一个绿色提示框：<br>
+            <strong>"Your site is published at https://你的用户名.github.io/"</strong><br>
+            点击这个链接，你的网站就上线了！
+        </div>
+
+        <div class="tip">
+            如果显示404或"页面不存在"，等3-5分钟再刷新。GitHub Pages部署需要一点时间生效。<br>
+            网站会自动启用HTTPS（浏览器地址栏的🔒图标）。
+        </div>
+    </div>
+
+    <!-- ============ 第5步 ============ -->
+    <div class="section" id="step5">
+        <h2><span class="step-num">5</span>绑定自定义域名（可选）</h2>
+        <div class="subtitle">如果你购买了 chinasafetypro.com，把它绑定到GitHub Pages</div>
+
+        <div class="warning">
+            这一步需要你先购买域名。推荐渠道：<br>
+            • Cloudflare（https://dash.cloudflare.com） — 推荐，自带CDN加速和DDoS防护<br>
+            • Namecheap（https://www.namecheap.com） — 价格便宜，管理方便<br>
+            • 阿里云万网（https://wanwang.aliyun.com） — 国内常用
+        </div>
+
+        <div class="step">
+            <h3>第一步：在域名商配置DNS记录</h3>
+            <p>到你的域名管理面板，添加以下4条DNS记录：</p>
+            <table style="width:100%;border-collapse:collapse;margin:12px 0;font-size:13px">
+                <thead><tr style="background:#1e3a5f">
+                    <th style="padding:8px;text-align:left;color:#38bdf8;border-bottom:1px solid #334155">类型</th>
+                    <th style="padding:8px;text-align:left;color:#38bdf8;border-bottom:1px solid #334155">名称</th>
+                    <th style="padding:8px;text-align:left;color:#38bdf8;border-bottom:1px solid #334155">内容</th>
+                    <th style="padding:8px;text-align:left;color:#38bdf8;border-bottom:1px solid #334155">代理</th>
+                </tr></thead>
+                <tbody>
+                    <tr><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">CNAME</td><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">www</td><td style="padding:8px;color:#38bdf8;border-bottom:1px solid #334155">你的用户名.github.io</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">DNS only</td></tr>
+                    <tr><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">CNAME</td><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">@</td><td style="padding:8px;color:#38bdf8;border-bottom:1px solid #334155">你的用户名.github.io</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">DNS only</td></tr>
+                    <tr><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">A</td><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">@</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">185.199.108.153</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">DNS only</td></tr>
+                    <tr><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">A</td><td style="padding:8px;color:#e2e8f0;border-bottom:1px solid #334155">@</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">185.199.109.153</td><td style="padding:8px;color:#94a3b8;border-bottom:1px solid #334155">DNS only</td></tr>
+                </tbody>
+            </table>
+            <div class="tip">Cloudflare用户：代理状态选"DNS only"（灰色云朵），不要开橙色云朵代理，否则GitHub Pages的SSL会报错。</div>
+        </div>
+
+        <div class="step">
+            <h3>第二步：在GitHub仓库配置域名</h3>
+            <ol>
+                <li>进入仓库 → <strong>Settings</strong> → <strong>Pages</strong></li>
+                <li>在 <strong>"Custom domain"</strong> 框中输入：<code>chinasafetypro.com</code></li>
+                <li>勾选 <strong>"Enforce HTTPS"</strong>（等DNS生效后才能勾选，可能需要等几分钟）</li>
+                <li>点击 <strong>Save</strong></li>
+            </ol>
+        </div>
+
+        <div class="success">DNS生效后（通常5-30分钟，最长48小时），你就可以通过 chinasafetypro.com 访问网站了。</div>
+    </div>
+
+    <!-- ============ 第6步 ============ -->
+    <div class="section" id="step6">
+        <h2><span class="step-num">6</span>配置第三方服务</h2>
+        <div class="subtitle">让支付、邮件、统计功能真正可用</div>
+
+        <div class="step">
+            <h3>6.1 Stripe支付（信用卡）</h3>
+            <ol>
+                <li>注册 Stripe 账号：<strong>https://dashboard.stripe.com/register</strong></li>
+                <li>完成商家认证（需要营业执照或个人信息）</li>
+                <li>创建3个产品（对应3档定价）：
+                    <ul>
+                        <li>自学版 — $69</li>
+                        <li>带教版 — $179</li>
+                        <li>企业版 — $697</li>
+                    </ul>
+                </li>
+                <li>获取 <strong>Publishable Key</strong>（在 Developers → API keys）</li>
+                <li>在 index.html 中搜索 <code>TODO_STRIPE</code>，替换 Publishable Key</li>
+            </ol>
+            <div class="tip"><strong>最简方案</strong>：不用改代码。在Stripe后台创建产品后，用"Payment Links"功能生成支付链接，直接替换 index.html 中的按钮链接即可。</div>
+        </div>
+
+        <div class="step">
+            <h3>6.2 PayPal支付</h3>
+            <ol>
+                <li>注册 PayPal Business 账号：<strong>https://www.paypal.com/business</strong></li>
+                <li>获取 <strong>Client ID</strong>（在 Applications → My Apps → 创建App）</li>
+                <li>在 index.html 中搜索 <code>TODO_PAYPAL</code>，替换 Client ID</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>6.3 Mailchimp邮件订阅</h3>
+            <ol>
+                <li>注册 Mailchimp：<strong>https://mailchimp.com</strong></li>
+                <li>创建 Audience（受众列表）</li>
+                <li>进入 Audience → Signup forms → Embedded forms → 复制 form action URL</li>
+                <li>在 index.html 中搜索 <code>TODO_MAILCHIMP</code>，替换 action URL</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>6.4 Google Analytics 4</h3>
+            <ol>
+                <li>注册 GA4：<strong>https://analytics.google.com</strong></li>
+                <li>创建 Property → 获取 Measurement ID（格式：<code>G-XXXXXXXXXX</code>）</li>
+                <li>在 index.html 中搜索 <code>TODO_GA4</code>，替换 Measurement ID</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ============ 第7步 ============ -->
+    <div class="section" id="step7">
+        <h2><span class="step-num">7</span>验证上线</h2>
+        <div class="subtitle">确认所有功能正常工作</div>
+
+        <ul class="checklist">
+            <li>访问 https://你的用户名.github.io/，首页正常加载</li>
+            <li>检查中英文切换按钮是否正常工作</li>
+            <li>点击"查看三档方案对比"，pricing.html 正常打开</li>
+            <li>检查手机端访问（缩小浏览器窗口模拟）</li>
+            <li>访问一个不存在的页面，确认404.html正常显示</li>
+            <li>在Google搜索 site:你的用户名.github.io，确认页面被收录</li>
+            <li>提交sitemap到Google Search Console（search.google.com/search-console）</li>
+            <li>用 https://pagespeed.web.dev 测试网站加载速度</li>
+        </ul>
+
+        <div class="success">
+            如果以上全部通过，恭喜你，网站正式上线了！
+        </div>
+    </div>
+
+    <!-- ============ FAQ ============ -->
+    <div class="section" id="faq">
+        <h2><span class="step-num">?</span>常见问题</h2>
+
+        <div class="faq-item">
+            <h4>Q：国内能访问GitHub Pages吗？</h4>
+            <p>A：大部分时候可以，偶尔会不稳定。如果需要给国内客户看，建议绑定自定义域名并使用Cloudflare CDN加速。注意：自定义域名如果没备案，国内运营商可能偶尔拦截。</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：GitHub Pages有流量限制吗？</h4>
+            <p>A：免费版有100GB/月的带宽限制和10GB的存储限制。对你这个网站（32个HTML文件共约620KB）来说完全够用，除非你放了很大的视频文件。</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：怎么更新网站？</h4>
+            <p>A：最简单的方式：GitHub仓库页面 → Add file → Upload files → 上传修改后的文件 → Commit。<br>
+            或者用Git命令行：改文件 → git add → git commit → git push。</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：URL里有中文文件名会有问题吗？</h4>
+            <p>A：不会。GitHub Pages支持UTF-8编码的URL，中文文件名会被自动编码为%XX格式。但搜索引擎URL中显示的是编码后的地址，不太美观。后续可以考虑改成英文名。</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：需要备案吗？</h4>
+            <p>A：GitHub Pages的服务器在美国，不需要ICP备案。但如果绑定自定义域名后想要在国内稳定访问，备案是更好的选择（需要国内服务器）。现阶段用Cloudflare做DNS解析即可。</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：配置TODO在哪里找？</h4>
+            <p>A：在 index.html 文件中搜索以下关键词即可定位需要替换的内容：<br>
+            • <code>TODO_STRIPE</code> — Stripe Publishable Key<br>
+            • <code>TODO_PAYPAL</code> — PayPal Client ID<br>
+            • <code>TODO_MAILCHIMP</code> — Mailchimp form action URL<br>
+            • <code>TODO_GA4</code> — Google Analytics Measurement ID</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Q：后续更新文件怎么办？</h4>
+            <p>A：修改本地 github-pages-deploy 文件夹中的文件后：<br>
+            <code>git add .</code> → <code>git commit -m "更新说明"</code> → <code>git push origin main</code><br>
+            GitHub Pages会在1-3分钟内自动更新网站。</p>
+        </div>
+    </div>
+
+    <!-- 快速链接 -->
+    <div class="section" style="text-align:center">
+        <h2 style="justify-content:center">快速链接</h2>
+        <p style="color:#64748b;margin-bottom:20px">部署过程中需要用到的平台</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="https://github.com" target="_blank" class="btn btn-primary">GitHub</a>
+            <a href="https://dashboard.stripe.com/register" target="_blank" class="btn btn-outline">Stripe注册</a>
+            <a href="https://www.paypal.com/business" target="_blank" class="btn btn-outline">PayPal注册</a>
+            <a href="https://mailchimp.com" target="_blank" class="btn btn-outline">Mailchimp注册</a>
+            <a href="https://analytics.google.com" target="_blank" class="btn btn-outline">GA4注册</a>
+            <a href="https://dash.cloudflare.com" target="_blank" class="btn btn-outline">Cloudflare</a>
+        </div>
+    </div>
+
+</div>
+
+<div style="text-align:center;padding:24px;color:#475569;font-size:12px">
+    China Safety Pro &copy; 2026 · GitHub Pages 部署指南 v1.0
+</div>
+
+</body>
+</html>

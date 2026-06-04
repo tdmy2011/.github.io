@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=device-width, initial-scale=1.0">
+    <title>30天YouTube内容日历 - 安全生产专家频道</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.8; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 24px 80px; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); border: 1px solid #334155; border-radius: 16px; padding: 48px 40px; margin-bottom: 48px; }
+        .hero-tag { display: inline-block; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 20px; padding: 4px 16px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+        .hero h1 { font-size: 36px; font-weight: 800; color: #f1f5f9; margin-bottom: 12px; }
+        .hero h1 span { color: #38bdf8; }
+        .hero-sub { color: #94a3b8; font-size: 15px; margin-bottom: 28px; }
+        
+        /* Calendar View */
+        .calendar-section { margin-bottom: 60px; }
+        .section-title { font-size: 24px; font-weight: 700; color: #f1f5f9; margin-bottom: 24px; padding-left: 14px; border-left: 4px solid #38bdf8; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .day-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.3s; }
+        .day-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .day-number { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; font-weight: 800; font-size: 14px; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .day-theme { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .day-title { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 8px; line-height: 1.4; }
+        .day-keywords { font-size: 12px; color: #94a3b8; margin-bottom: 10px; }
+        .keyword-tag { display: inline-block; background: rgba(56,189,248,0.1); color: #38bdf8; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 4px; margin-bottom: 4px; }
+        .day-cta { font-size: 12px; color: #22c55e; font-weight: 600; }
+        
+        /* Week Sections */
+        .week-section { margin-bottom: 48px; }
+        .week-header { background: linear-gradient(90deg, #1e3a5f, transparent); padding: 16px 24px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+        .week-number { font-size: 28px; font-weight: 800; color: #38bdf8; }
+        .week-title { font-size: 18px; font-weight: 700; color: #f1f5f9; }
+        .week-desc { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+        
+        /* Script Modal */
+        .script-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; overflow-y: auto; }
+        .script-modal.active { display: block; }
+        .modal-content { background: #1e293b; max-width: 900px; margin: 40px auto; padding: 40px; border-radius: 16px; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 24px; cursor: pointer; }
+        .modal-close:hover { color: #f1f5f9; }
+        .modal-title { font-size: 24px; font-weight: 700; color: #f1f5f9; margin-bottom: 20px; }
+        .script-section { margin-bottom: 24px; }
+        .script-section h4 { font-size: 16px; font-weight: 700; color: #38bdf8; margin-bottom: 12px; }
+        .script-text { font-size: 14px; color: #cbd5e1; line-height: 1.8; }
+        .script-note { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-size: 13px; color: #fbbf24; }
+        
+        /* Thumbnail Ideas */
+        .thumbnail-idea { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px 16px; margin-top: 12px; }
+        .thumbnail-idea h5 { font-size: 14px; font-weight: 700; color: #a78bfa; margin-bottom: 8px; }
+        .thumbnail-idea p { font-size: 13px; color: #94a3b8; }
+        
+        /* Stats */
+        .stats-bar { display: flex; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+        .stat-item { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px 24px; flex: 1; min-width: 150px; text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 800; color: #38bdf8; }
+        .stat-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+        
+        /* CTA */
+        .cta-box { background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(168,85,247,0.08)); border: 1px solid rgba(56,189,248,0.25); border-radius: 12px; padding: 24px; margin-top: 16px; }
+        .cta-title { font-size: 15px; font-weight: 700; color: #38bdf8; margin-bottom: 8px; }
+        .cta-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+        
+        @media (max-width: 768px) {
+            .calendar-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 24px; }
+            .modal-content { margin: 20px; padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-tag">📹 YouTube 内容策略</div>
+            <h1>30天YouTube内容日历<br><span>系统化引流·精准获客</span></h1>
+            <p class="hero-sub">专为安全生产专家IP设计 · 30个视频选题 · 完整口播脚本 · SEO优化 · 转化话术</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">视频选题</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">内容主题周</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100+</div>
+                    <div class="stat-label">SEO关键词</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">转化话术</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Week 1: Foundation -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">W1</div>
+                <div>
+                    <div class="week-title">第一周：基础认知篇</div>
+                    <div class="week-desc">建立专业形象，解释为什么中资出海企业需要ISO 45001</div>
+                </div>
+            </div>
+            <div class="calendar-grid">
+                <!-- Day 1 -->
+                <div class="day-card" onclick="showScript(1)">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">为什么国内安全管理经验在海外不够用？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">ISO 45001</span>
+                        <span class="keyword-tag">出海企业</span>
+                        <span class="keyword-tag">安全管理</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：自查清单下载</div>
+                </div>
+                
+                <!-- Day 2 -->
+                <div class="day-card" onclick="showScript(2)">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">ISO 45001认证到底要花多少钱？真实成本拆解</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">认证成本</span>
+                        <span class="keyword-tag">ISO 45001费用</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：成本计算器</div>
+                </div>
+                
+                <!-- Day 3 -->
+                <div class="day-card" onclick="showScript(3)">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">越南工厂安全检查，检查官到底查什么？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">越南安全法规</span>
+                        <span class="keyword-tag">工厂检查</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：越南法规速查表</div>
+                </div>
+                
+                <!-- Day 4 -->
+                <div class="day-card" onclick="showScript(4)">
+                    <div class="day-header">
+                        <div class="day-number">4</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">中资企业在非洲的安全事故Top10</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">非洲安全</span>
+                        <span class="keyword-tag">事故案例</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：事故案例库</div>
+                </div>
+                
+                <!-- Day 5 -->
+                <div class="day-card" onclick="showScript(5)">
+                    <div class="day-header">
+                        <div class="day-number">5</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">为什么国内的安全制度在东南亚不管用？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">文化差异</span>
+                        <span class="keyword-tag">安全管理</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：文化冲突解决指南</div>
+                </div>
+                
+                <!-- Day 6 -->
+                <div class="day-card" onclick="showScript(6)">
+                    <div class="day-header">
+                        <div class="day-number">6</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">ISO 45001 vs 中国安全生产法：核心差异对照</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">ISO 45001</span>
+                        <span class="keyword-tag">安全生产法</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：对照表下载</div>
+                </div>
+                
+                <!-- Day 7 -->
+                <div class="day-card" onclick="showScript(7)">
+                    <div class="day-header">
+                        <div class="day-number">7</div>
+                        <div class="day-theme">基础认知</div>
+                    </div>
+                    <div class="day-title">【直播回放】30天ISO 45001落地营介绍</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">课程介绍</span>
+                        <span class="keyword-tag">直播回放</span>
+                    </div>
+                    <div class="day-cta">🎯 转化：课程报名</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Week 2: Risk Assessment -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">W2</div>
+                <div>
+                    <div class="week-title">第二周：风险评估专题</div>
+                    <div class="week-desc">深入讲解危险源辨识和风险评估，展示专业能力</div>
+                </div>
+            </div>
+            <div class="calendar-grid">
+                <!-- Day 8 -->
+                <div class="day-card" onclick="showScript(8)">
+                    <div class="day-header">
+                        <div class="day-number">8</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">危险源辨识四步法：JSA/HAZOP/MHA怎么选？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">JSA</span>
+                        <span class="keyword-tag">HAZOP</span>
+                        <span class="keyword-tag">风险评估</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：辨识表格模板</div>
+                </div>
+                
+                <!-- Day 9 -->
+                <div class="day-card" onclick="showScript(9)">
+                    <div class="day-header">
+                        <div class="day-number">9</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">风险评估矩阵怎么做？5×5矩阵实战演示</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">风险矩阵</span>
+                        <span class="keyword-tag">Excel模板</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：Excel风险矩阵</div>
+                </div>
+                
+                <!-- Day 10 -->
+                <div class="day-card" onclick="showScript(10)">
+                    <div class="day-header">
+                        <div class="day-number">10</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">心理社会危险：ISO 45001新增重点</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">心理社会危险</span>
+                        <span class="keyword-tag">ISO 45001</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：心理风险管理指南</div>
+                </div>
+                
+                <!-- Day 11 -->
+                <div class="day-card" onclick="showScript(11)">
+                    <div class="day-header">
+                        <div class="day-number">11</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">东南亚工厂常见危险源Top20</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">东南亚</span>
+                        <span class="keyword-tag">危险源</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：危险源清单</div>
+                </div>
+                
+                <!-- Day 12 -->
+                <div class="day-card" onclick="showScript(12)">
+                    <div class="day-header">
+                        <div class="day-number">12</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">JSA工作安全分析法：四步搞定高风险作业</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">JSA</span>
+                        <span class="keyword-tag">工作安全分析</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：JSA表格模板</div>
+                </div>
+                
+                <!-- Day 13 -->
+                <div class="day-card" onclick="showScript(13)">
+                    <div class="day-header">
+                        <div class="day-number">13</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">控制措施优先级：为什么PPE是最后防线？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">控制措施</span>
+                        <span class="keyword-tag">PPE</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：控制措施清单</div>
+                </div>
+                
+                <!-- Day 14 -->
+                <div class="day-card" onclick="showScript(14)">
+                    <div class="day-header">
+                        <div class="day-number">14</div>
+                        <div class="day-theme">风险评估</div>
+                    </div>
+                    <div class="day-title">【案例拆解】越南服装厂火灾事故根本原因分析</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">事故分析</span>
+                        <span class="keyword-tag">越南工厂</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：事故调查报告模板</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Week 3: Implementation -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">W3</div>
+                <div>
+                    <div class="week-title">第三周：实施落地篇</div>
+                    <div class="week-desc">讲解ISO 45001实施步骤，展示可交付成果</div>
+                </div>
+            </div>
+            <div class="calendar-grid">
+                <!-- Day 15 -->
+                <div class="day-card" onclick="showScript(15)">
+                    <div class="day-header">
+                        <div class="day-number">15</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">ISO 45001实施Step1：安全方针怎么写才合规？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">安全方针</span>
+                        <span class="keyword-tag">ISO 45001</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：安全方针模板</div>
+                </div>
+                
+                <!-- Day 16 -->
+                <div class="day-card" onclick="showScript(16)">
+                    <div class="day-header">
+                        <div class="day-number">16</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">ISO 45001实施Step2：角色职责怎么分配？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">角色职责</span>
+                        <span class="keyword-tag">安全主任</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：职责分配表</div>
+                </div>
+                
+                <!-- Day 17 -->
+                <div class="day-card" onclick="showScript(17)">
+                    <div class="day-header">
+                        <div class="day-number">17</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">ISO 45001实施Step3：15份程序文件怎么写？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">程序文件</span>
+                        <span class="keyword-tag">ISO 45001</span>
+                    </div>
+                    <div class="day-cta">🎯 转化：课程介绍</div>
+                </div>
+                
+                <!-- Day 18 -->
+                <div class="day-card" onclick="showScript(18)">
+                    <div class="day-header">
+                        <div class="day-number">18</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">安全培训体系搭建：三级安全培训设计</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">安全培训</span>
+                        <span class="keyword-tag">培训体系</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：培训大纲模板</div>
+                </div>
+                
+                <!-- Day 19 -->
+                <div class="day-card" onclick="showScript(19)">
+                    <div class="day-header">
+                        <div class="day-number">19</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">承包商安全管理：中资企业的死穴</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">承包商管理</span>
+                        <span class="keyword-tag">安全管理</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：承包商管理程序</div>
+                </div>
+                
+                <!-- Day 20 -->
+                <div class="day-card" onclick="showScript(20)">
+                    <div class="day-header">
+                        <div class="day-number">20</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">应急预案编制与演练：不是走过场</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">应急预案</span>
+                        <span class="keyword-tag">演练</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：应急预案模板</div>
+                </div>
+                
+                <!-- Day 21 -->
+                <div class="day-card" onclick="showScript(21)">
+                    <div class="day-header">
+                        <div class="day-number">21</div>
+                        <div class="day-theme">实施落地</div>
+                    </div>
+                    <div class="day-title">【直播】30天落地营Q&A：你的问题我来答</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">直播Q&A</span>
+                        <span class="keyword-tag">课程答疑</span>
+                    </div>
+                    <div class="day-cta">🎯 转化：课程报名</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Week 4: Advanced Topics -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">W4</div>
+                <div>
+                    <div class="week-title">第四周：进阶专题篇</div>
+                    <div class="week-desc">深入案例和高级话题，建立思想领导力</div>
+                </div>
+            </div>
+            <div class="calendar-grid">
+                <!-- Day 22 -->
+                <div class="day-card" onclick="showScript(22)">
+                    <div class="day-header">
+                        <div class="day-number">22</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">事故调查的5Why分析法：真实案例拆解</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">5Why分析</span>
+                        <span class="keyword-tag">事故调查</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：事故调查报告模板</div>
+                </div>
+                
+                <!-- Day 23 -->
+                <div class="day-card" onclick="showScript(23)">
+                    <div class="day-header">
+                        <div class="day-number">23</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">内审全流程：从计划到报告</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">内审</span>
+                        <span class="keyword-tag">ISO 45001</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：内审检查表</div>
+                </div>
+                
+                <!-- Day 24 -->
+                <div class="day-card" onclick="showScript(24)">
+                    <div class="day-header">
+                        <div class="day-number">24</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">管理评审：总经理必须主持的会议</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">管理评审</span>
+                        <span class="keyword-tag">领导作用</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：管理评审报告模板</div>
+                </div>
+                
+                <!-- Day 25 -->
+                <div class="day-card" onclick="showScript(25)">
+                    <div class="day-header">
+                        <div class="day-number">25</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">安全文化建设：中方管理与本地员工的融合</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">安全文化</span>
+                        <span class="keyword-tag">跨文化管理</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：安全文化建设指南</div>
+                </div>
+                
+                <!-- Day 26 -->
+                <div class="day-card" onclick="showScript(26)">
+                    <div class="day-header">
+                        <div class="day-number">26</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">选择认证机构：怎么避免踩坑？</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">认证机构</span>
+                        <span class="keyword-tag">ISO 45001认证</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：认证机构对比表</div>
+                </div>
+                
+                <!-- Day 27 -->
+                <div class="day-card" onclick="showScript(27)">
+                    <div class="day-header">
+                        <div class="day-number">27</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">【案例】泰国汽车零部件厂ISO 45001认证全记录</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">认证案例</span>
+                        <span class="keyword-tag">泰国工厂</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：认证全流程checklist</div>
+                </div>
+                
+                <!-- Day 28 -->
+                <div class="day-card" onclick="showScript(28)">
+                    <div class="day-header">
+                        <div class="day-number">28</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">ISO 45001与EMR/OHR整合：一体化管理体系</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">一体化管理</span>
+                        <span class="keyword-tag">ISO 14001</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：一体化管理指南</div>
+                </div>
+                
+                <!-- Day 29 -->
+                <div class="day-card" onclick="showScript(29)">
+                    <div class="day-header">
+                        <div class="day-number">29</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">中资出海企业安全管理成熟度评估</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">成熟度评估</span>
+                        <span class="keyword-tag">安全管理</span>
+                    </div>
+                    <div class="day-cta">🎯 引流：成熟度评估表</div>
+                </div>
+                
+                <!-- Day 30 -->
+                <div class="day-card" onclick="showScript(30)">
+                    <div class="day-header">
+                        <div class="day-number">30</div>
+                        <div class="day-theme">进阶专题</div>
+                    </div>
+                    <div class="day-title">【总结】30天YouTube系列回顾+下一步行动指南</div>
+                    <div class="day-keywords">
+                        <span class="keyword-tag">总结回顾</span>
+                        <span class="keyword-tag">行动指南</span>
+                    </div>
+                    <div class="day-cta">🎯 转化：课程报名</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="cta-box" style="margin-top: 48px;">
+            <div class="cta-title">📹 如何使用这个内容日历？</div>
+            <div class="cta-text">
+                1. <strong>每周发布3-4个视频</strong>：保持规律更新，让算法推荐你的频道<br>
+                2. <strong>每个视频都有引流钩子</strong>：在结尾引导观众下载免费资料，收集邮箱<br>
+                3. <strong>SEO优化</strong>：在标题、描述、标签中使用关键词，提高搜索排名<br>
+                4. <strong>缩略图设计</strong>：使用大字体、高对比度、人脸表情，提高点击率<br>
+                5. <strong>互动引导</strong>：在视频中提问，引导评论，提高互动率<br><br>
+                <strong>💡 专业提示</strong>：前10个视频重点是建立信任，不要硬推销。从第11个视频开始，可以逐渐增加课程推介。
+            </div>
+        </div>
+    </div>
+    
+    <!-- Script Modal -->
+    <div id="scriptModal" class="script-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeScript()">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Script data for each day
+        const scripts = {
+            1: {
+                title: "为什么国内安全管理经验在海外不够用？",
+                duration: "12:30",
+                hook: "大家好，欢迎来到安全生产专家频道。今天我要讲一个很多中资出海企业都踩过的坑：为什么你在国内安全管理经验丰富，到了海外却频频出问题？",
+                body: "1. 法规体系不同：中国《安全生产法》vs 当地法规（越南、泰国、印尼等）<br>2. 文化背景不同：员工对安全的认知、沟通方式、报告文化<br>3. 标准认定不同：中国标准 vs ISO标准 vs 当地标准<br>4. 审核要求不同：国内检查 vs ISO审核 vs 当地政府检查<br><br>真实案例：2022年越南平阳省中资服装厂，因未做社区风险评估，被责令停产3个月，损失200万人民币。",
+                cta: "如果你也想了解你的工厂在海外是否合规，可以下载我准备的《东南亚工厂安全合规自查清单100条》，链接在下方简介。",
+                thumbnail: "使用对比图：中国地图 vs 东南亚地图，加上❌和✅图标，大字标题「国内经验为什么不管用？」",
+                seo: "ISO 45001, 中资出海, 海外安全管理, 东南亚建厂, 安全生产"
+            },
+            2: {
+                title: "ISO 45001认证到底要花多少钱？真实成本拆解",
+                duration: "15:20",
+                hook: "很多企业在做ISO 45001认证前，最关心的问题就是：到底要花多少钱？今天我给大家拆解一下真实的成本构成，避免你被认证机构坑。",
+                body: "1. 咨询费：3-8万人民币（取决于企业规模）<br>2. 认证费：1.5-3万人民币（取决于认证机构）<br>3. 内部投入：人员时间成本、文件编写、培训费用<br>4. 维护成本：每年监督审核费用、体系维护<br><br>真实案例：泰国罗勇府中资汽车零部件厂，认证总成本约12万人民币。",
+                cta: "我做了一个《ISO 45001认证成本计算器》，输入你的企业规模，就能估算出大概费用。下载链接在下方简介。",
+                thumbnail: "使用计算器图标，加上💰符号，大字标题「ISO认证要花多少钱？」",
+                seo: "ISO 45001认证费用, 认证成本, ISO 45001价格, 中资出海成本"
+            },
+            // Add more scripts as needed...
+        };
+        
+        function showScript(day) {
+            const script = scripts[day];
+            if (!script) {
+                alert(`第${day}天的详细脚本正在制作中，敬请期待！`);
+                return;
+            }
+            
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="modal-title">第${day}天：${script.title}</div>
+                <div class="script-section">
+                    <h4>📊 视频信息</h4>
+                    <div class="script-text">
+                        <strong>预计时长：</strong>${script.duration}<br>
+                        <strong>主题分类：</strong>${day <= 7 ? '基础认知' : day <= 14 ? '风险评估' : day <= 21 ? '实施落地' : '进阶专题'}
+                    </div>
+                </div>
+                <div class="script-section">
+                    <h4>🎬 开场钩子（0:00-1:00）</h4>
+                    <div class="script-text">${script.hook}</div>
+                </div>
+                <div class="script-section">
+                    <h4>📝 核心内容（1:00-10:00）</h4>
+                    <div class="script-text">${script.body}</div>
+                </div>
+                <div class="script-section">
+                    <h4>🎯 结尾转化（10:00-结尾）</h4>
+                    <div class="script-text">${script.cta}</div>
+                </div>
+                <div class="script-section">
+                    <h4>🖼️ 缩略图创意</h4>
+                    <div class="thumbnail-idea">
+                        <p>${script.thumbnail}</p>
+                    </div>
+                </div>
+                <div class="script-section">
+                    <h4>🔍 SEO关键词</h4>
+                    <div class="script-text">${script.seo}</div>
+                </div>
+            `;
+            
+            document.getElementById('scriptModal').classList.add('active');
+        }
+        
+        function closeScript() {
+            document.getElementById('scriptModal').classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('scriptModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeScript();
+            }
+        });
+    </script>
+</body>
+</html>

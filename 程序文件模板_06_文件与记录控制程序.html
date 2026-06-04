@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 文件与记录控制程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">文件与记录控制程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-006 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：7.5</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-006</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">文件与记录控制程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>7.5 文件化信息</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 行政部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">职业健康安全管理体系文件与记录控制机制</span>，确保各部门获取的是最新有效版本的文件，所有体系运行记录得到妥善保存并可追溯，特制定本程序。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于本公司职业健康安全管理体系<span class="highlight">所有文件（手册、程序、作业指导书、表单）和所有记录（培训、检查、审核、事故等）</span>的编制、审批、发放、使用、修订、废止和保存管理。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>行政部（文控中心）</strong></td><td>• 归口管理所有体系文件（发布、发放、回收、作废）<br>• 维护《受控文件清单》和《文件发放/回收记录》<br>• 确保现场使用的均为最新有效版本</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 负责安全体系文件的编制、修订和解释<br>• 确保文件内容符合ISO 45001标准和法律法规要求<br>• 监督各部门文件执行情况</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 确保本部门人员获取并使用正确的文件版本<br>• 负责本部门产生的记录的收集、整理和初步保管<br>• 提出文件修订建议</td></tr>
+            <tr><td><strong>所有员工</strong></td><td>• 严格遵守现行有效文件的规定<br>• 保护文件完好，不擅自涂改或复制<br>• 发现文件错误或不适用时及时反馈</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 文件分类与编码规则</strong></div>
+        <div class="lettered">a) <strong>一级文件（管理手册）：</strong>HSE-MAN-001（管理手册，唯一编号）；</div>
+        <div class="lettered">b) <strong>二级文件（程序文件）：</strong>HSE-PRO-XXX（XXX为三位数序号，从001开始）；</div>
+        <div class="lettered">c) <strong>三级文件（作业指导书/制度）：</strong>HSE-WI-XXX（WI=Work Instruction）；</div>
+        <div class="lettered">d) <strong>四级文件（记录/表单）：</strong>HSE-FM-XXX（FM=Form）；</div>
+        <div class="lettered">e) <strong>版本控制规则：</strong>首次发布为A/0；修订一次升为A/1；重大改版（如ISO换版）升为B/0。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 文件编制与审批</strong></div>
+        <div class="lettered">a) 文件编制完成后，编制人填写《文件编制/修订申请表》；</div>
+        <div class="lettered">b) 按以下权限审批：</div>
+        <div class="bullet">• 管理手册：总经理批准；</div>
+        <div class="bullet">• 程序文件：EHS经理审核，安全总监批准；</div>
+        <div class="bullet">• 作业指导书：部门负责人批准，EHS备案；</div>
+        <div class="lettered">c) 审批通过后，由文控中心统一编号、排版、发布；</div>
+        <div class="lettered">d) 文件发布时须确定<span class="highlight">发放范围</span>（哪些部门/岗位需要持有该文件）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 文件发放与回收</strong></div>
+        <div class="lettered">a) 文控中心建立《文件发放/回收记录》，记录每份文件的发放部门、持有人、发放日期；</div>
+        <div class="lettered">b) <span class="highlight">受控文件（红头文件）</span>须加盖"受控"印章，复印件无效；</div>
+        <div class="lettered">c) 文件换版时，文控中心须回收旧版本，加盖"作废"印章后方可销毁（保留一份存档）；</div>
+        <div class="lettered">d) 电子版文件须设置访问权限，防止非授权修改。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 文件使用与保管</strong></div>
+        <div class="lettered">a) 现场（车间、仓库等）须放置适用文件的有效版本；</div>
+        <div class="lettered">b) 文件使用者须妥善保管，不得涂改、撕页、擅自复印；</div>
+        <div class="lettered">c) 外单位（如客户、审核员）需要查阅文件时，须经EHS部门批准并在指定场所查阅，不得带离；</div>
+        <div class="lettered">d) <span class="highlight">审核时常见的不符合项</span>：现场发现过期版本文件、文件无受控章、电子版与纸质版内容不一致。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 文件修订与废止</strong></div>
+        <div class="lettered">a) 以下情况须启动文件修订：</div>
+        <div class="bullet">• 法律法规或ISO标准发生变更；</div>
+        <div class="bullet">• 公司组织结构、工艺流程发生重大变化；</div>
+        <div class="bullet">• 内审/外审发现文件不适用；</div>
+        <div class="bullet">• 各部门提出合理的修订建议（填写《文件修订建议表》）；</div>
+        <div class="lettered">b) 文件修订须重新履行审批程序；</div>
+        <div class="lettered">c) 文件废止时，由文控中心发布《文件废止通知》，回收所有在用副本并销毁。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.6 记录的控制</strong></div>
+        <div class="lettered">a) 所有体系运行记录须<span class="highlight">真实、清晰、可追溯</span>；</div>
+        <div class="lettered">b) 记录填写要求：使用不易褪色笔（建议蓝色或黑色签字笔）、字迹清晰、签全名（不代签）、注明日期；</div>
+        <div class="lettered">c) 电子记录（如电子版检查表）须定期备份，防止数据丢失；</div>
+        <div class="lettered">d) 记录的保存期限按《记录表单》中的规定执行，过期记录的销毁须填写《记录销毁申请/记录表》。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-012 《内部审核程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+        <div class="bullet">• 《文件编制/修订申请表》（表格编号：HSE-FM-060）</div>
+        <div class="bullet">• 《受控文件清单》（表格编号：HSE-FM-061）</div>
+        <div class="bullet">• 《文件发放/回收记录》（表格编号：HSE-FM-062）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>文件编制/修订申请表</td><td>HSE-FM-060</td><td>3年</td><td>行政部（文控）</td></tr>
+            <tr><td style="text-align:center;">2</td><td>受控文件清单</td><td>HSE-FM-061</td><td>永久</td><td>行政部（文控）</td></tr>
+            <tr><td style="text-align:center;">3</td><td>文件发放/回收记录</td><td>HSE-FM-062</td><td>3年</td><td>行政部（文控）</td></tr>
+            <tr><td style="text-align:center;">4</td><td>文件修订建议表</td><td>HSE-FM-063</td><td>3年</td><td>EHS部、行政部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>记录销毁申请/记录表</td><td>HSE-FM-064</td><td>3年</td><td>行政部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 7.5。文件编码规则须在全公司范围内统一执行。
+    </div>
+</div>
+</body>
+</html>

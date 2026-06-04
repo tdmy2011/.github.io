@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 法律法规识别与更新程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">法律法规识别与更新程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-002 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：6.1.3</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-002</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">法律法规识别与更新程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>6.1.3 法律法规要求和其他要求</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">法律法规识别与更新机制</span>，确保公司及时获取、识别、更新适用于本公司职业健康安全活动的法律法规要求和其他要求，保证公司安全管理体系持续合规，特制定本程序。</p>
+        <p>本程序同时覆盖<span class="highlight">中国国内法规、东南亚/非洲当地法律、ISO 45001标准、客户要求</span>等多层级合规义务。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于本公司所有场所、所有职业健康安全相关的法律法规和其他要求的识别、获取、评审、更新和传达。</p>
+        <div class="bullet">• 中国国内适用的安全生产法律法规（总部及中资背景要求）；</div>
+        <div class="bullet">• 公司所在国/地区（如越南、泰国、印尼、尼日利亚等）当地安全健康法律法规；</div>
+        <div class="bullet">• ISO 45001:2018 标准及其他相关国际标准；</div>
+        <div class="bullet">• 客户、行业协会、保险机构提出的额外安全要求（"其他要求"）。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理法律法规识别与更新工作<br>• 建立并维护《适用法律法规和其他要求清单》<br>• 定期跟踪法律法规变更，及时更新清单<br>• 向各部门传达新的合规要求<br>• 组织合规性评价（条款9.1.2）</td></tr>
+            <tr><td><strong>各业务部门</strong></td><td>• 向EHS部门反馈本部门适用的法律法规需求<br>• 在执行本业务逻辑时，主动识别新的合规要求<br>• 确保本部门活动符合已识别的法律法规要求</td></tr>
+            <tr><td><strong>管理层</strong></td><td>• 确保法律法规识别工作所需资源到位<br>• 对重大合规性义务承担最终责任</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 法律法规的获取渠道</strong></div>
+        <div class="lettered">a) <strong>中国政府发布渠道：</strong>应急管理部官网、住建部官网、国家标准化管理委员会官网；</div>
+        <div class="lettered">b) <strong>所在国政府发布渠道：</strong></div>
+        <div class="bullet">• 越南：Ministry of Labour, Invalids and Social Affairs (MOLISA) 官网；</div>
+        <div class="bullet">• 泰国：Department of Labour Protection and Welfare 官网；</div>
+        <div class="bullet">• 印尼：Ministry of Manpower 官网；</div>
+        <div class="bullet">• 尼日利亚：Federal Ministry of Labour and Employment 官网；</div>
+        <div class="lettered">c) <strong>国际标准组织：</strong>ISO官网、国际劳工组织（ILO）官网；</div>
+        <div class="lettered">d) <strong>第三方渠道：</strong>行业协会刊物、安全专业网站、外部顾问、客户审核要求文件。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 识别步骤</strong></div>
+        <div class="lettered">a) EHS部门每年<span class="highlight">1月</span>启动年度法律法规识别工作；</div>
+        <div class="lettered">b) 对照公司所有业务活动，逐一识别适用的法律法规条款；</div>
+        <div class="lettered">c) 填写《适用法律法规和其他要求识别记录表》，记录：法律名称、发布机构、生效日期、适用条款、合规要求描述、获取日期、获取方式；</div>
+        <div class="lettered">d) 特别关注：<span class="highlight">中国标准与当地法规不一致时，以更严格者为准</span>。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 更新频率</strong></div>
+        <div class="lettered">a) <strong>年度全面更新：</strong>每年至少一次（通常在管理评审前完成）；</div>
+        <div class="lettered">b) <strong>即时更新：</strong>以下情况发生后30日内完成更新：</div>
+        <div class="bullet">• 新法律法规发布或现有法律法规修订；</div>
+        <div class="bullet">• 公司业务范围、工艺、设备发生重大变更；</div>
+        <div class="bullet">• 客户或认证机构提出新的合规要求；</div>
+        <div class="bullet">• ISO 45001标准换版。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 传达与培训</strong></div>
+        <div class="lettered">a) 法律法规更新后7个工作日内，EHS部门向相关部门发出《法律法规更新通知》；</div>
+        <div class="lettered">b) 对涉及重大合规义务变更的，由EHS部门组织专项培训；</div>
+        <div class="lettered">c) 各部门确保员工了解并遵守新的法律法规要求。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 合规性评价（条款9.1.2）</strong></div>
+        <div class="lettered">a) EHS部门每年至少组织一次全面的合规性评价；</div>
+        <div class="lettered">b) 评价方法：文件审查、现场检查、员工访谈、对照法律法规条款逐条核查；</div>
+        <div class="lettered">c) 发现不符合项时，按《事件调查与不符合控制程序》处理，制定纠正措施并跟踪验证；</div>
+        <div class="lettered">d) 合规性评价报告提交管理评审。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-012 《合规性评价程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>适用法律法规和其他要求清单</td><td>HSE-FM-010</td><td>永久</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>法律法规识别记录表</td><td>HSE-FM-011</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">3</td><td>法律法规更新通知</td><td>HSE-FM-012</td><td>3年</td><td>EHS部、各相关部门</td></tr>
+            <tr><td style="text-align:center;">4</td><td>合规性评价报告</td><td>HSE-FM-013</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 6.1.3。东南亚/非洲当地法规获取渠道由EHS部门负责建立并维护。
+    </div>
+</div>
+</body>
+</html>

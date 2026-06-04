@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 沟通与信息交流程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">沟通与信息交流程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-005 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：7.4</div>
+    </div>
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-005</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">沟通与信息交流程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>7.4 沟通</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>EHS部门 + 行政部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为确保公司职业健康安全相关信息在<span class="highlight">内部各层级、各职能部门之间</span>以及<span class="highlight">与外部相关方</span>（员工、承包商、访客、政府监管机构、周边社区、客户）之间得到<span class="highlight">有效沟通、及时传递和妥善处置</span>，特制定本程序。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司内部安全信息沟通、员工协商与参与、以及相关方沟通管理。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理沟通与信息交流工作<br>• 组织员工协商与参与活动（安全委员会、安全座谈会）<br>• 负责与政府监管机构的沟通联络<br>• 维护沟通记录</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 确保本部门内部安全信息畅通<br>• 及时向员工传达公司安全政策、决定和重要安全信息<br>• 收集员工安全建议和意见，反馈至EHS部门</td></tr>
+            <tr><td><strong>安全委员会</strong></td><td>• 每月召开安全委员会会议，讨论安全绩效、重大风险、改进建议<br>• 会议决议跟踪落实</td></tr>
+            <tr><td><strong>所有员工</strong></td><td>• 有权获取安全健康信息<br>• 有权提出安全改进建议<br>• 有权参与安全事务协商</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 内部沟通</strong></div>
+        <div class="lettered">a) <strong>沟通方式：</strong></div>
+        <div class="bullet">• 安全委员会会议（每月一次，管理层+EHS+员工代表）；</div>
+        <div class="bullet">• 部门安全会议（每月一次）；</div>
+        <div class="bullet">• 班前会/Toolbox Talk（每天一次）；</div>
+        <div class="bullet">• 安全宣传栏（每半月更新）；</div>
+        <div class="bullet">• 公司内部邮件/即时通讯群组（安全通知即时发布）；</div>
+        <div class="bullet">• 员工安全信箱/意见箱（匿名或实名提出建议）；</div>
+        <div class="lettered">b) <strong>沟通内容：</strong>安全方针、安全目标及达成情况、危险源辨识结果、事故通报、法律法规更新、安全委员会决议、员工安全建议处理结果；</div>
+        <div class="lettered">c) <strong>员工协商与参与（ISO 45001 重要要求）：</strong></div>
+        <div class="bullet">• 公司须建立机制，让员工参与职业健康安全事务的协商（如安全委员会中员工代表比例不低于<span class="highlight">30%</span>）；</div>
+        <div class="bullet">• 重大安全决策前（如新工艺引入、重大设备采购），须征求员工或员工代表意见；</div>
+        <div class="bullet">• 员工提出的安全建议，须在<span class="highlight">15日内</span>给予答复（采纳/不采纳及理由）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 外部沟通</strong></div>
+        <div class="lettered">a) <strong>与政府的沟通：</strong></div>
+        <div class="bullet">• 当地劳动安全监察部门：事故报告、许可申请、迎检接待；</div>
+        <div class="bullet">• 应急管理部门：重大事故即时报告（<span class="highlight">1小时内</span>）；</div>
+        <div class="bullet">• 沟通记录存档，保存期不少于3年；</div>
+        <div class="lettered">b) <strong>与承包商的沟通：</strong></div>
+        <div class="bullet">• 合同签定前：告知公司安全管理要求；</div>
+        <div class="bullet">• 入场前：安全培训、危险源告知、emergency程序；</div>
+        <div class="bullet">• 作业中：每日班前会、许可证审批沟通；</div>
+        <div class="lettered">c) <strong>与周边社区的沟通：</strong></div>
+        <div class="bullet">• 发生可能影响社区的安全/环境事件时，须在<span class="highlight">24小时内</span>向社区通报真实情况；</div>
+        <div class="bullet">• 设立社区联络电话，接收社区投诉和建议。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 沟通信息的记录与处置</strong></div>
+        <div class="lettered">a) 所有重要的安全沟通（会议、培训、外部函件）均须记录并存档；</div>
+        <div class="lettered">b) 员工提出的安全建议，填写《安全建议处理记录表》，记录：建议内容、接收日期、处理决定、答复日期；</div>
+        <div class="lettered">c) 外部相关方的投诉或询问，须在<span class="highlight">3个工作日内</span>予以回应。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-009 《承包商安全管理程序》</div>
+        <div class="bullet">• HSE-PRO-010 《应急准备与响应程序》</div>
+        <div class="bullet">• 《安全委员会会议记录》（表格编号：HSE-FM-050）</div>
+        <div class="bullet">• 《安全建议处理记录表》（表格编号：HSE-FM-051）</div>
+        <div class="bullet">• 《外部沟通记录表》（表格编号：HSE-FM-052）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>安全委员会会议记录</td><td>HSE-FM-050</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>安全建议处理记录表</td><td>HSE-FM-051</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">3</td><td>外部沟通记录表</td><td>HSE-FM-052</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>员工参与协商记录</td><td>HSE-FM-053</td><td>3年</td><td>EHS部、人力资源部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 7.4。"员工协商与参与"是ISO 45001相比OHSAS 18001新增的重要要求，审核时重点关注。
+    </div>
+</div>
+</body>
+</html>

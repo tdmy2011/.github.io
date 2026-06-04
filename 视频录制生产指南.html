@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频录制生产指南 | 安全生产专家</title>
+    <style>
+        * { margin:0; padding:0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .cover { background: linear-gradient(135deg, #1e3a5f, #312e81); color: white; border-radius: 16px; padding: 40px; margin-bottom: 32px; }
+        .cover h1 { font-size: 28px; margin-bottom: 12px; }
+        .cover p { opacity: 0.8; font-size: 15px; }
+        .section { background: white; border-radius: 12px; padding: 32px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
+        .section h2 { font-size: 20px; font-weight: 700; color: #1e3a5f; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #f0f4f8; }
+        .section h3 { font-size: 16px; font-weight: 600; color: #1e3a5f; margin: 20px 0 8px; }
+        .section p { font-size: 14px; color: #475569; margin-bottom: 10px; }
+        .equipment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .equipment-item { background: #f8fafc; border-radius: 10px; padding: 16px; border-left: 4px solid #38bdf8; }
+        .equipment-item h4 { font-size: 14px; color: #1e3a5f; margin-bottom: 6px; }
+        .equipment-item .budget { font-size: 12px; color: #22c55e; font-weight: 600; }
+        .equipment-item p { font-size: 13px; color: #64748b; margin: 0; }
+        .step-list { counter-reset: step; }
+        .step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f1f5f9; }
+        .step:last-child { border-bottom: none; }
+        .step-num { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #38bdf8, #818cf8); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+        .step-content h4 { font-size: 15px; font-weight: 600; color: #1e3a5f; margin-bottom: 4px; }
+        .step-content p { font-size: 13px; color: #64748b; margin: 0; }
+        .checklist { list-style: none; margin: 12px 0; }
+        .checklist li { padding: 6px 0; font-size: 14px; color: #475569; display: flex; align-items: center; gap: 8px; }
+        .checklist li::before { content: "\2610"; color: #38bdf8; font-size: 16px; }
+        .timeline { border-left: 3px solid #38bdf8; margin: 16px 0 16px 16px; padding-left: 24px; }
+        .timeline-item { padding: 12px 0; position: relative; }
+        .timeline-item::before { content: ''; width: 12px; height: 12px; border-radius: 50%; background: #38bdf8; position: absolute; left: -29px; top: 18px; }
+        .timeline-item h4 { font-size: 15px; font-weight: 600; color: #1e3a5f; }
+        .timeline-item p { font-size: 13px; color: #64748b; margin: 4px 0 0; }
+        .tip-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+        .tip-box h4 { color: #92400e; font-size: 14px; margin-bottom: 6px; }
+        .tip-box p { color: #78350f; font-size: 13px; margin: 0; }
+        .software-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        .software-table th { background: #1e3a5f; color: white; padding: 10px 14px; text-align: left; font-size: 13px; }
+        .software-table td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
+        .software-table tr:nth-child(even) { background: #f8fafc; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .tag-free { background: #dcfce7; color: #166534; }
+        .tag-paid { background: #e2e8f0; color: #475569; }
+        @media (max-width: 640px) {
+            .equipment-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover">
+    <h1>🎬 视频录制生产指南</h1>
+    <p>从零搭建录课环境 → 第一批视频上线<br>基于《模块2_ISO45001核心条款速通》脚本</p>
+</div>
+
+<!-- 第一步：设备准备 -->
+<div class="section">
+    <h2>1. 设备准备清单</h2>
+    <p>不用花大钱。下面是「够用就行」方案和「专业级」方案的对比：</p>
+
+    <div class="equipment-grid">
+        <div class="equipment-item">
+            <h4>📱 手机摄像头（够用方案）</h4>
+            <div class="budget">费用：¥0（已有设备）</div>
+            <p>iPhone 13以上或安卓旗舰，横屏1080p录制。搭配手机支架+环形灯即可出片。90%的知识付费博主都用手机拍。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>📷 微单相机（专业方案）</h4>
+            <div class="budget">费用：¥3,000-8,000</div>
+            <p>Sony ZV-E10 / 佳能 M50 II。画质更好、支持更换镜头、有更好的收音方案。适合后期要长期做内容的。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>🎙️ 麦克风（核心设备，别省）</h4>
+            <div class="budget">费用：¥200-800</div>
+            <p>推荐：大疆 DJI Mic 2（无线领夹麦）或罗德 Wireless GO II。收音质量比画面更重要——观众能忍720p但不能忍烂音质。</p>
+        </div>
+        <div class="equipment-item">
+            <h4>💡 灯光（决定画面质感）</h4>
+            <div class="budget">费用：¥100-400</div>
+            <p>1个主灯（柔光箱45cm）+ 1个补光灯。放在相机左右45度。自然光足够时（白天靠窗）可不用。</p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>💡 省钱建议</h4>
+        <p>前期用手机 + 领夹麦（大疆Mic Mini ¥199）+ 环形灯（¥50）= 总投入不到¥300就能开始录。先把内容做出来，有了收入再升级设备。设备从来不是卡点，内容和表达才是。</p>
+    </div>
+</div>
+
+<!-- 第二步：软件工具 -->
+<div class="section">
+    <h2>2. 软件工具一览</h2>
+
+    <table class="software-table">
+        <tr>
+            <th>用途</th>
+            <th>推荐工具</th>
+            <th>费用</th>
+            <th>替代方案</th>
+        </tr>
+        <tr>
+            <td><strong>提词器</strong></td>
+            <td>Teleprompter Premium（iOS/Android）</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>iPad + 淘宝提词器支架（¥80）</td>
+        </tr>
+        <tr>
+            <td><strong>视频剪辑</strong></td>
+            <td>DaVinci Resolve</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>剪映CapCut（免费，手机/电脑）</td>
+        </tr>
+        <tr>
+            <td><strong>字幕生成</strong></td>
+            <td>剪映自动字幕</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>YouTube自带的自动字幕</td>
+        </tr>
+        <tr>
+            <td><strong>封面设计</strong></td>
+            <td>Canva（YouTube缩略图模板）</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>美图秀秀 / Figma</td>
+        </tr>
+        <tr>
+            <td><strong>录屏</strong></td>
+            <td>OBS Studio</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>Windows自带Win+G录屏</td>
+        </tr>
+        <tr>
+            <td><strong>PPT录屏</strong></td>
+            <td>PowerPoint自带录制功能</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>OBS + PPT演示</td>
+        </tr>
+        <tr>
+            <td><strong>音频处理</strong></td>
+            <td>Audacity</td>
+            <td><span class="tag tag-free">免费</span></td>
+            <td>DaVinci Resolve内置</td>
+        </tr>
+    </table>
+</div>
+
+<!-- 第三步：录制流程 -->
+<div class="section">
+    <h2>3. 单集录制标准流程（约2小时/集）</h2>
+
+    <div class="step-list">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h4>脚本准备（20分钟）</h4>
+                <p>打开脚本文件，通读一遍。把关键数据、案例、数字标记出来（稍后可做重点强调）。用 <strong>黄色</strong> 标记要上屏文字的内容。</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h4>设备调试（10分钟）</h4>
+                <p>检查：① 麦克风电量 ② 灯光位置 ③ 手机/相机存储空间 ④ 提词器滚动速度 ⑤ 录5秒测试片段回放检查音画</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h4>正式录制（40-60分钟）</h4>
+                <p>连续录制，中间说错不要停，停顿3秒重新说那段即可（剪辑时裁掉）。一集6分钟视频实际录1小时素材很正常。保持节奏：每2-3分钟看一次镜头，制造"对话感"。</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h4>粗剪（30分钟）</h4>
+                <p>导入素材 → 剪掉口误/停顿/重复 → 保留精华部分。目标时长控制在<strong>5-8分钟</strong>。加片头（logo+标题）和片尾（CTA）。</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <h4>字幕+封面（20分钟）</h4>
+                <p>剪映自动生成字幕 → 校对修正 → 导出。用Canva做封面（1280x720px），模板选"教育/知识类"，文字要大。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 第四步：灯光与背景 -->
+<div class="section">
+    <h2>4. 灯光与背景设置</h2>
+
+    <h3>最佳拍摄时间</h3>
+    <p><strong>上午10点-下午3点</strong>，面朝窗户坐（自然光从正面/侧面45度照过来）。阴天比晴天更好（光线更均匀）。</p>
+
+    <h3>人工灯光方案（晚上/阴天）</h3>
+    <ul class="checklist">
+        <li>主灯放在你<strong>左前方45度</strong>，高过头顶30cm，灯头朝下，加柔光箱</li>
+        <li>补光灯放在<strong>右前方30度</strong>，亮度为主灯的50%</li>
+        <li>背景放一盏弱光（可选），打在墙上的书架/绿植上增加层次感</li>
+        <li>色温统一：<strong>5500K（日光白）</strong>，不要混用不同色温的灯</li>
+    </ul>
+
+    <h3>背景选择</h3>
+    <ul class="checklist">
+        <li><strong>方案A（专业书房风）</strong>：书架+几本安全/管理类书籍+安全帽模型+证书框</li>
+        <li><strong>方案B（工厂现场风）</strong>：用绿幕替换为工厂/车间背景图（更显专业实战）</li>
+        <li><strong>方案C（简洁极简风）</strong>：纯色/深色背景+一盆绿植+台灯，突出人物</li>
+    </ul>
+
+    <div class="tip-box">
+        <h4>⚠️ 避坑提醒</h4>
+        <p>不要在白色墙壁前拍摄（会有反光/阴影）。不要背对窗户拍（脸全黑）。背景不要太杂乱（分散注意力）。最佳的"安全专家"人设背景：深色墙面 + 安全帽/反光背心 + ISO证书框。</p>
+    </div>
+</div>
+
+<!-- 第五步：录制首批视频的具体计划 -->
+<div class="section">
+    <h2>5. 首批录制计划（4周）</h2>
+    <p>基于已有的脚本和素材，按以下时间线推进：</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <h4>第1周：设备搭建 + 试录</h4>
+            <p>购买设备 → 安装软件 → 搭建录课环境 → 录制2-3段30秒测试 → 发给朋友看效果反馈 → 调整灯光/角度/音量</p>
+        </div>
+        <div class="timeline-item">
+            <h4>第2周：录制前3期视频</h4>
+            <p>第1期：法律合规与组织保障（从YouTube脚本中取）<br>第2期：危险源辨识与风险评估<br>第3期：模块2 ISO 45001核心条款速通（课程宣传片）</p>
+        </div>
+        <div class="timeline-item">
+            <h4>第3周：录制中间3期 + 后期制作</h4>
+            <p>第4期：电气与机械设备安全<br>第5期：化学品与职业健康<br>第6期：消防安全<br>同时完成前3期的剪辑+字幕+封面</p>
+        </div>
+        <div class="timeline-item">
+            <h4>第4周：录制最后4期 + 批量上线</h4>
+            <p>第7-10期录制 + 后期<br>前3期已上线（每周二/四/六发布）<br>制定后续持续发布节奏</p>
+        </div>
+    </div>
+</div>
+
+<!-- 第六步：封面设计规范 -->
+<div class="section">
+    <h2>6. YouTube封面设计规范</h2>
+
+    <h3>尺寸与格式</h3>
+    <ul class="checklist">
+        <li>分辨率：<strong>1280 x 720 px</strong>（16:9）</li>
+        <li>最大文件：2MB</li>
+        <li>格式：JPG或PNG</li>
+    </ul>
+
+    <h3>设计要素</h3>
+    <ul class="checklist">
+        <li><strong>人物脸</strong>：占画面30-40%，表情有冲击力（惊讶/严肃/微笑）</li>
+        <li><strong>大字标题</strong>：最多6个中文字，字号要大到手机上也能看清</li>
+        <li><strong>色条/色块</strong>：用品牌色（蓝色系）做背景色条，增强辨识度</li>
+        <li><strong>数据/箭头</strong>：数字（30天/100条/¥499）或红色箭头增加点击欲</li>
+        <li><strong>认证标志</strong>：ISO 45001 logo增加专业感</li>
+    </ul>
+
+    <h3>封面模板创意（Canva搜索词）</h3>
+    <ul class="checklist">
+        <li>"YouTube thumbnail education" "YouTube thumbnail business" "缩略图 教育" "知识分享"</li>
+        <li>推荐配色：深蓝(#1e3a5f) + 亮蓝(#38bdf8) + 白色文字 + 黄色/红色高亮</li>
+    </ul>
+</div>
+
+<!-- 第七步：发布与优化 -->
+<div class="section">
+    <h2>7. YouTube发布检查清单</h2>
+
+    <ul class="checklist">
+        <li>标题包含核心关键词（如"ISO 45001""东南亚安全合规"）</li>
+        <li>描述第一句写清楚视频价值（搜索引擎只看前150字）</li>
+        <li>添加时间戳（Timestamps）让用户跳转到重点段落</li>
+        <li>添加10-15个标签（混合中英文）</li>
+        <li>上传自定义缩略图</li>
+        <li>选择正确的分类（Education → Business）</li>
+        <li>添加片尾字幕卡片（链接到下一期/铅磁下载）</li>
+        <li>固定置顶评论：引导下载免费清单/报名课程</li>
+        <li>发布后24小时内回复所有评论</li>
+    </ul>
+
+    <h3>发布节奏建议</h3>
+    <ul class="checklist">
+        <li>前30天：<strong>每周2期</strong>（周二 + 周五），快速积累内容</li>
+        <li>30天后：<strong>每周1期</strong>（周三固定发布），培养观众预期</li>
+        <li>同时用<strong>Shorts</strong>（60秒竖版）做引流，从长视频中截精彩片段</li>
+    </ul>
+</div>
+
+</div>
+</body>
+</html>

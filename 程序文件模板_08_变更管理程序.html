@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 变更管理程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">变更管理程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-008 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：8.1.3</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-008</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">变更管理程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>8.1.3 变更管理</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 生产技术部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">变更管理（MOC = Management of Change）</span>机制，确保所有可能导致职业健康安全风险变化的变更在<span class="highlight">实施前</span>得到充分的风险评估和控制措施策划，防止因变更引发的事故，特制定本程序。</p>
+        <p>事故统计显示：<span class="highlight">约40%的工业事故与变更管理失效有关</span>——"改了但没评估风险"是最常见的原因。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司内所有可能引起安全健康风险变化的变更，包括：</p>
+        <div class="bullet">• <strong>工艺变更</strong>：原材料变更、产品配方变更、工艺参数（温度、压力、流量）变更；</div>
+        <div class="bullet">• <strong>设备变更</strong>：新设备引入、设备改造/移位、安全装置调整或拆除；</div>
+        <div class="bullet">• <strong>人员变更</strong>：关键安全岗位人员调整（安全经理、EHS工程师、关键工艺操作员）；</div>
+        <div class="bullet">• <strong>组织结构变更</strong>：部门合并/拆分、职责调整、外包范围变化；</div>
+        <div class="bullet">• <strong>法规标准变更</strong>：适用的安全健康法律法规或ISO标准发生修订；</div>
+        <div class="bullet">• <strong>外部变更</strong>：厂区周边环境变化（如新居民区、新工厂毗邻）。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>变更提出部门</strong></td><td>• 填写《变更管理（MOC）申请表》<br>• 初步识别变更可能带来的风险<br>• 配合风险评估和变更实施后的验证</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 组织变更的风险评估（牵头JSA/HAZOP分析）<br>• 审查变更方案中的安全控制措施是否充分<br>• 监督变更实施过程，参与变更后验证</td></tr>
+            <tr><td><strong>生产技术部</strong></td><td>• 对工艺/设备变更的技术方案可行性负责<br>• 确保变更后的操作规程及时更新<br>• 组织变更相关的员工培训</td></tr>
+            <tr><td><strong>安全总监/总经理</strong></td><td>• 批准重大变更（高风险或投资≥XX万元的变更）<br>• 对变更管理的最终安全决策负责</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 变更识别与申请</strong></div>
+        <div class="lettered">a) 任何部门计划实施本程序适用范围内的变更前，须首先识别是否需要执行MOC；</div>
+        <div class="lettered">b) 变更提出人填写《变更管理（MOC）申请表》，说明：变更原因、变更内容、预计实施时间、可能涉及的风险；</div>
+        <div class="lettered">c) <span class="highlight">"微小变更"</span>（如更换同型号设备、不涉及工艺参数调整）可申请简化MOC流程，由部门负责人批准即可，但须报EHS备案。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 变更风险评估</strong></div>
+        <div class="lettered">a) EHS部门接到MOC申请后，<span class="highlight">最迟5个工作日内</span>组织风险评估；</div>
+        <div class="lettered">b) 根据变更类型选择评估方法：</div>
+        <div class="bullet">• 工艺变更：HAZOP分析（危险与可操作性分析）；</div>
+        <div class="bullet">• 设备/作业变更：JSA分析（工作安全分析）；</div>
+        <div class="bullet">• 人员/组织变更：影响分析（对现有安全职责的影响）；</div>
+        <div class="lettered">c) 风险评估须识别：变更可能引入的新危险源、现有控制措施是否仍然有效、变更后是否需要新增控制措施；</div>
+        <div class="lettered">d) 评估结果记录在《MOC风险评估记录表》，风险等级为"高"或"极高"的变更，须制定专项控制方案后方可实施。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 变更审批</strong></div>
+        <div class="lettered">a) 根据风险等级和变更性质，按以下权限审批：</div>
+        <div class="bullet">• 低风险变更：部门负责人批准，EHS备案；</div>
+        <div class="bullet">• 中等风险变更：EHS经理审核，安全总监批准；</div>
+        <div class="bullet">• 高风险/极高变更：安全总监审核，总经理批准；</div>
+        <div class="lettered">b) <span class="highlight">未经批准，变更不得实施</span>——这是MOC的核心原则；</div>
+        <div class="lettered">c) 审批不通过的，须书面说明理由，变更提出部门可申请复议（补充风险控制措施后重新提交）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 变更实施与培训</strong></div>
+        <div class="lettered">a) 变更批准后，变更提出部门组织实施，EHS部门现场监督；</div>
+        <div class="lettered">b) <span class="highlight">变更实施前须完成相关培训</span>：</div>
+        <div class="bullet">• 新工艺/新设备：操作人员须接受专项培训并考核合格；</div>
+        <div class="bullet">• 人员变更：接任者须接受岗位安全培训，并通过能力验证；</div>
+        <div class="bullet">• 操作规程须同步更新（参见HSE-PRO-006《文件与记录控制程序》）；</div>
+        <div class="lettered">c) 变更实施过程中，如发现新风险，须立即暂停，重新评估。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 变更验证与关闭</strong></div>
+        <div class="lettered">a) 变更实施完成后<span class="highlight">7个工作日内</span>，EHS部门组织变更验证；</div>
+        <div class="lettered">b) 验证内容：变更是否按批准方案实施、风险控制措施是否落实、培训是否完成、操作规程是否已更新；</div>
+        <div class="lettered">c) 验证通过后，《MOC申请表》标记为"已关闭"，所有记录存档；</div>
+        <div class="lettered">d) 验证不通过的，须制定纠正措施，重新验证直至通过。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.6 临时变更的管理</strong></div>
+        <div class="lettered">a) <span class="highlight">临时变更</span>（如设备抢修时的临时接管、临时工艺调整）也须执行MOC，但可简化流程；</div>
+        <div class="lettered">b) 临时变更须明确<span class="highlight">恢复期限</span>（通常不超过30天），期满须恢复原状并验证；</div>
+        <div class="lettered">c) 临时变更期间，须加强巡查频次（每天至少一次）。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-006 《文件与记录控制程序》</div>
+        <div class="bullet">• HSE-PRO-007 《运行控制程序》</div>
+        <div class="bullet">• 《变更管理（MOC）申请表》（表格编号：HSE-FM-080）</div>
+        <div class="bullet">• 《MOC风险评估记录表》（表格编号：HSE-FM-081）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>变更管理（MOC）申请表</td><td>HSE-FM-080</td><td>3年</td><td>EHS部、提出部门</td></tr>
+            <tr><td style="text-align:center;">2</td><td>MOC风险评估记录表</td><td>HSE-FM-081</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">3</td><td>变更验证报告</td><td>HSE-FM-082</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>临时变更跟踪记录</td><td>HSE-FM-083</td><td>1年</td><td>EHS部、提出部门</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 8.1.3。变更管理是ISO 45001:2018新增重点要求，审核时必查。
+    </div>
+</div>
+</body>
+</html>

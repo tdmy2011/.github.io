@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 内部审核程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">内部审核程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-014 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：9.2</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-014</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">内部审核程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>9.2 内部审核</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 内审组</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">内部审核（Internal Audit）</span>机制，定期评价公司职业健康安全管理体系是否符合ISO 45001标准要求和公司自身规定，是否得到有效实施和保持，特制定本程序。</p>
+        <p>内审是<span class="highlight">"体检"</span>——在外审（认证审核）之前发现问题并整改，是以最低成本通过认证的关键。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司职业健康安全管理体系的<span class="highlight">全部要素、全部职能部门和所有场所</span>的内部审核管理。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 批准年度内审计划<br>• 为内审工作提供必要资源（人员、时间、预算）<br>• 参加首次会议和末次会议</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理内审工作<br>• 制定年度内审计划<br>• 组建内审组，指定内审组长<br>• 跟踪内审发现的不符合项的整改情况</td></tr>
+            <tr><td><strong>内审组</strong></td><td>• 按审核计划实施内审<br>• 客观、公正地收集证据，记录审核发现<br>• 开具不符合报告（如有的话）<br>• 编制内审报告</td></tr>
+            <tr><td><strong>受审核部门</strong></td><td>• 配合内审组工作，提供必要资料和现场访问便利<br>• 对审核发现的不符合项，制定并落实纠正措施</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 内审员的资格要求</strong></div>
+        <div class="lettered">a) 内审员须具备以下资格之一：</div>
+        <div class="bullet">• 持有ISO 45001内审员培训合格证书；</div>
+        <div class="bullet">• 具备3年以上安全工作经验，并接受过内审员专项培训；</div>
+        <div class="lettered">b) <span class="highlight">内审员须与受审核部门无直接利害关系</span>（独立性原则）；</div>
+        <div class="lettered">c) 公司须至少培养<span class="highlight">2–3名</span>合格内审员（ISO 45001要求内审员须具备能力）；</div>
+        <div class="lettered">d) <span class="highlight">特别注意：中资企业在东南亚须注意——当地可能要求内审员持有当地认可的安全审计资格。</span></div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 年度内审计划的制定</strong></div>
+        <div class="lettered">a) EHS部门每年<span class="highlight">1月</span>制定《年度内部审核计划》；</div>
+        <div class="lettered">b) 计划须明确：审核范围（覆盖所有部门、所有条款）、审核频次、审核时间、内审组成员；</div>
+        <div class="lettered">c) <span class="highlight">频次要求：</span>全公司范围的内审至少<span class="highlight">每年一次</span>；在以下情况可增加频次：</div>
+        <div class="bullet">• 管理体系发生重大变更（如组织架构调整、工艺变更）；</div>
+        <div class="bullet">• 外审前（通常提前1–2个月进行内审，作为模拟审核）；</div>
+        <div class="bullet">• 发生重伤以上事故后；</div>
+        <div class="lettered">d) 《年度内部审核计划》须经安全总监审核、总经理批准后发布。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 内审实施步骤</strong></div>
+        <div class="lettered">a) <strong>审核准备（审核前7天）：</strong></div>
+        <div class="bullet">• 内审组长制定《内审检查表》（Checklist），明确每个条款的审核要点；</div>
+        <div class="bullet">• 向受审核部门发出《内审通知》，明确审核时间、审核组成员；</div>
+        <div class="bullet">• 内审员熟悉受审核部门的文件、记录、风险评估结果；</div>
+        <div class="lettered">b) <strong>首次会议（审核第1天开始时）：</strong></div>
+        <div class="bullet">• 总经理/厂长、受审核部门负责人、内审组全员参加；</div>
+        <div class="bullet">• 内审组长介绍审核目的、范围、准则、方法、日程安排；</div>
+        <div class="lettered">c) <strong>现场审核（审核第1–2天）：</strong></div>
+        <div class="bullet">• 内审员通过：查阅文件和记录、现场观察、询问员工等方式收集客观证据；</div>
+        <div class="bullet">• 发现符合项：记录良好实践（可分享的经验）；</div>
+        <div class="bullet">• 发现不符合项：填写《内审不符合报告》，与受审核部门负责人确认；</div>
+        <div class="bullet">• <span class="highlight">内审的不符合项分级</span>：严重不符合（体系性失效）、一般不符合（局部问题）、观察项（潜在改进机会）；</div>
+        <div class="lettered">d) <strong>末次会议（审核结束后）：</strong></div>
+        <div class="bullet">• 内审组长通报审核发现（不符合项数量、分布、严重程度）；</div>
+        <div class="bullet">• 受审核部门确认不符合项，并承诺整改时限；</div>
+        <div class="lettered">e) <strong>内审报告（审核结束后7天内）：</strong></div>
+        <div class="bullet">• 内审组长编制《内部审核报告》，内容包括：审核目的、范围、准则、发现、结论、改进建议；</div>
+        <div class="bullet">• 《内部审核报告》经安全总监审核、总经理批准后，发放至受审核部门。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 不符合项的整改与跟踪</strong></div>
+        <div class="lettered">a) 受审核部门收到《内审不符合报告》后，<span class="highlight">7日内</span>制定纠正措施计划；</div>
+        <div class="lettered">b) 纠正措施实施后，受审核部门书面报告内审组；</div>
+        <div class="lettered">c) 内审组（或EHS部门）对纠正措施进行<span class="highlight">跟踪验证</span>，确认措施有效后方可关闭不符合项；</div>
+        <div class="lettered">d) 所有内审不符合项的整改情况，须作为管理评审的输入。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 内审的注意事项</strong></div>
+        <div class="lettered">a) 内审不是"找茬"，而是帮助受审核部门发现改进机会；</div>
+        <div class="lettered">b) 内审员须保持客观、公正，以客观证据为依据，不凭主观判断开不符合项；</div>
+        <div class="lettered">c) <span class="highlight">"审自己人、挑自己错"是中资企业的文化障碍</span>——须通过培训和制度设计（如内审员交叉审核）来克服。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• HSE-PRO-012 《合规性评价程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+        <div class="bullet">• 《内审检查表（Checklist）》（表格编号：HSE-FM-140）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>年度内部审核计划</td><td>HSE-FM-140</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>内审检查表（Checklist）</td><td>HSE-FM-141</td><td>3年</td><td>EHS部、内审组</td></tr>
+            <tr><td style="text-align:center;">3</td><td>内审不符合报告</td><td>HSE-FM-142</td><td>3年</td><td>EHS部、受审核部门</td></tr>
+            <tr><td style="text-align:center;">4</td><td>内部审核报告</td><td>HSE-FM-143</td><td>永久</td><td>EHS部、总经理</td></tr>
+            <tr><td style="text-align:center;">5</td><td>内审不符合项整改跟踪表</td><td>HSE-FM-144</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 9.2。内审员能力证明（证书或培训记录）是审核时的必查项。
+    </div>
+</div>
+</body>
+</html>

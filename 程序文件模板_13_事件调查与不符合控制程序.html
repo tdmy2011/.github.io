@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 事件调查与不符合控制程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">事件调查与不符合控制程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-013 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：10.2</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-013</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">事件调查与不符合控制程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>10.2 事件调查和不符合及纠正措施</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">事件调查与不符合控制机制</span>，对发生的伤亡事故、未遂事故（Near Miss）和不符合项进行彻底调查，找出根本原因，制定并落实有效的纠正和预防措施，防止同类事件再次发生，特制定本程序。</p>
+        <p><span class="highlight">"未遂事故不报、小伤不上报"</span>是中资企业在海外工厂的普遍文化问题，本程序特别强调未遂事故的报告和处理。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司所有<span class="highlight">事件（Incident）</span>的管理，包括：</p>
+        <div class="bullet">• <strong>伤亡事故</strong>：导致人员受伤或疾病的事件（须报告）；</div>
+        <div class="bullet">• <strong>未遂事故（Near Miss）</strong>：未造成伤亡但有可能造成伤亡的事件（<span class="highlight">须同样报告并调查</span>，这是本程序的重点）；</div>
+        <div class="bullet">• <strong>不符合项</strong>：与法律法规、公司安全制度、操作规程不符的情况；</div>
+        <div class="bullet">• <strong>相关方投诉</strong>：员工、周边社区、客户提出的安全健康投诉。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理事件调查与不符合控制工作<br>• 组织对重伤以上事故、重大未遂事故的调查<br>• 审核所有事件调查报告 and 不符合报告<br>• 跟踪纠正措施的落实情况并验证有效性</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 及时报告本部门发生的所有事件（含未遂事故）<br>• 组织对轻伤事故、一般未遂事故的调查<br>• 制定并落实本部门不符合项的纠正措施</td></tr>
+            <tr><td><strong>事件调查组</strong></td><td>• 由EHS部门牵头，相关技术人员、员工代表组成<br>• 使用科学的调查工具（5Why、鱼骨图、瑞士奶酪模型）<br>• 找出根本原因，提出纠正/预防措施建议</td></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 对重伤以上事故、死亡事故的调查给予支持<br>• 批准重大纠正措施的资源投入</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 事件的报告与分级</strong></div>
+        <div class="lettered">a) <span class="highlight">所有事件（含未遂事故）均须报告</span>，不得隐瞒；</div>
+        <div class="lettered">b) 事件分级：</div>
+        <div class="bullet">• <strong>未遂事故</strong>：未造成伤亡，但有可能造成伤亡；须<span class="highlight">24小时内</span>报告EHS部门；</div>
+        <div class="bullet">• <strong>轻伤事故</strong>：需简单医疗处理，不需住院；须<span class="highlight">24小时内</span>报告EHS部门；</div>
+        <div class="bullet">• <strong>重伤事故</strong>：需住院治疗，可能致残；须<span class="highlight">1小时内</span>报告总经理和当地政府部门；</div>
+        <div class="bullet">• <strong>死亡事故</strong>：须<span class="highlight">立即（30分钟内）</span>报告总经理，并由总经理在1小时内报告当地政府；</div>
+        <div class="lettered">c) 报告方式：填写《事件报告表》，提交EHS部门；</div>
+        <div class="lettered">d) <span class="highlight">对隐瞒不报的，须追究部门负责人责任</span>（这是中资企业出海后最容易触碰的法律红线）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 事件调查的流程</strong></div>
+        <div class="lettered">a) <strong>调查启动时机：</strong></div>
+        <div class="bullet">• 重伤以上事故：必须由公司级调查组调查；</div>
+        <div class="bullet">• 轻伤事故：由部门级调查组调查，EHS备案；</div>
+        <div class="bullet">• 重大未遂事故：由部门级或公司级调查组调查；</div>
+        <div class="bullet">• 一般未遂事故：由班组长调查，部门备案；</div>
+        <div class="lettered">b) <strong>调查时限：</strong></div>
+        <div class="bullet">• 轻伤事故调查：须在事故发生<span class="highlight">3日内</span>完成；</div>
+        <div class="bullet">• 重伤及以上事故调查：须在事故发生<span class="highlight">7日内</span>完成（当地政府有更严格要求的，从其规定）；</div>
+        <div class="lettered">c) <strong>调查工具（找出根本原因，而非表面原因）：</strong></div>
+        <div class="bullet">• <strong>5Why法</strong>：连续问5个"为什么"，直到找出根本原因；</div>
+        <div class="bullet">• <strong>鱼骨图（石川图）</strong>：从人、机、料、法、环、测六个维度找原因；</div>
+        <div class="bullet">• <strong>瑞士奶酪模型</strong>：分析多层防御体系中的漏洞如何叠加导致事故；</div>
+        <div class="lettered">d) 调查结果填写《事件调查报告》，内容须包括：事件描述、直接原因、根本原因、纠正措施、预防措施、完成时限、责任人。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 不符合项的处理</strong></div>
+        <div class="lettered">a) 合规性评价、内审、外审、安全检查中发现的不符合项，填写《不符合项报告》；</div>
+        <div class="lettered">b) 责任部门须在规定时限内（通常<span class="highlight">7日内</span>）制定纠正措施；</div>
+        <div class="lettered">c) 纠正措施须包含：原因分析、纠正行动、预防措施、完成日期、责任人；</div>
+        <div class="lettered">d) EHS部门跟踪验证纠正措施的有效性，验证合格后方可关闭。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 纠正与预防措施的实施</strong></div>
+        <div class="lettered">a) 纠正措施（Corrective Action）：消除已发现的不符合的根本原因，防止再发生；</div>
+        <div class="lettered">b) 预防措施（Preventive Action）：消除潜在的不符合的原因，防止发生（ISO 45001强调预防为主）；</div>
+        <div class="lettered">c) 措施实施后，EHS部门须进行<span class="highlight">跟踪验证</span>，确认：措施是否已落实、根本原因是否已消除、同类事件是否未再发生；</div>
+        <div class="lettered">d) 验证合格的，关闭该事件/不符合项；验证不合格的，要求重新制定措施。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 事件统计与趋势分析</strong></div>
+        <div class="lettered">a) EHS部门每月对事件进行统计分析，计算：可记录工伤率（TRIR）、损失工作日数、未遂事故数；</div>
+        <div class="lettered">b) 每季度进行趋势分析，识别：哪些类型事故在增加、哪些部门事故多发、哪些根本原因反复出现；</div>
+        <div class="lettered">c) 趋势分析结果作为管理评审的输入，用于调整公司安全目标和管理方案。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-012 《合规性评价程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+        <div class="bullet">• 《事件报告表》（表格编号：HSE-FM-130）</div>
+        <div class="bullet">• 《事件调查报告》（表格编号：HSE-FM-131）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>事件报告表</td><td>HSE-FM-130</td><td>3年</td><td>EHS部、各部门</td></tr>
+            <tr><td style="text-align:center;">2</td><td>事件调查报告</td><td>HSE-FM-131</td><td>永久</td><td>EHS部、总经理</td></tr>
+            <tr><td style="text-align:center;">3</td><td>不符合项报告</td><td>HSE-FM-132</td><td>3年</td><td>EHS部、责任部门</td></tr>
+            <tr><td style="text-align:center;">4</td><td>纠正/预防措施跟踪表</td><td>HSE-FM-133</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>月度事件统计分析报告</td><td>HSE-FM-134</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 10.2。<span class="highlight">未遂事故管理</span>是ISO 45001相比OHSAS 18001的重要强化点，审核时重点关注。
+    </div>
+</div>
+</body>
+</html>

@@ -170,8 +170,7 @@
         gtag('config', 'G-XXXXXXXXXX');
     </script>
 
-    <!-- ===== PayPal SDK ===== -->
-    <!-- TODO: 替换 client-id 为你的 PayPal 商户 client-id -->
+    <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture" data-namespace="paypal_sdk"></script>
 
     <style>
@@ -347,12 +346,6 @@
     <div class="lang-switch">
         <button class="lang-btn active" onclick="switchLang('zh', this)">中文</button>
         <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
-    </div>
-
-    <!-- 配置提醒 (部署前请删除此条) -->
-    <div class="config-banner" id="configBanner">
-        <span data-zh="⚠️ <strong>开发者模式</strong>：请先配置 Stripe / PayPal / Mailchimp / GA4 后再上线部署。查看 index.html 中的 TODO 标记。" data-en="⚠️ <strong>Dev Mode</strong>: Configure Stripe / PayPal / Mailchimp / GA4 before going live. Search TODO in index.html.">⚠️ <strong>开发者模式</strong>：请先配置 Stripe / PayPal / Mailchimp / GA4 后再上线部署。查看 index.html 中的 TODO 标记。</span>
-        <button class="close-banner" onclick="document.getElementById('configBanner').style.display='none'">&times;</button>
     </div>
 
     <!-- 导航栏 -->

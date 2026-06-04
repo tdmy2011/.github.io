@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 管理评审程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">管理评审程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-015 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：9.3</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-015</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">管理评审程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>9.3 管理评审</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>EHS部门 + 总经理/厂长</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">管理评审（Management Review）</span>机制，由最高管理者（总经理/厂长）定期对职业健康安全管理体系的<span class="highlight">适宜性、充分性和有效性</span>进行评价，确保体系持续适宜、充分、有效，并识别改进机会，特制定本程序。</p>
+        <p>管理评审是PDCA循环中<span class="highlight">"A（改进）"</span>的最高层级——最高管理者须亲自参与，不是把任务委派给EHS经理就完了。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司<span class="highlight">最高管理者（总经理/厂长）</span>主持的职业健康安全管理体系评审活动。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 主持管理评审会议（不能委托他人主持）<br>• 对管理评审的结论和改进决策承担最终责任<br>• 批准《管理评审报告》</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理管理评审工作<br>• 制定管理评审计划，收集评审输入资料<br>• 组织管理评审会议，记录会议决议<br>• 编制《管理评审报告》，跟踪会议决议的落实情况</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 准备本部门的管理评审输入资料<br>• 参加管理评审会议，汇报本部门体系运行情况<br>• 落实管理评审会议决议中涉及本部门的改进措施</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 管理评审的频率与时机</strong></div>
+        <div class="lettered">a) 公司须每年至少进行一次管理评审（<span class="highlight">通常在12月或次年1月</span>，在年度内审和合规性评价完成后）；</div>
+        <div class="lettered">b) 以下情况可增加管理评审频次：</div>
+        <div class="bullet">• 公司组织结构发生重大变更；</div>
+        <div class="bullet">• 发生重大伤亡事故或重复发生同类事故；</div>
+        <div class="bullet">• 适用的法律法规发生重大变化；</div>
+        <div class="bullet">• 最高管理者认为有必要时。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 管理评审的输入（ISO 45001 明确要求）</strong></div>
+        <div class="lettered">a) EHS部门须至少提前<span class="highlight">7天</span>收集以下输入资料，分发给参会人员：</div>
+        <div class="bullet">• 以往管理评审会议决议的落实情况；</div>
+        <div class="bullet">• 职业健康安全方针和目标的达成情况；</div>
+        <div class="bullet">• 危险源辨识、风险评估和风险控制过程的运行情况；</div>
+        <div class="bullet">• 合规性评价结果（是否合规，有哪些不合规项）；</div>
+        <div class="bullet">• 内审结果（内审发现了哪些问题）；</div>
+        <div class="bullet">• 外部相关方的沟通（政府检查意见、客户投诉、社区投诉等）；</div>
+        <div class="bullet">• 事件调查结果（事故、未遂事故的趋势分析）；</div>
+        <div class="bullet">• 纠正措施的落实情况；</div>
+        <div class="bullet">• 改进建议（员工建议、外部顾问建议等）；</div>
+        <div class="bullet">• 资源充分性（现有资源是否足以支持体系有效运行）；</div>
+        <div class="lettered">b) <span class="highlight">重要提示：ISO 45001特别强调"企业文化对职业健康安全的影响"</span>——管理评审时须评价公司安全文化是否支持体系有效运行。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 管理评审会议的实施</strong></div>
+        <div class="lettered">a) 会议由<span class="highlight">总经理/厂长亲自主持</span>（不能由EHS经理代替——这是审核时的常见不符合项）；</div>
+        <div class="lettered">b) 参会人员：总经理/厂长、安全总监、EHS部门全体、各部门负责人、员工代表（若有）；</div>
+        <div class="lettered">c) 会议议程：</div>
+        <div class="bullet">① EHS部门汇报：体系总体运行情况、目标达成情况、内审和合规性评价结果；</div>
+        <div class="bullet">② 各部门负责人汇报：本部门体系运行情况、目标达成情况、存在的问题；</div>
+        <div class="bullet">③ 总经理/厂长逐项评价输入资料，识别改进机会；</div>
+        <div class="bullet">④ 讨论并确定：体系是否需要调整（适宜性）、资源是否充分（充分性）、目标是否需要更新；</div>
+        <div class="bullet">⑤ 形成会议决议（改进决策、资源投入决策、目标调整决策）；</div>
+        <div class="lettered">d) EHS部门指定专人对会议进行记录，形成《管理评审会议纪要》。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 管理评审的输出</strong></div>
+        <div class="lettered">a) 管理评审须输出以下决定和措施：</div>
+        <div class="bullet">• 对职业健康安全管理体系持续适宜性、充分性和有效性的评价结论；</div>
+        <div class="bullet">• 改进机遇（体系本身需要改进的地方）；</div>
+        <div class="bullet">• 任何需要修改的职业健康安全目标（基于评价结论）；</div>
+        <div class="bullet">• 任何需要修改的体系要素（基于评价结论）；</div>
+        <div class="bullet">• 资源需求（需要增加的安全投入、人员、设备等）；</div>
+        <div class="lettered">b) EHS部门在会议结束后<span class="highlight">7天内</span>编制《管理评审报告》，经总经理批准后发放至所有相关部门；</div>
+        <div class="lettered">c) <span class="highlight">管理评审输出是下一年度安全目标和管理方案制定的重要依据。</span></div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 会议决议的跟踪落实</strong></div>
+        <div class="lettered">a) EHS部门负责跟踪管理评审会议决议的落实情况；</div>
+        <div class="lettered">b) 对每项决议，明确：责任部门、完成时限、验证标准；</div>
+        <div class="lettered">c) 跟踪结果记录在《管理评审决议跟踪表》，并在下次管理评审时汇报落实情况；</div>
+        <div class="lettered">d) <span class="highlight">"决议通过后就没有下文了"是中资企业的通病</span>——须建立制度确保每项决议有人跟踪、有人验证。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-003 《目标与管理方案控制程序》</div>
+        <div class="bullet">• HSE-PRO-012 《合规性评价程序》</div>
+        <div class="bullet">• HSE-PRO-014 《内部审核程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• 《管理评审输入资料清单》（表格编号：HSE-FM-150）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>管理评审计划</td><td>HSE-FM-150</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>管理评审输入资料清单</td><td>HSE-FM-151</td><td>3年</td><td>EHS部、各部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>管理评审会议纪要</td><td>HSE-FM-152</td><td>永久</td><td>EHS部、总经理</td></tr>
+            <tr><td style="text-align:center;">4</td><td>管理评审报告</td><td>HSE-FM-153</td><td>永久</td><td>EHS部、总经理</td></tr>
+            <tr><td style="text-align:center;">5</td><td>管理评审决议跟踪表</td><td>HSE-FM-154</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 9.3。<span class="highlight">最高管理者亲自主持管理评审</span>是ISO 45001的核心要求（条款5.1），审核时必查。
+    </div>
+</div>
+</body>
+</html>

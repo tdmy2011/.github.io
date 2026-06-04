@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 承包商安全管理程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">承包商安全管理程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-009 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：8.1.4</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-009</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">承包商安全管理程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>8.1.4 采购</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 采购部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">承包商安全管理机制</span>，确保所有进入公司作业场所的承包商（含分包商）具备相应安全资质、遵守本公司安全管理规定、落实风险控制措施，防止承包商作业引发事故，特制定本程序。</p>
+        <p>统计显示：<span class="highlight">承包商作业事故占总事故数的40%以上</span>，是中资出海企业安全管理的最大短板。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于所有进入公司作业场所的承包商管理，包括：</p>
+        <div class="bullet">• 施工承包方（土建、装修、扩建）；</div>
+        <div class="bullet">• 设备安装/检维修承包方；</div>
+        <div class="bullet">• 保洁、绿化、食堂等后勤服务承包方；</div>
+        <div class="bullet">• 运输、物流承包方；</div>
+        <div class="bullet">• 临时劳务外包人员。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>采购部/项目组</strong></td><td>• 负责承包商准入资质审查（营业执照、安全资质证书、既往事故记录）<br>• 在采购合同中明确安全条款和责任<br>• 组织承包商安全协议签定</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 负责承包商安全资质的专业审查<br>• 组织承包商入场安全培训<br>• 审批承包商高风险作业许可证<br>• 对承包商作业现场进行监督检查<br>• 组织承包商安全绩效评估</td></tr>
+            <tr><td><strong>使用部门（业务对接部门）</strong></td><td>• 向承包商告知现场危险源和安全要求<br>• 指定专人（作业监护人）现场监督承包商作业<br>• 发现承包商违章行为及时制止并报告EHS</td></tr>
+            <tr><td><strong>承包商负责人</strong></td><td>• 确保其作业人员具备相应资质（特种作业证等）<br>• 对其作业人员进行安全教育培训<br>• 遵守公司安全管理规定，接受EHS监督<br>• 发生事件时，配合公司进行调查</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 承包商准入资格审查（合同签定前）</strong></div>
+        <div class="lettered">a) 采购部在发包前，须要求承包商提供以下资料供资格审查：</div>
+        <div class="bullet">• 营业执照、资质证书（安全生产许可证等）；</div>
+        <div class="bullet">• 近3年安全事故记录声明（或无事故证明）；</div>
+        <div class="bullet">• 安全管理制度文件（或安全管理制度目录）；</div>
+        <div class="bullet">• 为作业人员购买工伤保险的证明；</div>
+        <div class="bullet">• 特种作业人员证件清单（如有）；</div>
+        <div class="lettered">b) EHS部门对以上资料进行专业审查，出具《承包商安全资质审查意见表》；</div>
+        <div class="lettered">c) <span class="highlight">资质审查不合格的承包商，不得发包</span>（一票否决制）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 合同与安全协议</strong></div>
+        <div class="lettered">a) 采购合同须包含<span class="highlight">安全责任条款</span>，明确：承包商须遵守公司安全管理规定、须为其作业人员购买工伤保险、发生事故的报告和责任承担；</div>
+        <div class="lettered">b) 同时签定《安全管理协议》（作为合同附件），进一步明确双方安全职责、违章处罚标准、事故责任追究；</div>
+        <div class="lettered">c) 《安全管理协议》须由EHS部门审核后，方可签定。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 入场前安全培训（PTW之前）</strong></div>
+        <div class="lettered">a) 承包商人员进场作业前<span class="highlight">必须</span>接受EHS部门组织的安全培训，内容包括：</div>
+        <div class="bullet">• 公司安全管理规定（正确使用PPE、禁止违章指挥等）；</div>
+        <div class="bullet">• 作业现场危险源告知；</div>
+        <div class="bullet">• 应急处置程序（火灾、触电、人员救护等）；</div>
+        <div class="bullet">• 作业许可制度（PTW）要求；</div>
+        <div class="lettered">b) 培训时长不少于<span class="highlight">4学时</span>，培训后须进行考试（80分合格）；</div>
+        <div class="lettered">c) 培训合格者，发放《承包商人员安全培训合格证》（有效期通常为1年）；</div>
+        <div class="lettered">d) <span class="highlight">未经培训或培训不合格者，不得进场作业</span>。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 作业许可（PTW）管理</strong></div>
+        <div class="lettered">a) 承包商从事高风险作业（动火、高处、受限空间、临时用电、起重吊装等），<span class="highlight">必须</span>向EHS部门申请作业许可证（PTW）；</div>
+        <div class="lettered">b) PTW申请流程与本公司员工相同（参见HSE-PRO-007《运行控制程序》）；</div>
+        <div class="lettered">c) EHS部门在批准PTW前，须到现场核查安全措施落实情况；</div>
+        <div class="lettered">d) PTW有效期不超过24小时，跨天作业须重新申请。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 现场监督与检查</strong></div>
+        <div class="lettered">a) 使用部门须指定<span class="highlight">作业监护人</span>（通常为班组长或技术人员），全程在现场监督承包商作业；</div>
+        <div class="lettered">b) 作业监护人职责：核对作业人员与合格证是否一致、监督PPE佩戴情况、监督高风险作业是否经批准、发现违章立即制止；</div>
+        <div class="lettered">c) EHS部门对承包商作业现场进行<span class="highlight">不定期巡查</span>（每天至少一次），填写《承包商安全检查记录表》；</div>
+        <div class="lettered">d) 发现重大安全隐患，EHS部门有权<span class="highlight">责令立即停工</span>，整改合格后方可复工。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.6 承包商安全绩效评估</strong></div>
+        <div class="lettered">a) 项目结束后，EHS部门组织对承包商进行安全绩效评估；</div>
+        <div class="lettered">b) 评估内容：违章次数、是否发生事件、整改配合度、现场文明施工情况；</div>
+        <div class="lettered">c) 评估等级：A级（优秀）、B级（合格）、C级（不合格）；</div>
+        <div class="lettered">d) <span class="highlight">C级承包商</span>：列入《不合格承包商名单》，以后不得发包（黑名单制度）。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-007 《运行控制程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• 《承包商安全培训记录》（表格编号：HSE-FM-090）</div>
+        <div class="bullet">• 《承包商安全资质审查意见表》（表格编号：HSE-FM-091）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>承包商安全资质审查意见表</td><td>HSE-FM-091</td><td>3年</td><td>采购部、EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>承包商人员安全培训记录</td><td>HSE-FM-090</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">3</td><td>承包商作业许可证（PTW）</td><td>HSE-FM-092</td><td>1年</td><td>EHS部、使用部门</td></tr>
+            <tr><td style="text-align:center;">4</td><td>承包商安全检查记录表</td><td>HSE-FM-093</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>承包商安全绩效评估表</td><td>HSE-FM-094</td><td>3年</td><td>采购部、EHS部</td></tr>
+            <tr><td style="text-align:center;">6</td><td>不合格承包商名单（黑名单）</td><td>HSE-FM-095</td><td>长期</td><td>采购部、EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 8.1.4。承包商管理是ISO审核时的高频不符合项，须重点落实。
+    </div>
+</div>
+</body>
+</html>

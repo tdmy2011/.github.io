@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 应急准备与响应程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">应急准备与响应程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-010 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：8.2</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-010</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">应急准备与响应程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>8.2 应急准备和响应</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）+ 行政部</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">应急准备与响应机制</span>，识别可能发生的紧急情况（火灾、爆炸、触电、化学品泄漏、自然灾害等），做好应急准备，并在紧急情况发生时能<span class="highlight">迅速、有效地响应</span>，最大限度减少人员伤亡和健康损害，特制定本程序。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司所有场所可能发生的紧急情况的应急准备和响应，包括：</p>
+        <div class="bullet">• 火灾、爆炸；</div>
+        <div class="bullet">• 危险化学品泄漏；</div>
+        <div class="bullet">• 触电、人员休克；</div>
+        <div class="bullet">• 起重伤害、机械伤害；</div>
+        <div class="bullet">• 自然灾害（台风、暴雨、地震——东南亚/非洲尤其需要注意）；</div>
+        <div class="bullet">• 公共卫生事件（如传染病爆发）。</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 批准公司级应急预案<br>• 提供应急准备所需资源（应急物资、培训、演练）<br>• 紧急情况发生时，担任应急总指挥（或指定代理人）</td></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 组织编制和修订公司级应急预案<br>• 组织应急演练（每年至少一次）<br>• 管理应急救援物资和装备<br>• 组织应急救援培训<br>• 紧急情况发生时，担任现场指挥助理</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 编制本部门专项应急预案（如化学品泄漏处置方案）<br>• 组织本部门员工参加应急演练<br>• 确保本部门应急救援物资完好可用</td></tr>
+            <tr><td><strong>应急救援队（ERT）</strong></td><td>• 由EHS部门牵头组建（通常含灭火组、疏散组、救护组、联络组）<br>• 接受专业应急救援培训<br>• 紧急情况发生时，按预案分工开展应急救援</td></tr>
+            <tr><td><strong>所有员工</strong></td><td>• 熟悉本场所的应急疏散路线和集合点<br>• 参加应急演练，掌握基本应急技能（灭火器使用、心肺复苏等）<br>• 紧急情况发生时，按预案要求行动（疏散、报警、自救互救）</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 紧急情况识别与应急预案制定</strong></div>
+        <div class="lettered">a) EHS部门基于<span class="highlight">危险源辨识与风险评估结果</span>，识别可能发生的紧急情况；</div>
+        <div class="lettered">b) 针对每种识别出的紧急情况，制定对应的应急预案，预案应包含：</div>
+        <div class="bullet">• 应急组织与职责（指挥链、各小组分工）；</div>
+        <div class="bullet">• 报警程序（向谁报警、报警电话是多少）；</div>
+        <div class="bullet">• 疏散路线和集合点（须有明显的标识）；</div>
+        <div class="bullet">• 应急处置措施（先做什么、后做什么）；</div>
+        <div class="bullet">• 应急物资清单（灭火器、急救箱、泄漏应急包等）；</div>
+        <div class="bullet">• 外部救援资源联络方式（当地消防、医院、警察）；</div>
+        <div class="lettered">c) <span class="highlight">东南亚/非洲特别提醒</span>：当地消防/医疗响应时间可能较长，预案中须考虑"自救为主、外援为辅"的原则；</div>
+        <div class="lettered">d) 应急预案须经总经理批准后发布，并发放到所有相关部门。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 应急物资与装备管理</strong></div>
+        <div class="lettered">a) EHS部门负责建立《应急物资清单》，明确：物资名称、数量、存放地点、保管人、检查周期；</div>
+        <div class="lettered">b) 应急物资须<span class="highlight">专用</span>，不得挪作他用；</div>
+        <div class="lettered">c) 各部门须按周期检查应急物资（灭火器压力、急救药品有效期、应急灯电量等），填写《应急物资检查记录表》；</div>
+        <div class="lettered">d) 发现物资失效或缺失，须<span class="highlight">24小时内</span>补充到位。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 应急培训与演练</strong></div>
+        <div class="lettered">a) EHS部门每年至少组织<span class="highlight">一次</span>公司级应急演练（通常选火灾疏散演练）；</div>
+        <div class="lettered">b) 各部门根据自身风险，每年至少组织<span class="highlight">一次</span>专项应急演练（如化学品泄漏处置演练）；</div>
+        <div class="lettered">c) 演练前须制定《应急演练方案》，明确：演练目的、场景设定、参与人员、演练步骤、观察员分工；</div>
+        <div class="lettered">d) 演练后须进行<span class="highlight">评估总结</span>，填写《应急演练评估记录表》，发现预案或响应中的问题，及时修订预案；</div>
+        <div class="lettered">e) <span class="highlight">新员工入职3个月内</span>须参加至少一次应急演练。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 紧急情况的响应</strong></div>
+        <div class="lettered">a) 发生紧急情况时，第一发现人须立即：</div>
+        <div class="bullet">• 大声呼救，通知周围人员；</div>
+        <div class="bullet">• 拨打应急电话（公司内部报警电话、当地消防/医院电话）；</div>
+        <div class="bullet">• 在确保自身安全的前提下，开展初期处置（如用灭火器灭火、切断泄漏源等）；</div>
+        <div class="lettered">b) 应急总指挥（或代理人）接到报告后，立即启动应急预案，指挥各应急小组行动；</div>
+        <div class="lettered">c) 疏散组须引导所有人员（含承包商、访客）沿疏散路线撤离到集合点，并清点人数；</div>
+        <div class="lettered">d) <span class="highlight">绝对禁止</span>员工在未经过训练的情况下，盲目进入受限空间或危险区域施救（避免扩大伤亡）。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 应急预案的评审与更新</strong></div>
+        <div class="lettered">a) 每次应急演练后，须对应急预案进行评审和更新；</div>
+        <div class="lettered">b) 发生真实紧急情况后，须对应急预案进行评审（事后复盘）；</div>
+        <div class="lettered">c) 公司组织结构、应急物资、外部救援资源发生变化时，须及时更新预案；</div>
+        <div class="lettered">d) 至少<span class="highlight">每年一次</span>对全部应急预案进行全面评审。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-001 《危险源辨识与风险评估程序》</div>
+        <div class="bullet">• HSE-PRO-004 《能力、意识与培训程序》</div>
+        <div class="bullet">• 公司级应急预案（文件编号：HSE-EP-001~XXX）</div>
+        <div class="bullet">• 《应急演练方案》（表格编号：HSE-FM-100）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>应急物资清单</td><td>HSE-FM-100</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>应急物资检查记录表</td><td>HSE-FM-101</td><td>1年</td><td>EHS部、各部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>应急演练方案</td><td>HSE-FM-102</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">4</td><td>应急演练评估记录表</td><td>HSE-FM-103</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">5</td><td>紧急情况报告记录</td><td>HSE-FM-104</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 8.2。对应急预案的评审和更新是审核时的重点。
+    </div>
+</div>
+</body>
+</html>

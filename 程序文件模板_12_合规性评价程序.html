@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>程序文件模板 - 合规性评价程序</title>
+<style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'SimSun', 'Songti SC', serif; background: white; color: #1a1a1a; line-height: 1.8; font-size: 14pt; }
+    @page { size: A4; margin: 2.5cm 2.5cm 2.5cm 2.5cm; }
+    .page { max-width: 21cm; margin: 0 auto; padding: 2.5cm; background: white; }
+    .header { text-align: center; margin-bottom: 30pt; border-bottom: 2pt solid #1e3a5f; padding-bottom: 16pt; }
+    .header .company { font-size: 16pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .doctitle { font-size: 20pt; font-weight: bold; color: #1e3a5f; margin-bottom: 8pt; }
+    .header .docinfo { font-size: 11pt; color: #555; }
+    .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 24pt; font-size: 11pt; }
+    .meta-table td { padding: 6pt 12pt; border: 1pt solid #999; }
+    .meta-table .label { background: #f0f4f8; font-weight: bold; width: 100pt; }
+    .section { margin-bottom: 20pt; }
+    .section-title { font-size: 14pt; font-weight: bold; color: #1e3a5f; margin-bottom: 10pt; border-left: 4pt solid #38bdf8; padding-left: 8pt; }
+    .section-num { color: #38bdf8; margin-right: 6pt; }
+    p { margin-bottom: 8pt; text-align: justify; }
+    .numbered { margin-left: 20pt; margin-bottom: 6pt; }
+    .lettered { margin-left: 40pt; margin-bottom: 4pt; }
+    .bullet { margin-left: 20pt; margin-bottom: 4pt; }
+    table.content-table { width:100%; border-collapse: collapse; margin: 12pt 0; font-size: 11pt; }
+    table.content-table th { background: #1e3a5f; color: white; padding: 8pt; text-align: left; border: 1pt solid #1e3a5f; }
+    table.content-table td { padding: 8pt; border: 1pt solid #ccc; vertical-align: top; }
+    table.content-table tr:nth-child(even) { background: #f8fafc; }
+    .ref-section { background: #f0f9ff; padding: 12pt; border-radius: 6pt; margin: 12pt 0; }
+    .ref-title { font-weight: bold; color: #1e3a5f; margin-bottom: 6pt; }
+    .footer-note { font-size: 10pt; color: #888; text-align: center; margin-top: 30pt; border-top: 1pt solid #ccc; padding-top: 10pt; }
+    .highlight { background: #fff3cd; padding: 2pt 4pt; }
+    @media print { .page { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="company">[公司名称] 安全管理体系程序文件</div>
+        <div class="doctitle">合规性评价程序</div>
+        <div class="docinfo">文件编号：HSE-PRO-012 &nbsp;&nbsp;|&nbsp;&nbsp;版本：A/0 &nbsp;&nbsp;|&nbsp;&nbsp;ISO 45001:2018 条款：9.1.2</div>
+    </div>
+
+    <table class="meta-table">
+        <tr><td class="label">文件编号</td><td>HSE-PRO-012</td><td class="label">版本号</td><td>A/0</td></tr>
+        <tr><td class="label">文件名称</td><td colspan="3">合规性评价程序</td></tr>
+        <tr><td class="label">对应ISO条款</td><td>9.1.2 合规性评价</td><td class="label">发布日期</td><td>____年__月__日</td></tr>
+        <tr><td class="label">实施日期</td><td>____年__月__日</td><td class="label">归口部门</td><td>安全环保部（EHS）</td></tr>
+        <tr><td class="label">编写人</td><td>__________</td><td class="label">审核人</td><td>__________</td></tr>
+        <tr><td class="label">批准人</td><td>__________</td><td class="label">页数</td><td>共__页</td></tr>
+    </table>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">1.</span>目的</div>
+        <p>为建立并维持系统化的<span class="highlight">合规性评价机制</span>，定期评价公司职业健康安全符合法律法规要求和其他要求的情况，及时发现不符合项并采取纠正措施，特制定本程序。</p>
+        <p>合规性评价是ISO 45001<span class="highlight">条款9.1.2的强制要求</span>，是管理评审的重要输入，也是预防法律风险的防火墙。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">2.</span>适用范围</div>
+        <p>本程序适用于公司<span class="highlight">所有适用法律法规和其他要求</span>的合规性评价，覆盖所有场所、所有活动。</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">3.</span>职责</div>
+        <table class="content-table">
+            <tr><th style="width:120pt;">职责部门/岗位</th><th>具体职责</th></tr>
+            <tr><td><strong>EHS部门</strong></td><td>• 归口管理合规性评价工作<br>• 制定年度合规性评价计划<br>• 组织实施合规性评价（文件审查、现场检查）<br>• 编制《合规性评价报告》<br>• 跟踪不符合项的纠正措施</td></tr>
+            <tr><td><strong>各部门负责人</strong></td><td>• 配合EHS部门进行本部门合规性评价<br>• 提供本部门相关的法律法规执行记录<br>• 对发现的本部门不符合项，制定并落实纠正措施</td></tr>
+            <tr><td><strong>总经理/厂长</strong></td><td>• 批准《合规性评价报告》<br>• 为重大合规性纠正措施提供资源支持<br>• 对合规性负最终责任</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">4.</span>工作程序</div>
+
+        <div class="numbered"><strong>4.1 评价频率</strong></div>
+        <div class="lettered">a) 公司须每年至少进行一次全面的合规性评价（通常在管理评审前1个月完成）；</div>
+        <div class="lettered">b) 以下情况可启动专项合规性评价：</div>
+        <div class="bullet">• 新法律法规发布或现有法律法规发生重大修订；</div>
+        <div class="bullet">• 公司业务范围、工艺、设备发生重大变更；</div>
+        <div class="bullet">• 政府监察部门提出专项合规检查要求；</div>
+        <div class="bullet">• 发生与合规相关的事故或投诉。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.2 评价准备</strong></div>
+        <div class="lettered">a) EHS部门制定《年度合规性评价计划》，明确：评价范围、评价依据（法律法规清单）、评价方法、责任部门、完成时限；</div>
+        <div class="lettered">b) 各部门提前准备本部门相关的：法律法规执行记录、许可证件（有效期内的复印件）、检查/检测报告、培训记录、事故记录等；</div>
+        <div class="lettered">c) <span class="highlight">特别注意：当地法律法规（如越南、泰国、印尼当地法令）与中国标准不一致时，以更严格者为准。</span></div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.3 评价实施（三种方法结合）</strong></div>
+        <div class="lettered">a) <strong>文件审查法：</strong>对照《适用法律法规和其他要求清单》，逐条核查是否有对应的执行记录（如：有《安全生产法》要求的安全培训——是否有培训记录？）；</div>
+        <div class="lettered">b) <strong>现场检查法：</strong>到现场核查实际操作是否符合法律规定（如：法规要求特种设备定期检测——现场设备是否有检测合格标签？）；</div>
+        <div class="lettered">c) <strong>人员访谈法：</strong>随机询问员工是否了解与其相关的法律法规要求（如：询问电工是否了解当地电业法规中的操作要求）；</div>
+        <div class="lettered">d) 评价结果记录在《合规性评价记录表》，逐条填写：法律法规条款、合规情况（合规/基本合规/不合规）、证据、发现的问题。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.4 评价结果的处理</strong></div>
+        <div class="lettered">a) 评价发现"不合规"项，须填写《不符合项报告》，按HSE-PRO-013《事件调查与不符合控制程序》处理；</div>
+        <div class="lettered">b) "基本合规"项（有小规模缺陷），须制定改进措施，跟踪验证；</div>
+        <div class="lettered">c) EHS部门编制《年度合规性评价报告》，内容包括：</div>
+        <div class="bullet">• 评价范围、依据、方法；</div>
+        <div class="bullet">• 总体合规情况（合规率统计）；</div>
+        <div class="bullet">• 发现的不合规项及纠正措施；</div>
+        <div class="bullet">• 改进建议；</div>
+        <div class="lettered">d) 《年度合规性评价报告》须经安全总监审核、总经理批准后，提交管理评审。</div>
+
+        <div class="numbered" style="margin-top:16pt;"><strong>4.5 纠正措施的跟踪验证</strong></div>
+        <div class="lettered">a) 对不合规项采取的纠正措施，EHS部门须跟踪验证其有效性；</div>
+        <div class="lettered">b) 验证内容：措施是否已落实、是否消除了不合规状态、是否防止了同类问题再次发生；</div>
+        <div class="lettered">c) 验证合格后，关闭该不符合项；验证不合格的，要求责任部门重新制定措施。</div>
+    </div>
+
+    <div class="section ref-section">
+        <div class="ref-title">5. 相关文件</div>
+        <div class="bullet">• HSE-PRO-002 《法律法规识别与更新程序》</div>
+        <div class="bullet">• HSE-PRO-013 《事件调查与不符合控制程序》</div>
+        <div class="bullet">• HSE-PRO-014 《管理评审程序》</div>
+        <div class="bullet">• 《适用法律法规和其他要求清单》（表格编号：HSE-FM-010）</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="section-num">6.</span>记录表单</div>
+        <table class="content-table" style="font-size:11pt;">
+            <tr><th>序号</th><th>表单名称</th><th>表单编号</th><th>保存期限</th><th>保存部门</th></tr>
+            <tr><td style="text-align:center;">1</td><td>年度合规性评价计划</td><td>HSE-FM-120</td><td>3年</td><td>EHS部</td></tr>
+            <tr><td style="text-align:center;">2</td><td>合规性评价记录表</td><td>HSE-FM-121</td><td>3年</td><td>EHS部、各相关部门</td></tr>
+            <tr><td style="text-align:center;">3</td><td>年度合规性评价报告</td><td>HSE-FM-122</td><td>永久</td><td>EHS部、总经理</td></tr>
+            <tr><td style="text-align:center;">4</td><td>合规性纠正措施跟踪表</td><td>HSE-FM-123</td><td>3年</td><td>EHS部</td></tr>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        【填写说明】本文件为模板，使用时请将所有方括号"[]"内容和"____"下划线处替换为贵公司实际信息。<br>
+        本文件对应 ISO 45001:2018 条款 9.1.2。合规性评价是管理评审的必需输入，审核时必查。
+    </div>
+</div>
+</body>
+</html>

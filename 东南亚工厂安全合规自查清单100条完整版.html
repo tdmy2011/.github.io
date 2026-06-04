@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>东南亚工厂安全合规自查清单100条 — 中资出海企业必备完整版</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:#f5f5f0;color:#2c2c2a;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .page{max-width:800px;margin:0 auto;padding:40px 20px}
+  .cover{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;border-radius:16px;padding:48px 40px;margin-bottom:32px;position:relative;overflow:hidden}
+  .cover::after{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:rgba(255,255,255,.03);border-radius:50%}
+  .cover-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);padding:4px 16px;border-radius:20px;font-size:12px;letter-spacing:1px;margin-bottom:20px;text-transform:uppercase}
+  .cover h1{font-size:28px;font-weight:700;line-height:1.3;margin-bottom:12px}
+  .cover .subtitle{font-size:15px;opacity:.8;margin-bottom:24px;font-weight:300}
+  .cover-meta{display:flex;gap:24px;font-size:12px;opacity:.6;flex-wrap:wrap}
+  .cover-meta span{display:flex;align-items:center;gap:4px}
+  .intro{background:#fff;border-radius:12px;padding:28px 32px;margin-bottom:24px;border:1px solid #e8e8e0}
+  .intro h2{font-size:16px;font-weight:600;margin-bottom:12px;color:#0f3460}
+  .intro p{font-size:13px;color:#5f5e5a;margin-bottom:8px}
+  .intro .highlight{background:#e6f1fb;border-left:3px solid #378add;padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;color:#0c447c}
+  .intro .warn{background:#faeecd;border-left:3px solid #ba7517;padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;color:#633806}
+  .legend{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:#5f5e5a;background:#fff;padding:6px 12px;border-radius:6px;border:1px solid #e8e8e0}
+  .legend-dot{width:10px;height:10px;border-radius:3px}
+  .section{background:#fff;border-radius:12px;margin-bottom:16px;border:1px solid #e8e8e0;overflow:hidden}
+  .section-header{display:flex;align-items:center;gap:12px;padding:16px 24px;cursor:pointer;user-select:none;transition:background .2s}
+  .section-header:hover{background:#fafaf5}
+  .section-num{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;flex-shrink:0}
+  .section-header h3{font-size:14px;font-weight:600;flex:1}
+  .section-header .tag{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:500}
+  .section-count{font-size:11px;color:#888780;margin-left:auto;flex-shrink:0}
+  .section-toggle{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888780;flex-shrink:0;transition:transform .2s}
+  .section-toggle.open{transform:rotate(180deg)}
+  .section-body{padding:0 24px 16px;display:none}
+  .section-body.open{display:block}
+  .checklist-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0efe8}
+  .checklist-item:last-child{border-bottom:none}
+  .item-num{width:22px;height:22px;border-radius:50%;background:#f1efe8;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#5f5e5a;flex-shrink:0;margin-top:1px}
+  .item-content{flex:1}
+  .item-content .item-title{font-size:13px;font-weight:500;margin-bottom:2px}
+  .item-content .item-desc{font-size:11px;color:#888780;line-height:1.5}
+  .item-content .item-iso{font-size:10px;color:#378add;background:#e6f1fb;display:inline-block;padding:1px 6px;border-radius:3px;margin-top:2px}
+  .item-content .item-risk{font-size:10px;color:#a32d2d;background:#fcebeb;display:inline-block;padding:1px 6px;border-radius:3px;margin-top:2px;margin-left:4px}
+  .item-content .item-tip{font-size:11px;color:#085041;background:#e1f5ee;padding:4px 8px;border-radius:4px;margin-top:4px}
+  .item-checkbox{width:18px;height:18px;border:1.5px solid #b4b2a9;border-radius:4px;flex-shrink:0;margin-top:2px;cursor:pointer;transition:all .2s}
+  .item-checkbox.checked{background:#1d9e75;border-color:#1d9e75;position:relative}
+  .item-checkbox.checked::after{content:'';position:absolute;top:2px;left:5px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .progress-container{position:sticky;top:0;background:rgba(245,245,240,.95);backdrop-filter:blur(8px);padding:12px 20px;margin:0 -20px;z-index:10;display:none;border-bottom:1px solid #e8e8e0}
+  .progress-container.visible{display:block}
+  .progress-bar{height:4px;background:#e8e8e0;border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:#1d9e75;border-radius:2px;transition:width .3s;width:0%}
+  .progress-text{font-size:11px;color:#5f5e5a;margin-top:4px;text-align:center}
+  .cta{background:linear-gradient(135deg,#e6f1fb 0%,#eeedfe 100%);border:1px solid #b5d4f4;border-radius:12px;padding:28px 32px;margin-top:24px;text-align:center}
+  .cta h3{font-size:16px;font-weight:600;color:#0f3460;margin-bottom:8px}
+  .cta p{font-size:13px;color:#5f5e5a;margin-bottom:16px}
+  .cta-btn{display:inline-block;background:#0f3460;color:#fff;padding:10px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s}
+  .cta-btn:hover{background:#16213e}
+  .toc{background:#fff;border-radius:12px;padding:24px 32px;margin-bottom:24px;border:1px solid #e8e8e0}
+  .toc h2{font-size:14px;font-weight:600;margin-bottom:12px;color:#0f3460}
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .toc-item{font-size:12px;padding:8px 12px;background:#fafaf5;border-radius:6px;border-left:3px solid #e8e8e0;cursor:pointer;transition:background .2s}
+  .toc-item:hover{background:#e6f1fb}
+  .toc-item strong{color:#0f3460}
+  @media print{body{background:#fff}.progress-container,.cta{display:none!important}.cover{break-after:page}.section{break-inside:avoid}.section-body{display:block!important}.section-toggle{display:none}.item-checkbox{border:1.5px solid #333}}
+  .footer{text-align:center;padding:24px 0;font-size:11px;color:#b4b2a9}
+</style>
+</head>
+<body>
+<div class="progress-container" id="progressContainer">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">已完成 0 / 100 条 (0%)</div>
+</div>
+<div class="page">
+
+<div class="cover">
+  <div class="cover-badge">中资出海企业专用 · 完整版</div>
+  <h1>东南亚工厂安全合规自查清单<br>100 条</h1>
+  <div class="subtitle">覆盖 ISO 45001:2018 全部条款 + 越南/泰国/印尼/尼日利亚当地法规要点<br>10 大维度 · 每条附 ISO 条款编号 · 含实操建议与常见误区</div>
+  <div class="cover-meta">
+    <span>版本 2.0 完整版</span>
+    <span>2026年5月更新</span>
+    <span>适用行业：制造/服装/电子/建筑/食品加工</span>
+  </div>
+</div>
+
+<div class="intro">
+  <h2>如何使用这份清单</h2>
+  <p>本清单按 ISO 45001:2018 标准条款组织，10 个维度覆盖中资企业在东南亚/非洲建厂面临的全部高频合规风险点。每条自查项标注了 ISO 条款编号和相关国家法规依据，并附有实操建议。</p>
+  <div class="highlight">
+    <strong>推荐检查方式：</strong>安排安全主管 + 生产经理 + HR 三人联合检查。逐条对照工厂现状，已达标打勾，未达标标记为待整改并记录整改时限。检查完成后统计各维度合规率，低于 70% 的维度需优先整改。
+  </div>
+  <div class="warn">
+    <strong>特别提醒：</strong>第 1-5 条（法律合规）、第 21-25 条（电气安全）、第 46-50 条（消防安全）为合规红线项——不达标可能面临罚款、停工甚至刑事责任，建议首先检查。
+  </div>
+  <p>覆盖目标国家：<strong>越南、泰国、印度尼西亚、尼日利亚</strong>。法规截止日期：2026年1月。</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#e24b4a"></div>合规红线</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ba7517"></div>高风险项</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#378add"></div>ISO 必审</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1d9e75"></div>一般管理</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#534ab7"></div>东南亚/非洲特有</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>十大维度速览</h2>
+  <div class="toc-grid">
+    <div class="toc-item" onclick="toggleSection(1)"><strong>01</strong> 法律合规与组织保障 (1-10)</div>
+    <div class="toc-item" onclick="toggleSection(2)"><strong>02</strong> 危险源辨识与风险评估 (11-20)</div>
+    <div class="toc-item" onclick="toggleSection(3)"><strong>03</strong> 电气与机械设备安全 (21-30)</div>
+    <div class="toc-item" onclick="toggleSection(4)"><strong>04</strong> 化学品与职业健康 (31-40)</div>
+    <div class="toc-item" onclick="toggleSection(5)"><strong>05</strong> 消防安全 (41-50)</div>
+    <div class="toc-item" onclick="toggleSection(6)"><strong>06</strong> 培训与能力建设 (51-60)</div>
+    <div class="toc-item" onclick="toggleSection(7)"><strong>07</strong> 承包商与外包管理 (61-70)</div>
+    <div class="toc-item" onclick="toggleSection(8)"><strong>08</strong> 应急管理 (71-80)</div>
+    <div class="toc-item" onclick="toggleSection(9)"><strong>09</strong> 事故调查与持续改进 (81-90)</div>
+    <div class="toc-item" onclick="toggleSection(10)"><strong>10</strong> 文件与记录管理 (91-100)</div>
+  </div>
+</div>
+
+<!-- ========== SECTION 01 ========== -->
+<div class="section" data-section="1">
+  <div class="section-header" onclick="toggleSection(1)">
+    <div class="section-num" style="background:#378add">01</div>
+    <h3>法律合规与组织保障</h3>
+    <span class="tag" style="background:#fcebeb;color:#a32d2d">合规红线</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle1">&#9660;</div>
+  </div>
+  <div class="section-body" id="body1">
+    <div class="checklist-item">
+      <div class="item-num">1</div>
+      <div class="item-content">
+        <div class="item-title">工厂是否已在当地劳动/安全主管部门完成注册登记？</div>
+        <div class="item-desc">越南《劳动法》第6条 / 泰国《工作安全健康管理法》第12条 / 印尼《劳动法》UUK No.13/2003 — 未注册可能面临罚款或停工</div>
+        <span class="item-risk">合规红线</span>
+        <div class="item-tip">中资企业常见误区：在国内注册了就行。实际上，每个国家都要求在当地单独注册工厂实体并获取安全许可。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">2</div>
+      <div class="item-content">
+        <div class="item-title">是否指定了专职安全管理人员（或安全委员会）？</div>
+        <div class="item-desc">越南要求50人以上工厂设安全员 / 印尼要求100人以上设安全委员会 / 泰国要求500人以上设安全部门</div>
+        <span class="item-iso">ISO 5.3</span>
+        <div class="item-tip">常见误区：让生产经理兼职管安全。ISO 45001 要求安全岗位独立或至少有明确权限，兼任角色在审核时会被质疑独立性。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">3</div>
+      <div class="item-content">
+        <div class="item-title">安全方针是否正式发布，并由最高管理者签署？</div>
+        <div class="item-desc">方针须包含安全承诺、持续改进承诺、遵守法规承诺，且全厂可见</div>
+        <span class="item-iso">ISO 5.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">4</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了当地法律法规识别与更新机制？</div>
+        <div class="item-desc">至少每季度更新一次法规清单，覆盖职业安全、消防、环保、劳动保护四大领域</div>
+        <span class="item-iso">ISO 6.1.3</span>
+        <div class="item-tip">东南亚法规更新频繁，尤其是越南（每年都有劳动法修订），建议订阅当地律师事务所或安全协会的法规更新推送。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">5</div>
+      <div class="item-content">
+        <div class="item-title">是否明确了各级人员的安全职责（含中方外派管理层）？</div>
+        <div class="item-desc">须形成书面文件，涵盖总经理、部门经理、班组长、一线工人四级</div>
+        <span class="item-iso">ISO 5.3</span>
+        <div class="item-tip">中资出海特有问题：中方外派管理层的安全责任未写入当地文件，出事故后法律追责困难。必须用当地语言形成书面文件。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">6</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了可量化的安全目标（年度+季度）？</div>
+        <div class="item-desc">目标须可测量，如「重伤事故率 &lt;0.5‰」「隐患整改率 &gt;95%」「培训完成率 100%」</div>
+        <span class="item-iso">ISO 6.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">7</div>
+      <div class="item-content">
+        <div class="item-title">是否与当地政府安全监管部门建立了正式沟通渠道？</div>
+        <div class="item-desc">确认监管部门是谁、检查频率是多少、报告流程是什么</div>
+        <span class="item-iso">ISO 7.4</span>
+        <div class="item-tip">东南亚部分地区存在"关系文化"，但绝不能仅依赖关系。正式沟通渠道是法律保护的前提——出了事故，政府首先看你是否主动报备过。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">8</div>
+      <div class="item-content">
+        <div class="item-title">是否为安全管理体系提供了充足预算（人员/设备/培训/应急物资）？</div>
+        <div class="item-desc">预算须形成书面文件，且经管理层批准</div>
+        <span class="item-iso">ISO 7.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">9</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了员工安全建议/安全投诉的反馈渠道？</div>
+        <div class="item-desc">须有多语言途径（意见箱/微信群/WhatsApp群），且保证匿名举报功能</div>
+        <span class="item-iso">ISO 5.4</span>
+        <div class="item-tip">东南亚工人通常不习惯当面提意见，匿名渠道特别重要。建议在WhatsApp上建立安全建议群，降低举报门槛。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">10</div>
+      <div class="item-content">
+        <div class="item-title">最高管理者是否定期参与安全巡检（至少每月一次）？</div>
+        <div class="item-desc">巡检须有记录、发现问题、整改跟踪。最高管理者不参与安全=安全不是真正优先</div>
+        <span class="item-iso">ISO 5.1</span>
+        <div class="item-tip">ISO审核员必查项：最高管理者的安全承诺是否体现在行动上。仅签字不够，必须有参与安全活动的证据。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 02 ========== -->
+<div class="section" data-section="2">
+  <div class="section-header" onclick="toggleSection(2)">
+    <div class="section-num" style="background:#ba7517">02</div>
+    <h3>危险源辨识与风险评估</h3>
+    <span class="tag" style="background:#faeecd;color:#633806">高风险</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle2">&#9660;</div>
+  </div>
+  <div class="section-body" id="body2">
+    <div class="checklist-item">
+      <div class="item-num">11</div>
+      <div class="item-content">
+        <div class="item-title">是否完成了全厂危险源辨识与风险评估？</div>
+        <div class="item-desc">覆盖所有车间、工序、设备、化学品、作业活动，须使用系统方法（JSA/HAZOP/MHA）</div>
+        <span class="item-iso">ISO 6.1.2</span>
+        <div class="item-tip">常见误区：只做了主要车间，遗漏了仓库、食堂、宿舍、停车场。风险评估范围须涵盖工厂所有区域。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">12</div>
+      <div class="item-content">
+        <div class="item-title">风险评估是否覆盖了非日常作业（维修/清洁/装卸/开停车）？</div>
+        <div class="item-desc">非日常作业往往是事故高发场景——检修触电、清洁滑倒、装卸砸伤</div>
+        <span class="item-iso">ISO 6.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">13</div>
+      <div class="item-content">
+        <div class="item-title">是否考虑了当地特殊自然风险（登革热/疟疾/极端高温/暴雨洪涝/地震）？</div>
+        <div class="item-desc">东南亚/非洲特有风险：热带疾病传播、高温中暑、暴雨洪涝、地震（印尼位于环太平洋火山带）</div>
+        <span class="item-iso">ISO 6.1.2</span>
+        <div class="item-tip">国内风险评估模板几乎不包含这些内容。尼日利亚工厂还须考虑疟疾预防（蚊帐/药物/灭蚊措施）。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">14</div>
+      <div class="item-content">
+        <div class="item-title">风险矩阵是否按照「严重度 x 可能性」分级（至少4级）？</div>
+        <div class="item-desc">高风险项必须有明确控制措施和时间节点，不可放任。矩阵须向全员公布。</div>
+        <span class="item-iso">ISO 6.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">15</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了变更管理流程（新设备/新工艺/新物料引入时）？</div>
+        <div class="item-desc">任何变更须先做风险评估，由安全部门审批后方可实施</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">16</div>
+      <div class="item-content">
+        <div class="item-title">风险评估结果是否以可见/可理解的形式传递到一线员工？</div>
+        <div class="item-desc">建议使用多语言标识（中文+英文+当地语言），张贴在工位旁</div>
+        <span class="item-iso">ISO 6.1.2</span>
+        <div class="item-tip">东南亚工厂文化程度参差不齐，纯文字标识效果差。建议使用图片+颜色编码（绿=安全/黄=注意/红=危险）。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">17</div>
+      <div class="item-content">
+        <div class="item-title">风险评估是否由多部门联合完成（安全+生产+设备+HR）？</div>
+        <div class="item-desc">单靠安全部门做的评估往往遗漏生产实操中的隐藏风险</div>
+        <span class="item-iso">ISO 6.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">18</div>
+      <div class="item-content">
+        <div class="item-title">是否覆盖了厂区外的风险（通勤/外勤/出差/物流运输）？</div>
+        <div class="item-desc">东南亚交通事故率极高——摩托车通勤伤亡是工厂安全管理的延伸责任</div>
+        <span class="item-iso">ISO 6.1.2</span>
+        <div class="item-tip">越南/印尼工厂大量工人骑摩托车通勤，可提供安全头盔+安全驾驶培训作为员工福利，也减少工伤争议。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">19</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了危险源更新机制（新工艺/新设备/新法规变化时）？</div>
+        <div class="item-desc">至少每年全面更新一次，触发事件随时更新</div>
+        <span class="item-iso">ISO 6.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">20</div>
+      <div class="item-content">
+        <div class="item-title">是否对高风险项建立了「观察清单」持续跟踪改进状态？</div>
+        <div class="item-desc">不可只评估一次就放任。高风险项须有人负责、有时间表、有验证</div>
+        <span class="item-iso">ISO 9.1.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 03 ========== -->
+<div class="section" data-section="3">
+  <div class="section-header" onclick="toggleSection(3)">
+    <div class="section-num" style="background:#e24b4a">03</div>
+    <h3>电气与机械设备安全</h3>
+    <span class="tag" style="background:#fcebeb;color:#a32d2d">事故高发</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle3">&#9660;</div>
+  </div>
+  <div class="section-body" id="body3">
+    <div class="checklist-item">
+      <div class="item-num">21</div>
+      <div class="item-content">
+        <div class="item-title">所有电气设备是否有接地保护，配电箱是否上锁？</div>
+        <div class="item-desc">东南亚工厂触电事故高发原因 Top1——旧设备/二手设备无接地是普遍问题</div>
+        <span class="item-risk">合规红线</span>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">中资工厂大量使用国内运来的二手设备，这些设备在中国有接地，但当地插座标准不同，重新接线时常常漏接接地线。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">22</div>
+      <div class="item-content">
+        <div class="item-title">所有旋转/传动设备是否有防护罩？</div>
+        <div class="item-desc">缺防护罩是机械伤害事故的第一原因。链条/皮带/齿轮/搅拌轴都须有防护</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">23</div>
+      <div class="item-content">
+        <div class="item-title">特种设备（电梯/锅炉/压力容器/叉车）是否经当地检验合格？</div>
+        <div class="item-desc">越南要求每年年检 / 泰国要求锅炉注册 / 尼日利亚要求叉车操作证——无证运行面临重罚</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">国内特种设备检验报告在当地无效，必须找当地有资质的检验机构重新检验。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">24</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了设备维护保养计划（含日常点检/定期检修）？</div>
+        <div class="item-desc">点检表须在现场，且有签字记录。二手设备尤其需要加强维护频率</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">25</div>
+      <div class="item-content">
+        <div class="item-title">是否执行了「锁机挂牌」（LOTO）制度？</div>
+        <div class="item-desc">设备检修/清洁/调整时必须断电上锁。东南亚工厂此项达标率极低</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">LOTO是东南亚中资工厂最薄弱的安全制度。建议配备标准挂锁（每人一把不同颜色锁），建立简单的LOTO流程卡。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">26</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了临时用电审批制度？</div>
+        <div class="item-desc">临时接线须审批、限定使用期限、指定责任人。临时用电事故在施工期和设备搬迁期高发</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">27</div>
+      <div class="item-content">
+        <div class="item-title">起重设备（行车/葫芦/吊索具）是否定期检测并有操作规程？</div>
+        <div class="item-desc">吊索具（钢丝绳/吊带/链条）每月目视检查，每年报废更换。行车每季度检测一次</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">东南亚中资工厂大量使用国内运来的吊索具，热带高温高湿环境加速钢丝绳锈蚀，国内3年更换周期在东南亚须缩短为1-2年。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">28</div>
+      <div class="item-content">
+        <div class="item-title">手持电动工具是否使用安全电压（潮湿环境 36V 以下）？</div>
+        <div class="item-desc">东南亚湿度高（常年在70-90%），潮湿环境下使用220V手持工具触电风险极高</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">29</div>
+      <div class="item-content">
+        <div class="item-title">是否对所有电气线路进行了绝缘电阻检测？</div>
+        <div class="item-desc">东南亚工厂电气线路老化速度快（高温+高湿+鼠害），建议每半年检测一次</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">30</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了设备报废/淘汰更新机制？</div>
+        <div class="item-desc">超过使用年限、无配件供应、多次故障的设备须有明确报废标准和流程</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">中资工厂常有"用坏为止"的心态，但老旧设备事故率是正常设备的3-5倍。报废决策须有数据支持。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 04 ========== -->
+<div class="section" data-section="4">
+  <div class="section-header" onclick="toggleSection(4)">
+    <div class="section-num" style="background:#d4537e">04</div>
+    <h3>化学品与职业健康</h3>
+    <span class="tag" style="background:#fbeaf0;color:#72243e">健康风险</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle4">&#9660;</div>
+  </div>
+  <div class="section-body" id="body4">
+    <div class="checklist-item">
+      <div class="item-num">31</div>
+      <div class="item-content">
+        <div class="item-title">所有化学品是否编制了 SDS（安全数据表）且为当地语言版本？</div>
+        <div class="item-desc">GHS标准 — 越南要求越语SDS / 泰国要求泰语SDS，中文SDS在当地不被认可</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">中资出海最易被罚的项目之一。建议让化学品供应商提供当地语言SDS，如果供应商没有，可通过SDS翻译服务转换。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">32</div>
+      <div class="item-content">
+        <div class="item-title">化学品存储是否分类分区，且配备了泄漏应急物资？</div>
+        <div class="item-desc">酸碱分离、易燃物远离火源、配备吸油棉/中和剂。东南亚高温环境加大化学品挥发风险</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">33</div>
+      <div class="item-content">
+        <div class="item-title">粉尘作业岗位是否进行了粉尘浓度检测？</div>
+        <div class="item-desc">木工/打磨/抛光/焊接工序——昆山铝粉尘爆炸的教训，东南亚同类工厂同样存在</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">34</div>
+      <div class="item-content">
+        <div class="item-title">噪声超标岗位是否配备了听力保护并限制暴露时间？</div>
+        <div class="item-desc">85dB以上8小时须佩戴耳塞/耳罩。东南亚纺织/制鞋/电子厂噪声问题普遍</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">35</div>
+      <div class="item-content">
+        <div class="item-title">是否安排了职业健康体检（岗前/在岗/离岗）？</div>
+        <div class="item-desc">越南《劳动法》要求雇主承担体检费用 / 泰国要求接触有害物质工人每年体检</div>
+        <span class="item-iso">ISO 7.1</span>
+        <div class="item-tip">中资工厂常让工人自己去体检然后报销，但法规要求体检须由雇主安排指定机构。建议与当地医院签约定期上门体检。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">36</div>
+      <div class="item-content">
+        <div class="item-title">接触有害物质的员工是否配备了适当的 PPE 且定期更换？</div>
+        <div class="item-desc">防毒面具滤芯须按说明书更换（一般2-4周）/ 化学防护手套有渗透时限不是永久可用</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">37</div>
+      <div class="item-content">
+        <div class="item-title">是否进行了工作环境监测（空气有害物/噪声/照明/温度）？</div>
+        <div class="item-desc">至少每年一次由第三方检测机构出具报告。东南亚高温环境下温度监测尤其重要</div>
+        <span class="item-iso">ISO 9.1.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">38</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了化学品采购准入制度（只采购有完整 SDS 的产品）？</div>
+        <div class="item-desc">采购部门在化学品下单前须确认供应商能提供当地语言SDS</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">39</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了职业病危害告知制度（在作业现场张贴告知卡）？</div>
+        <div class="item-desc">告知卡须包含：化学品名称、危害类型、防护措施、应急措施、急救电话</div>
+        <span class="item-iso">ISO 7.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">40</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了高温作业防护制度（饮水/休息/遮阳/降温）？</div>
+        <div class="item-desc">东南亚工厂车间温度常超 35°C，中暑是高发工伤。越南已立法要求高温作业保障</div>
+        <span class="item-iso">ISO 8.1</span>
+        <div class="item-tip">建议：每2小时强制休息15分钟、免费提供饮用水和电解质饮料、车间安装工业风扇或冷风机。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 05 ========== -->
+<div class="section" data-section="5">
+  <div class="section-header" onclick="toggleSection(5)">
+    <div class="section-num" style="background:#1d9e75">05</div>
+    <h3>消防安全</h3>
+    <span class="tag" style="background:#e1f5ee;color:#085041">合规红线</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle5">&#9660;</div>
+  </div>
+  <div class="section-body" id="body5">
+    <div class="checklist-item">
+      <div class="item-num">41</div>
+      <div class="item-content">
+        <div class="item-title">是否通过当地消防验收，取得消防许可证？</div>
+        <div class="item-desc">越南要求消防许可证方可投产 / 泰国要求消防安全评估报告 / 未取得可能被勒令停工</div>
+        <span class="item-risk">合规红线</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">42</div>
+      <div class="item-content">
+        <div class="item-title">灭火器/消防栓配置是否充足且在有效期内？</div>
+        <div class="item-desc">一般要求每75m&sup2;配1具灭火器 / 消防栓每月检查 / 压力表指针须在绿区</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">43</div>
+      <div class="item-content">
+        <div class="item-title">疏散通道是否畅通，疏散标识是否清晰（多语言）？</div>
+        <div class="item-desc">出口标识须包含当地语言 / 夜间须有应急照明 / 通道不得堆放货物</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">44</div>
+      <div class="item-content">
+        <div class="item-title">是否进行了至少每半年一次消防演练？</div>
+        <div class="item-desc">越南要求每半年演练 / 须有演练方案、签到表、照片、总结报告</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">45</div>
+      <div class="item-content">
+        <div class="item-title">宿舍区是否与生产区物理隔离，且有独立的消防设施？</div>
+        <div class="item-desc">中资工厂宿舍与车间同楼情况常见，一旦发生火灾后果严重——这是合规红线</div>
+        <span class="item-risk">合规红线</span>
+        <div class="item-tip">2014年昆山粉尘爆炸和多次工厂宿舍火灾的教训。如果宿舍与车间在同一栋楼，至少须有防火墙+独立疏散通道+独立消防设施。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">46</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了动火作业审批制度？</div>
+        <div class="item-desc">焊接/切割等动火作业须提前申请、指定监护人、配备灭火器材、清理可燃物</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">47</div>
+      <div class="item-content">
+        <div class="item-title">自动喷淋/烟感系统是否定期测试（每季度至少一次）？</div>
+        <div class="item-desc">东南亚高湿环境可能造成喷淋头锈蚀、烟感误报/失效，须加强维护频率</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">48</div>
+      <div class="item-content">
+        <div class="item-title">厂区内消防车道是否畅通（无占用）？</div>
+        <div class="item-desc">东南亚工厂常在消防通道上堆放货物或停放车辆，这是火灾时救援受阻的直接原因</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">49</div>
+      <div class="item-content">
+        <div class="item-title">易燃易爆品存储量是否超过当地法规限量？</div>
+        <div class="item-desc">油漆/稀释剂/天然气罐等须存放在专用的防爆仓，且存储量不得超过法规上限</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">50</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了夜间/节假日消防值班制度？</div>
+        <div class="item-desc">东南亚工厂常有夜班和周末加班，消防值班人员须24小时在岗</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 06 ========== -->
+<div class="section" data-section="6">
+  <div class="section-header" onclick="toggleSection(6)">
+    <div class="section-num" style="background:#534ab7">06</div>
+    <h3>培训与能力建设</h3>
+    <span class="tag" style="background:#eeedfe;color:#3c3489">ISO 必审</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle6">&#9660;</div>
+  </div>
+  <div class="section-body" id="body6">
+    <div class="checklist-item">
+      <div class="item-num">51</div>
+      <div class="item-content">
+        <div class="item-title">新员工是否完成三级安全培训（入厂/车间/岗位）并通过考核？</div>
+        <div class="item-desc">培训须有签到表、考核记录、合格标准（一般80分及格）</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">52</div>
+      <div class="item-content">
+        <div class="item-title">培训材料是否提供当地语言版本？</div>
+        <div class="item-desc">仅用中文培训在当地不被认可且效果差。至少中英双语，最好含当地语言</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">53</div>
+      <div class="item-content">
+        <div class="item-title">特种作业人员是否持有当地认可的资格证书？</div>
+        <div class="item-desc">叉车/电工/焊工/锅炉工——中国证书在东南亚不被承认，须在当地重新考取</div>
+        <span class="item-iso">ISO 7.2</span>
+        <div class="item-tip">这是中资出海最常踩的坑之一。一位在国内开了20年叉车的老师傅，在越南没有当地叉车证，出了事故工厂负全责。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">54</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了年度培训计划并按计划执行？</div>
+        <div class="item-desc">须覆盖全员、全年、全岗位，且保留培训记录</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">55</div>
+      <div class="item-content">
+        <div class="item-title">中方管理人员是否接受了「跨文化安全管理」专项培训？</div>
+        <div class="item-desc">中方管理者不了解当地工人安全意识和行为模式，导致管理失效</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">56</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了安全培训效果评估机制（不只是签到）？</div>
+        <div class="item-desc">培训后须有笔试/实操考核，及格率低于80%须复训</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">57</div>
+      <div class="item-content">
+        <div class="item-title">外来人员（访客/供应商/客户）是否接受了安全告知？</div>
+        <div class="item-desc">进入生产区前须观看安全须知视频或阅读安全须知卡（多语言），并签署确认</div>
+        <span class="item-iso">ISO 7.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">58</div>
+      <div class="item-content">
+        <div class="item-title">班前安全会议是否每日召开？</div>
+        <div class="item-desc">每天开工前5-10分钟，讲解当日安全要点。记录本日安全注意事项</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">59</div>
+      <div class="item-content">
+        <div class="item-title">是否保存了完整的培训档案（签到/照片/考核/证书复印件）？</div>
+        <div class="item-desc">培训档案是ISO审核必查材料，缺失将直接开具不符合项</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">60</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了安全知识考核与绩效挂钩制度？</div>
+        <div class="item-desc">培训不合格不影响工资/晋升=培训无效。安全考核须纳入个人绩效考核</div>
+        <span class="item-iso">ISO 7.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 07 ========== -->
+<div class="section" data-section="7">
+  <div class="section-header" onclick="toggleSection(7)">
+    <div class="section-num" style="background:#0f6e56">07</div>
+    <h3>承包商与外包管理</h3>
+    <span class="tag" style="background:#e1f5ee;color:#085041">管理盲区</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle7">&#9660;</div>
+  </div>
+  <div class="section-body" id="body7">
+    <div class="checklist-item">
+      <div class="item-num">61</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了承包商安全准入评估机制？</div>
+        <div class="item-desc">须审查承包商的安全资质、事故记录、保险证明，合格后方可进场</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">62</div>
+      <div class="item-content">
+        <div class="item-title">承包商进场前是否进行了安全交底和现场安全培训？</div>
+        <div class="item-desc">即使承包商自带队伍，雇主仍有安全管理责任</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">63</div>
+      <div class="item-content">
+        <div class="item-title">外包作业是否纳入工厂统一的安全监督范围？</div>
+        <div class="item-desc">工厂安全巡查须覆盖承包商作业区域，发现违规须有权叫停</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">64</div>
+      <div class="item-content">
+        <div class="item-title">是否与承包商签订了安全管理协议（书面）？</div>
+        <div class="item-desc">明确安全责任划分、事故报告流程、违约处罚条款</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">65</div>
+      <div class="item-content">
+        <div class="item-title">承包商完工后是否进行了安全验收？</div>
+        <div class="item-desc">检查作业现场恢复情况、遗留隐患、设备状态</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">66</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了承包商安全绩效考核机制？</div>
+        <div class="item-desc">每次完工后评估：是否发生事故/是否遵守安全规定/现场恢复是否达标——作为下次合作参考</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">67</div>
+      <div class="item-content">
+        <div class="item-title">承包商现场作业是否有人监督（工厂指定安全监督员）？</div>
+        <div class="item-desc">东南亚当地承包商安全意识普遍薄弱，无人监督几乎100%会出问题</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">68</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了承包商事故报告和调查机制？</div>
+        <div class="item-desc">承包商在现场发生事故，雇主须参与调查——否则可能承担连带责任</div>
+        <span class="item-iso">ISO 10.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">69</div>
+      <div class="item-content">
+        <div class="item-title">承包商的员工是否佩戴了工厂统一的安全标识/工牌？</div>
+        <div class="item-desc">便于识别非本厂人员，也便于安全监督和紧急疏散时清点人数</div>
+        <span class="item-iso">ISO 8.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">70</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了承包商黑名单制度？</div>
+        <div class="item-desc">多次违规或发生安全事故的承包商不得再次合作——须形成书面名单</div>
+        <span class="item-iso">ISO 8.1.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 08 ========== -->
+<div class="section" data-section="8">
+  <div class="section-header" onclick="toggleSection(8)">
+    <div class="section-num" style="background:#993c1d">08</div>
+    <h3>应急管理</h3>
+    <span class="tag" style="background:#faecec;color:#712b13">事故预防</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle8">&#9660;</div>
+  </div>
+  <div class="section-body" id="body8">
+    <div class="checklist-item">
+      <div class="item-num">71</div>
+      <div class="item-content">
+        <div class="item-title">是否编制了综合应急预案（含火灾/化学品泄漏/自然灾害）？</div>
+        <div class="item-desc">东南亚须特别增加暴雨洪涝/台风/地震应急预案——国内模板须本地化调整</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">72</div>
+      <div class="item-content">
+        <div class="item-title">应急响应小组是否成立，且成员名单和联系方式已更新？</div>
+        <div class="item-desc">须明确指挥者、疏散引导员、急救员、联络员——含当地医院/消防/警察联系方式</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">73</div>
+      <div class="item-content">
+        <div class="item-title">急救箱是否配备齐全（含AED如有条件）且定期检查？</div>
+        <div class="item-desc">每50人至少1个急救箱 / 内容物清单须在箱内 / 每月检查并记录</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">74</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了与当地医院的应急转运通道？</div>
+        <div class="item-desc">提前踩点最近的有能力的医院、确认转运路线、保存24小时急救电话</div>
+        <span class="item-iso">ISO 8.2</span>
+        <div class="item-tip">东南亚部分地区医院距离远、急救车响应慢。建议工厂自备转运车辆+基本急救药品，至少2名员工接受过急救培训。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">75</div>
+      <div class="item-content">
+        <div class="item-title">最近一次应急演练是否在6个月内完成且有完整报告？</div>
+        <div class="item-desc">报告须包含：演练过程记录、发现问题、改进措施、完成时限</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">76</div>
+      <div class="item-content">
+        <div class="item-title">应急预案是否向当地政府部门备案（如要求）？</div>
+        <div class="item-desc">越南要求重大危险源企业应急预案报备 / 泰国要求大型工厂应急预案报当地消防部门</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">77</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了极端天气预警接收和响应机制？</div>
+        <div class="item-desc">东南亚台风/暴雨/洪水预警——关注当地气象局通知，建立停工/疏散决策标准</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">78</div>
+      <div class="item-content">
+        <div class="item-title">员工是否知道最近的紧急集合点位置？</div>
+        <div class="item-desc">紧急集合点须有标识、有人员清点机制。东南亚工厂面积大，多个集合点更安全</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">79</div>
+      <div class="item-content">
+        <div class="item-title">应急物资（灭火器/防毒面具/担架/急救包）是否定期检查并记录？</div>
+        <div class="item-desc">每月检查一次，过期物资须立即更换。检查记录须有人签字</div>
+        <span class="item-iso">ISO 8.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">80</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了事故后心理辅导机制？</div>
+        <div class="item-desc">重大事故后，目击者和同班组工人可能出现PTSD——尤其是东南亚文化中工伤事故常被视为禁忌</div>
+        <span class="item-iso">ISO 6.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 09 ========== -->
+<div class="section" data-section="9">
+  <div class="section-header" onclick="toggleSection(9)">
+    <div class="section-num" style="background:#0c447c">09</div>
+    <h3>事故调查与持续改进</h3>
+    <span class="tag" style="background:#e6f1fb;color:#0c447c">体系闭环</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle9">&#9660;</div>
+  </div>
+  <div class="section-body" id="body9">
+    <div class="checklist-item">
+      <div class="item-num">81</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了事故（含未遂事故）报告机制？</div>
+        <div class="item-desc">未遂事故往往是事故的前兆。东南亚工厂「小伤不报」文化普遍</div>
+        <span class="item-iso">ISO 10.2</span>
+        <div class="item-tip">建议设立"安全报告奖励"——每报告一个隐患奖励小额奖金，比罚款更能建立安全文化。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">82</div>
+      <div class="item-content">
+        <div class="item-title">事故调查是否使用系统方法（5Why/鱼骨图/瑞士奶酪）？</div>
+        <div class="item-desc">不能止于「员工违章」，必须找到管理系统的根本原因</div>
+        <span class="item-iso">ISO 10.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">83</div>
+      <div class="item-content">
+        <div class="item-title">事故调查报告是否包含纠正措施和预防措施（CAPA）？</div>
+        <div class="item-desc">CAPA 须有责任人、完成时限、验证人——缺任何一个都是不完整</div>
+        <span class="item-iso">ISO 10.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">84</div>
+      <div class="item-content">
+        <div class="item-title">事故经验教训是否在工厂内部分享（多语言）？</div>
+        <div class="item-desc">一处事故、全厂受益——须用当地语言通报，确保信息传达</div>
+        <span class="item-iso">ISO 10.3</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">85</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了「安全绩效月度报告」制度？</div>
+        <div class="item-desc">每月统计：事故数/未遂数/隐患整改率/培训完成率/巡检发现问题数</div>
+        <span class="item-iso">ISO 9.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">86</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了安全隐患排查制度（日常/周检/月检）？</div>
+        <div class="item-desc">日常巡检：班组长每班 / 周检：安全主管 / 月检：管理层带队</div>
+        <span class="item-iso">ISO 9.1.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">87</div>
+      <div class="item-content">
+        <div class="item-title">安全绩效是否纳入管理层绩效考核？</div>
+        <div class="item-desc">管理层的奖金/晋升与安全指标挂钩——安全绩效不与利益挂钩=管理层不重视</div>
+        <span class="item-iso">ISO 5.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">88</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了安全改善提案机制（鼓励全员参与）？</div>
+        <div class="item-desc">员工主动提出安全改善建议应获得认可或奖励</div>
+        <span class="item-iso">ISO 5.4</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">89</div>
+      <div class="item-content">
+        <div class="item-title">是否对纠正措施的落实进行了验证（闭环管理）？</div>
+        <div class="item-desc">整改措施不只是安排了就行，必须有人去验证是否真的落实</div>
+        <span class="item-iso">ISO 10.1</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">90</div>
+      <div class="item-content">
+        <div class="item-title">是否定期对比同行业安全指标（基准对比）？</div>
+        <div class="item-desc">了解同行业/同地区的事故率和最佳实践，设定改进标杆</div>
+        <span class="item-iso">ISO 9.1.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECTION 10 ========== -->
+<div class="section" data-section="10">
+  <div class="section-header" onclick="toggleSection(10)">
+    <div class="section-num" style="background:#639922">10</div>
+    <h3>文件与记录管理</h3>
+    <span class="tag" style="background:#eaf3de;color:#27500a">认证必备</span>
+    <span class="section-count">10 条</span>
+    <div class="section-toggle" id="toggle10">&#9660;</div>
+  </div>
+  <div class="section-body" id="body10">
+    <div class="checklist-item">
+      <div class="item-num">91</div>
+      <div class="item-content">
+        <div class="item-title">安全管理体系文件是否完整（手册+程序文件+作业指导书+记录表）？</div>
+        <div class="item-desc">至少包含：安全手册1份、程序文件15份核心、作业指导书覆盖全部高风险作业</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">92</div>
+      <div class="item-content">
+        <div class="item-title">文件是否受控（版本号/审批人/生效日期/分发记录）？</div>
+        <div class="item-desc">现场使用的须为最新有效版本，作废文件须回收或标注「作废」</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">93</div>
+      <div class="item-content">
+        <div class="item-title">安全记录保存期限是否符合要求（至少3年）？</div>
+        <div class="item-desc">培训记录/巡检记录/事故报告/内审报告——建议电子+纸质双重保存</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">94</div>
+      <div class="item-content">
+        <div class="item-title">是否完成至少一次内部审核（覆盖全部条款）？</div>
+        <div class="item-desc">内审须由经过培训的内审员执行，且与被审核区域无直接管理关系</div>
+        <span class="item-iso">ISO 9.2</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">95</div>
+      <div class="item-content">
+        <div class="item-title">是否进行了至少一次管理评审（由最高管理者主持）？</div>
+        <div class="item-desc">管理评审须评估体系适用性/充分性/有效性。输入：内审结果、事故分析、法规变化、员工反馈</div>
+        <span class="item-iso">ISO 9.3</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">96</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了文件编码规则和目录体系？</div>
+        <div class="item-desc">编码规则如：SP-001（安全手册） / PR-001~015（程序文件） / WI-XXX（作业指导书）</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">97</div>
+      <div class="item-content">
+        <div class="item-title">电子文件是否做了备份（异地/云端）？</div>
+        <div class="item-desc">东南亚硬件故障、断电、病毒风险高。安全体系文件须有至少一份离线备份</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">98</div>
+      <div class="item-content">
+        <div class="item-title">体系文件是否覆盖了 ISO 45001 全部条款（条款对照矩阵）？</div>
+        <div class="item-desc">建议制作一张「ISO 45001 条款-体系文件对照表」，审核前自行检查是否有遗漏</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">99</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了外部文件（法规/标准/客户要求）的收集和管理制度？</div>
+        <div class="item-desc">外部文件须有版本控制、分发记录，确保使用最新有效版本</div>
+        <span class="item-iso">ISO 7.5</span>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+    <div class="checklist-item">
+      <div class="item-num">100</div>
+      <div class="item-content">
+        <div class="item-title">是否建立了记录表格的统一模板管理（多语言版本）？</div>
+        <div class="item-desc">所有记录表（巡检表/培训签到表/事故报告表）须有中文+英文+当地语言三版</div>
+        <span class="item-iso">ISO 7.5</span>
+        <div class="item-tip">这是ISO审核中经常被忽视的细节。审核员要看记录表上的信息，当地员工是否能理解并正确填写。</div>
+      </div>
+      <div class="item-checkbox" onclick="toggleCheck(this)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h3>自查发现问题？需要专业指导？</h3>
+  <p>这份清单帮你发现差距，但要真正解决问题，你需要一套完整的实施路径。<br>《30天ISO 45001体系落地营》带你从清单到体系，从差距到认证。<br>包含：20小时录播课 + 15份Word模板 + 8次直播答疑 + 30天社群陪跑</p>
+  <a href="#" class="cta-btn">了解课程详情 &rarr;</a>
+</div>
+
+<div class="footer">
+  本清单仅供自查参考，不构成法律意见。具体合规要求请以当地现行法律法规为准。<br>
+  &copy; 2026 安全顾问工作室 | ISO 45001 知识变现系列 | 版本 2.0
+</div>
+
+</div>
+<script>
+function toggleSection(n){var b=document.getElementById('body'+n),t=document.getElementById('toggle'+n);b.classList.toggle('open');t.classList.toggle('open')}
+var checkedCount=0;var total=100;
+function toggleCheck(el){el.classList.toggle('checked');checkedCount=document.querySelectorAll('.item-checkbox.checked').length;updateProgress()}
+function updateProgress(){var p=Math.round((checkedCount/total)*100);document.getElementById('progressFill').style.width=p+'%';document.getElementById('progressText').textContent='已完成 '+checkedCount+' / '+total+' 条 ('+p+'%)';var c=document.getElementById('progressContainer');if(checkedCount>0)c.classList.add('visible')}
+toggleSection(1);
+</script>
+</body>
+</html>
