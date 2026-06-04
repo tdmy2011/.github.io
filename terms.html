@@ -1,71 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务条款 | China Safety Pro</title>
-    <meta name="description" content="China Safety Pro服务条款和使用条件">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:#f8fafc;color:#334155;line-height:1.8}
-        .container{max-width:800px;margin:0 auto;padding:40px 24px}
-        h1{font-size:28px;color:#0f172a;margin-bottom:8px}
-        .last-updated{font-size:13px;color:#94a3b8;margin-bottom:32px}
-        h2{font-size:20px;color:#0f172a;margin:28px 0 12px;padding-left:12px;border-left:4px solid #0ea5e9}
-        p{margin-bottom:12px;color:#475569}
-        ul,ol{margin:8px 0 16px 24px;color:#475569}
-        li{margin-bottom:6px}
-        .back-link{display:inline-block;margin-top:40px;padding:10px 24px;background:#0ea5e9;color:#fff;text-decoration:none;border-radius:8px;font-size:14px;transition:background .2s}
-        .back-link:hover{background:#0284c7}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>服务条款 Terms of Service</h1>
-        <p class="last-updated">最后更新：2026年5月31日</p>
-
-        <h2>1. 服务说明</h2>
-        <p>China Safety Pro（tdmy2011.github.io）提供与ISO 45001职业健康安全管理体系相关的在线课程、咨询资料、程序文件模板和培训服务。</p>
-
-        <h2>2. 知识产权</h2>
-        <p>本网站上的所有内容，包括但不限于文字、图片、视频、程序文件模板、课程内容，均为China Safety Pro或其内容创作者的知识产权，受《中华人民共和国著作权法》和国际知识产权法律保护。</p>
-        <ul>
-            <li>购买课程或资料后，您获得<strong>个人使用授权</strong></li>
-            <li>未经书面许可，不得复制、分发、转售或公开展示课程内容</li>
-            <li>程序文件模板可为客户企业内部使用和修改，但不得转售给第三方</li>
-        </ul>
-
-        <h2>3. 课程购买与退款</h2>
-        <p>我们提供以下退款政策：</p>
-        <ul>
-            <li>购买后 <strong>7天内</strong>，如对课程内容不满意，可申请全额退款</li>
-            <li>退款申请请发送邮件至 <a href="mailto:info@tdmy2011.github.io">info@tdmy2011.github.io</a></li>
-            <li>退款将在3-5个工作日内原路返回</li>
-            <li>超过7天或已下载全部资料的情况，不支持退款</li>
-        </ul>
-
-        <h2>4. 免责声明</h2>
-        <p>本网站提供的资料和建议仅供参考，不构成法律意见。具体的安全管理措施和法律合规要求因国家和地区而异，使用者应结合当地法规和实际情况进行调整。我们不对因使用本网站内容而导致的直接或间接损失承担责任。</p>
-
-        <h2>5. 用户行为规范</h2>
-        <p>使用本网站时，您同意：</p>
-        <ul>
-            <li>不利用本网站内容从事违法活动</li>
-            <li>不尝试攻击、入侵或干扰网站正常运行</li>
-            <li>不恶意传播病毒或有害代码</li>
-            <li>不在评论区发布垃圾信息、广告或违法内容</li>
-        </ul>
-
-        <h2>6. 服务变更</h2>
-        <p>我们保留随时修改服务内容和价格的权利。重大变更将提前通过邮件通知已订阅用户。</p>
-
-        <h2>7. 适用法律</h2>
-        <p>本服务条款适用中华人民共和国法律。如有争议，双方应友好协商解决。</p>
-
-        <h2>8. 联系方式</h2>
-        <p>如有任何问题，请联系：<a href="mailto:info@tdmy2011.github.io">info@tdmy2011.github.io</a></p>
-
-        <a href="index.html" class="back-link">← 返回首页</a>
+{% extends "base.html" %}
+{% block title %}服务条款 | YigeWorks{% endblock %}
+{% block content %}
+<section class="section"><div class="container" style="max-width:800px;">
+    <h1 class="section-title">服务条款</h1>
+    <div class="card" style="line-height:2;color:var(--gray-600);">
+        <p><strong>生效日期：</strong>2024年1月1日</p>
+        <h3 style="margin:24px 0 12px;">1. 服务说明</h3>
+        <p>YigeWorks 提供在线安全培训课程、文件模板和咨询服务。购买后您将获得对应产品的访问权限。</p>
+        <h3 style="margin:24px 0 12px;">2. 退款政策</h3>
+        <p>课程购买后 7 天内，若课程进度未超过 30%，可申请全额退款。超过 7 天或进度超过 30% 的订单不予退款。</p>
+        <h3 style="margin:24px 0 12px;">3. 知识产权</h3>
+        <p>所有课程内容、模板文件均为 YigeWorks 独家所有。购买后您获得个人使用授权，不得复制、分发或转售。</p>
+        <h3 style="margin:24px 0 12px;">4. 免责声明</h3>
+        <p>课程内容仅供学习和参考，不构成法律意见。实际应用请结合当地法律法规和具体情况。</p>
+        <h3 style="margin:24px 0 12px;">5. 联系</h3>
+        <p>服务条款相关问题请联系：admin@yigeworks.com</p>
     </div>
-</body>
-</html>
+</div></section>
+{% endblock %}

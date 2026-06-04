@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}订单查询 | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:800px;">
+        <h1 class="section-title">订单查询</h1>
+        <p class="section-subtitle">输入购买时使用的邮箱查询订单历史</p>
+
+        <form method="get" class="card" style="display:flex;gap:12px;margin-bottom:32px;">
+            <input type="email" name="email" value="{{ email }}" class="form-input" placeholder="输入您的邮箱" required style="flex:1;">
+            <button type="submit" class="btn btn-primary">查询</button>
+        </form>
+
+        {% if orders %}
+        <div>
+            {% for order in orders %}
+            <div class="card" style="margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <h3 style="font-size:1.1rem;">订单 #{{ order.id }}</h3>
+                        <p style="font-size:0.85rem;color:var(--gray-400);">{{ order.created|date:"Y-m-d H:i" }}</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:1.2rem;font-weight:700;color:var(--primary);">${{ order.total_paid }}</div>
+                        {% if order.status == 'paid' %}
+                        <span class="tag tag-green">已支付</span>
+                        {% elif order.status == 'pending' %}
+                        <span class="tag tag-amber">待支付</span>
+                        {% else %}
+                        <span class="tag tag-blue">{{ order.get_status_display }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="margin-top:12px;border-top:1px solid var(--gray-100);padding-top:12px;">
+                    {% for item in order.items.all %}
+                    <span style="font-size:0.9rem;color:var(--gray-600);">{{ item.product_name }} x{{ item.quantity }}{% if not forloop.last %}，{% endif %}</span>
+                    {% endfor %}
+                </div>
+                {% if order.status == 'paid' %}
+                <a href="#" class="btn btn-sm btn-green mt-4">访问课程</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% elif email %}
+        <div class="card" style="text-align:center;padding:40px;">
+            <p style="color:var(--gray-500);">未找到使用此邮箱的订单</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

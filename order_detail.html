@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}订单 #{{ order.id }} | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:800px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+            <h1>订单 #{{ order.id }}</h1>
+            {% if order.status == 'pending' %}
+            <a href="{% url 'payment:process' order.payment_method %}" class="btn btn-accent">去支付</a>
+            {% elif order.status == 'paid' %}
+            <span class="tag tag-green" style="font-size:1rem;padding:8px 16px;">已支付</span>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <table style="width:100%;border-collapse:collapse;">
+                <thead><tr style="border-bottom:2px solid var(--gray-200);">
+                    <th style="text-align:left;padding:12px;">商品</th>
+                    <th style="text-align:center;padding:12px;">数量</th>
+                    <th style="text-align:right;padding:12px;">小计</th>
+                </tr></thead>
+                <tbody>
+                    {% for item in order.items.all %}
+                    <tr style="border-bottom:1px solid var(--gray-100);">
+                        <td style="padding:12px;">{{ item.product_name }}</td>
+                        <td style="text-align:center;padding:12px;">{{ item.quantity }}</td>
+                        <td style="text-align:right;padding:12px;">${{ item.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot><tr>
+                    <td colspan="2" style="padding:16px;text-align:right;font-size:1.1rem;font-weight:700;">总计</td>
+                    <td style="text-align:right;padding:16px;font-size:1.1rem;font-weight:700;color:var(--primary);">${{ order.total_paid }}</td>
+                </tr></tfoot>
+            </table>
+        </div>
+
+        <div class="card mt-4">
+            <h3 style="margin-bottom:12px;">订单信息</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.9rem;">
+                <div><span style="color:var(--gray-400);">姓名：</span>{{ order.display_name }}</div>
+                <div><span style="color:var(--gray-400);">邮箱：</span>{{ order.email }}</div>
+                <div><span style="color:var(--gray-400);">公司：</span>{{ order.company|default:"-" }}</div>
+                <div><span style="color:var(--gray-400);">电话：</span>{{ order.phone|default:"-" }}</div>
+                <div><span style="color:var(--gray-400);">支付方式：</span>{{ order.get_payment_method_display }}</div>
+                <div><span style="color:var(--gray-400);">状态：</span>{{ order.get_status_display }}</div>
+                <div><span style="color:var(--gray-400);">创建时间：</span>{{ order.created|date:"Y-m-d H:i" }}</div>
+                {% if order.paypal_order_id %}
+                <div><span style="color:var(--gray-400);">PayPal订单号：</span>{{ order.paypal_order_id }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

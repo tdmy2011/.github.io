@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}支付 | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:640px;">
+        <h1 class="section-title">确认支付</h1>
+
+        <div class="card">
+            <!-- Order Info -->
+            <div style="background:var(--gray-50);border-radius:8px;padding:20px;margin-bottom:24px;">
+                <h3 style="margin-bottom:12px;">订单 #{{ order.id }}</h3>
+                {% for item in order.items.all %}
+                <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:0.9rem;">
+                    <span>{{ item.product_name }} x{{ item.quantity }}</span>
+                    <span>${{ item.total }}</span>
+                </div>
+                {% endfor %}
+                <div style="border-top:2px solid var(--gray-200);padding-top:12px;margin-top:8px;display:flex;justify-content:space-between;font-size:1.3rem;font-weight:700;">
+                    <span>应付总额</span>
+                    <span style="color:var(--primary);">${{ order.total_paid }} {{ order.currency }}</span>
+                </div>
+            </div>
+
+            <!-- PayPal Button -->
+            {% if payment_method == 'paypal' %}
+            <div id="paypal-button-container" style="min-height:50px;text-align:center;"></div>
+            <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:var(--gray-400);">
+                点击上方按钮将跳转到 PayPal 完成支付
+            </p>
+            {% elif payment_method == 'stripe' %}
+            <div style="text-align:center;padding:40px;">
+                <p style="color:var(--gray-500);">Stripe 支付即将上线</p>
+                <p style="font-size:0.85rem;color:var(--gray-400);margin-top:8px;">请联系客服完成支付：admin@yigeworks.com</p>
+            </div>
+            {% elif payment_method == 'transfer' %}
+            <div style="text-align:center;padding:20px;">
+                <p style="color:var(--gray-600);">请联系客服获取银行转账信息</p>
+                <p style="font-size:0.85rem;color:var(--gray-400);margin-top:8px;">📧 admin@yigeworks.com</p>
+                <a href="{% url 'shop:contact' %}" class="btn btn-outline btn-sm mt-4">联系我们</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div style="text-align:center;margin-top:16px;">
+            <a href="{% url 'shop:contact' %}" style="color:var(--gray-400);font-size:0.85rem;">遇到问题？联系我们</a>
+        </div>
+    </div>
+</section>
+
+{% if payment_method == 'paypal' %}
+<script>
+paypal_sdk.Buttons({
+    style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'paypal', height: 45 },
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    currency_code: '{{ order.currency }}',
+                    value: '{{ order.total_paid|stringformat:"f" }}',
+                    breakdown: { item_total: { currency_code: '{{ order.currency }}', value: '{{ order.total_paid|stringformat:"f" }}' } }
+                },
+                { reference_id: 'ORDER-{{ order.id }}' }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            fetch('{% url "payment:paypal_capture" %}', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}'},
+                body: JSON.stringify({orderID: data.orderID})
+            }).then(r => r.json()).then(d => {
+                if (d.status === 'ok') {
+                    window.location.href = '{% url "payment:success" %}?order_id=' + d.order_id;
+                } else {
+                    alert('支付处理失败，请联系客服');
+                }
+            });
+        });
+    },
+    onCancel: function() {
+        window.location.href = '{% url "payment:cancelled" %}';
+    },
+    onError: function(err) {
+        alert('支付出错: ' + err);
+    }
+}).render('#paypal-button-container');
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}课程产品{% if category %} - {{ category.name }}{% endif %} | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">{% if category %}{{ category.name }}{% else %}全部课程产品{% endif %}</h1>
+
+        <!-- Category Filter -->
+        <div style="display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;">
+            <a href="{% url 'shop:product_list' %}" class="btn btn-sm {% if not category %}btn-primary{% else %}btn-outline{% endif %}">全部</a>
+            {% for cat in categories %}
+            <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="btn btn-sm {% if category and category.slug == cat.slug %}btn-primary{% else %}btn-outline{% endif %}">{{ cat.name }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- Products Grid -->
+        <div class="card-grid">
+            {% for product in products %}
+            <div class="card product-card">
+                <div class="card-image">
+                    {% if product.product_type == 'course' %}🎓{% elif product.product_type == 'template' %}📄{% elif product.product_type == 'service' %}🤝{% else %}📋{% endif %}
+                </div>
+                <div class="card-body">
+                    <span class="tag tag-blue">{{ product.get_product_type_display }}</span>
+                    <h3 style="margin-top:8px;"><a href="{% url 'shop:product_detail' product.slug %}">{{ product.name }}</a></h3>
+                    <p>{{ product.short_description|truncatechars:80 }}</p>
+                    {% if product.duration %}<p style="font-size:0.85rem;color:var(--gray-400);">⏱ {{ product.duration }} | 📚 {{ product.modules }} 课时</p>{% endif %}
+                    <div class="price-row">
+                        <span class="price">${{ product.price }}</span>
+                        {% if product.original_price > product.price %}
+                        <span class="original-price">${{ product.original_price }}</span>
+                        <span class="discount">-{{ product.discount_percent }}%</span>
+                        {% endif %}
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:12px;">
+                        <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-primary btn-sm" style="flex:1;">查看详情</a>
+                        <form method="post" action="{% url 'shop:cart_add' product.id %}" style="flex:1;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-accent btn-sm" style="width:100%;">加入购物车</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="card" style="text-align:center;padding:60px;grid-column:1/-1;">
+                <h3>暂无课程</h3>
+                <p style="color:var(--gray-500);margin-top:8px;">课程正在准备中，请稍后再来</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

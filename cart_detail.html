@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}购物车 | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">🛒 购物车</h1>
+
+        {% if cart|length > 0 %}
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:32px;align-items:start;">
+            <!-- Cart Items -->
+            <div>
+                {% for item in cart %}
+                <div class="card" style="display:flex;gap:20px;align-items:center;margin-bottom:16px;">
+                    <div style="width:80px;height:80px;border-radius:8px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">
+                        📦
+                    </div>
+                    <div style="flex:1;">
+                        <h3><a href="{% url 'shop:product_detail' item.product.slug %}">{{ item.name }}</a></h3>
+                        <div style="display:flex;gap:16px;align-items:center;margin-top:8px;">
+                            <div style="display:flex;align-items:center;border:1px solid var(--gray-300);border-radius:6px;overflow:hidden;">
+                                <button onclick="updateCart({{ item.product.id }}, {{ item.quantity }}-1)" class="btn btn-sm" style="border:none;border-radius:0;padding:4px 10px;">−</button>
+                                <input type="number" value="{{ item.quantity }}" min="0" id="qty_{{ item.product.id }}" style="width:48px;text-align:center;border:none;font-size:0.9rem;padding:4px;" readonly>
+                                <button onclick="updateCart({{ item.product.id }}, {{ item.quantity }}+1)" class="btn btn-sm" style="border:none;border-radius:0;padding:4px 10px;">+</button>
+                            </div>
+                            <span style="font-weight:700;color:var(--primary);">${{ item.total_price }}</span>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart({{ item.product.id }})" style="background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--gray-400);padding:8px;" title="删除">✕</button>
+                </div>
+                {% endfor %}
+                <a href="{% url 'shop:cart_clear' %}" class="btn btn-sm" style="color:var(--red);">清空购物车</a>
+            </div>
+
+            <!-- Summary -->
+            <div class="card" style="position:sticky;top:80px;">
+                <h3 style="margin-bottom:16px;">订单摘要</h3>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                    <span>商品总数</span>
+                    <span>{{ cart|length }} 件</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:var(--gray-400);">
+                    <span>原价</span>
+                    <span>${{ cart.get_total_original }}</span>
+                </div>
+                {% if cart.get_total_original > cart.get_total_price %}
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:var(--red);">
+                    <span>优惠</span>
+                    <span>-${{ cart.get_total_original|add:"0"|floatformat:2 }}</span>
+                </div>
+                {% endif %}
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;color:var(--gray-400);">
+                    <span>运费</span>
+                    <span>免费（数字产品）</span>
+                </div>
+                <div style="border-top:2px solid var(--gray-200);padding-top:16px;margin-top:16px;display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700;">
+                    <span>应付总额</span>
+                    <span style="color:var(--primary);">${{ cart.get_total_price }}</span>
+                </div>
+                <a href="{% url 'orders:checkout' %}" class="btn btn-accent btn-lg mt-4" style="width:100%;">去结算</a>
+                <a href="{% url 'shop:product_list' %}" class="btn btn-outline btn-sm mt-4" style="width:100%;">继续购物</a>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="card" style="text-align:center;padding:80px;">
+            <div style="font-size:4rem;margin-bottom:16px;">🛒</div>
+            <h2>购物车是空的</h2>
+            <p style="color:var(--gray-500);margin-top:8px;">去浏览我们的课程产品吧！</p>
+            <a href="{% url 'shop:product_list' %}" class="btn btn-primary mt-4">浏览课程</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+function updateCart(pid, newQty) {
+    if (newQty < 1) { removeFromCart(pid); return; }
+    fetch('{% url "shop:cart_update" pid %}', {
+        method: 'POST',
+        headers: {'X-Requested-With': 'XMLHttpRequest', 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+        body: 'quantity=' + newQty
+    }).then(r => r.json()).then(d => { if (d.status === 'ok') location.reload(); });
+}
+function removeFromCart(pid) {
+    if (!confirm('确定要删除这个商品吗？')) return;
+    fetch('{% url "shop:cart_remove" pid %}', {
+        method: 'POST',
+        headers: {'X-Requested-With': 'XMLHttpRequest', 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value}
+    }).then(r => r.json()).then(d => { if (d.status === 'ok') location.reload(); });
+}
+</script>
+{% endblock %}

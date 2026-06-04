@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}订单确认 | YigeWorks{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:800px;">
+        <div style="text-align:center;margin-bottom:40px;">
+            <div style="font-size:4rem;">📋</div>
+            <h1 class="section-title">订单已创建</h1>
+            <p style="color:var(--gray-500);">订单号：<strong>#{{ order.id }}</strong></p>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom:16px;">订单详情</h3>
+            <table style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr style="border-bottom:2px solid var(--gray-200);">
+                        <th style="text-align:left;padding:12px 8px;">商品</th>
+                        <th style="text-align:center;padding:12px 8px;">数量</th>
+                        <th style="text-align:right;padding:12px 8px;">小计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items.all %}
+                    <tr style="border-bottom:1px solid var(--gray-100);">
+                        <td style="padding:12px 8px;">{{ item.product_name }}</td>
+                        <td style="text-align:center;padding:12px 8px;">{{ item.quantity }}</td>
+                        <td style="text-align:right;padding:12px 8px;font-weight:600;">${{ item.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" style="padding:16px 8px;text-align:right;font-size:1.1rem;font-weight:700;">总计</td>
+                        <td style="padding:16px 8px;text-align:right;font-size:1.1rem;font-weight:700;color:var(--primary);">${{ order.total_paid }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="card mt-4">
+            <h3 style="margin-bottom:12px;">收货信息</h3>
+            <p>{{ order.display_name }} | {{ order.email }}</p>
+            {% if order.company %}<p>{{ order.company }}</p>{% endif %}
+            {% if order.phone %}<p>{{ order.phone }}</p>{% endif %}
+            <p style="margin-top:8px;color:var(--gray-400);font-size:0.85rem;">支付方式：{{ order.get_payment_method_display }}</p>
+        </div>
+
+        <div style="text-align:center;margin-top:32px;">
+            <a href="{% url 'payment:process' order.payment_method %}" class="btn btn-accent btn-lg">立即支付 ${{ order.total_paid }}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

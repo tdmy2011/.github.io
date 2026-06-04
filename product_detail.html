@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} | YigeWorks{% endblock %}
+{% block og_title %}{{ product.name }}{% endblock %}
+{% block og_desc %}{{ product.short_description }}{% endblock %}
+{% block canonical %}/product/{{ product.slug }}/{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div style="margin-bottom:24px;font-size:0.85rem;color:var(--gray-500);">
+            <a href="{% url 'shop:home' %}">首页</a> &rsaquo;
+            <a href="{% url 'shop:product_list' %}">课程产品</a> &rsaquo;
+            {% if product.category %}<a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a> &rsaquo;{% endif %}
+            {{ product.name }}
+        </div>
+
+        <!-- Product Info -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+            <!-- Left: Image -->
+            <div class="card" style="aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,var(--primary-light),var(--gray-100));">
+                {% if product.product_type == 'course' %}🎓{% elif product.product_type == 'template' %}📄{% elif product.product_type == 'service' %}🤝{% else %}📋{% endif %}
+            </div>
+
+            <!-- Right: Details -->
+            <div>
+                <span class="tag tag-blue">{{ product.get_product_type_display }}</span>
+                <h1 style="font-size:2rem;margin-top:12px;">{{ product.name }}</h1>
+                <p style="color:var(--gray-500);margin-top:8px;">{{ product.short_description }}</p>
+
+                <div style="margin-top:24px;padding:24px;background:var(--gray-50);border-radius:8px;">
+                    <div class="price-row" style="margin-bottom:16px;">
+                        <span style="font-size:2rem;font-weight:800;color:var(--primary);">${{ product.price }}</span>
+                        {% if product.original_price > product.price %}
+                        <span class="original-price" style="font-size:1.2rem;">${{ product.original_price }}</span>
+                        <span class="discount">省 ${{ product.original_price|add:"0"|floatformat:2 }}</span>
+                        {% endif %}
+                    </div>
+                    <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:0.9rem;color:var(--gray-500);">
+                        {% if product.duration %}<span>⏱ {{ product.duration }}</span>{% endif %}
+                        {% if product.modules %}<span>📚 {{ product.modules }} 课时</span>{% endif %}
+                    </div>
+                </div>
+
+                <form method="post" action="{% url 'shop:cart_add' product.id %}" style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+                    {% csrf_token %}
+                    <div style="display:flex;align-items:center;border:1px solid var(--gray-300);border-radius:8px;overflow:hidden;">
+                        <button type="button" onclick="changeQty(-1)" class="btn btn-sm" style="border:none;border-radius:0;">−</button>
+                        <input type="number" name="quantity" value="1" min="1" max="99" id="qty" style="width:60px;text-align:center;border:none;font-size:1rem;padding:8px;">
+                        <button type="button" onclick="changeQty(1)" class="btn btn-sm" style="border:none;border-radius:0;">+</button>
+                    </div>
+                    <button type="submit" class="btn btn-accent btn-lg" style="flex:1;">🛒 加入购物车</button>
+                </form>
+
+                <p style="margin-top:16px;font-size:0.85rem;color:var(--gray-400);">✓ 即时购买 ✓ 安全支付（PayPal） ✓ 购买后永久访问</p>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="card mt-8">
+            <h2 style="margin-bottom:16px;">课程详情</h2>
+            <div style="line-height:1.8;color:var(--gray-600);">{{ product.description|linebreaks }}</div>
+        </div>
+
+        <!-- Curriculum (for courses) -->
+        {% if modules %}
+        <div class="card mt-8">
+            <h2 style="margin-bottom:24px;">📚 课程大纲</h2>
+            {% for module in modules %}
+            <div style="border:1px solid var(--gray-200);border-radius:8px;margin-bottom:12px;overflow:hidden;">
+                <div style="padding:16px 20px;background:var(--gray-50);font-weight:600;display:flex;justify-content:space-between;align-items:center;">
+                    <span>模块 {{ module.order }}：{{ module.title }}</span>
+                    <span style="font-size:0.85rem;color:var(--gray-400);">{{ module.duration }}</span>
+                </div>
+                {% if module.description %}
+                <div style="padding:12px 20px;color:var(--gray-500);font-size:0.9rem;">{{ module.description }}</div>
+                {% endif %}
+                {% if module.deliverables %}
+                <div style="padding:8px 20px;font-size:0.85rem;color:var(--green);">📦 交付物：{{ module.deliverables }}</div>
+                {% endif %}
+                {% for lesson in module.lessons.all %}
+                <div style="padding:12px 20px 12px 40px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;">
+                    <span>{{ lesson.order }}. {{ lesson.title }}</span>
+                    <span style="color:var(--gray-400);font-size:0.8rem;">{{ lesson.duration }} {% if lesson.is_free %}<span class="tag tag-green">免费试看</span>{% endif %}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Related Products -->
+        {% if related %}
+        <div class="mt-8">
+            <h2 class="section-title" style="font-size:1.5rem;">相关课程</h2>
+            <div class="card-grid" style="margin-top:24px;">
+                {% for p in related %}
+                <div class="card product-card">
+                    <div class="card-image">{% if p.product_type == 'course' %}🎓{% else %}📄{% endif %}</div>
+                    <div class="card-body">
+                        <h3><a href="{% url 'shop:product_detail' p.slug %}">{{ p.name }}</a></h3>
+                        <div class="price-row"><span class="price">${{ p.price }}</span></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+function changeQty(d) {
+    var el = document.getElementById('qty');
+    var v = parseInt(el.value) + d;
+    if (v < 1) v = 1;
+    if (v > 99) v = 99;
+    el.value = v;
+}
+</script>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}YigeWorks - ISO 45001+ISO 14001双体系落地{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div>
+                <h1>30天ISO 45001+ISO 14001<br>双体系落地营</h1>
+                <p>30年安全环保实战专家，帮助在东南亚/非洲建厂的中资企业，快速通过国际认证，零事故投产运营。</p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <a href="{% url 'shop:product_list' %}" class="btn btn-accent btn-lg">立即选购课程</a>
+                    <a href="{% url 'shop:pricing' %}" class="btn btn-outline btn-lg" style="color:#fff;border-color:#fff;">查看定价方案</a>
+                </div>
+                <div class="trust-badges">
+                    <div class="trust-badge">✓ ISO 45001认证</div>
+                    <div class="trust-badge">✓ ISO 14001认证</div>
+                    <div class="trust-badge">✓ 30年实战经验</div>
+                    <div class="trust-badge">✓ 500+企业服务</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">课程分类</h2>
+        <p class="section-subtitle">选择适合您的专业课程</p>
+        <div class="card-grid">
+            {% for cat in categories %}
+            <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="card" style="text-decoration:none;">
+                <div style="font-size:2.5rem;margin-bottom:12px;">📚</div>
+                <h3>{{ cat.name }}</h3>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-top:8px;">
+                    {{ cat.products.count }} 个课程
+                </p>
+            </a>
+            {% empty %}
+            <div class="card" style="text-align:center;padding:40px;">
+                <p style="color:var(--gray-500);">分类加载中...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="section" style="background:var(--gray-50);">
+    <div class="container">
+        <h2 class="section-title">热门课程</h2>
+        <p class="section-subtitle">精选最受欢迎的课程产品</p>
+        <div class="card-grid">
+            {% for product in all_products %}
+            <div class="card product-card">
+                <div class="card-image">
+                    {% if product.product_type == 'course' %}🎓{% elif product.product_type == 'template' %}📄{% elif product.product_type == 'service' %}🤝{% else %}📋{% endif %}
+                </div>
+                <div class="card-body">
+                    <span class="tag tag-blue">{{ product.get_product_type_display }}</span>
+                    <h3 style="margin-top:8px;">{{ product.name }}</h3>
+                    <p>{{ product.short_description|truncatechars:80 }}</p>
+                    <div class="price-row">
+                        <span class="price">${{ product.price }}</span>
+                        {% if product.original_price > product.price %}
+                        <span class="original-price">${{ product.original_price }}</span>
+                        <span class="discount">-{{ product.discount_percent }}%</span>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'shop:product_detail' product.slug %}" class="btn btn-primary btn-sm" style="margin-top:12px;width:100%;">查看详情</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="card" style="text-align:center;padding:60px;grid-column:1/-1;">
+                <h3>课程上线中</h3>
+                <p style="color:var(--gray-500);margin-top:8px;">我们正在准备精彩课程，敬请期待！</p>
+                <a href="{% url 'shop:contact' %}" class="btn btn-outline mt-4">联系我们</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+{% if faqs %}
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于课程和服务的常见疑问</p>
+        <div style="max-width:800px;margin:0 auto;">
+            {% for faq in faqs %}
+            <div class="faq-item">
+                <div class="faq-question">{{ faq.question_zh }}</div>
+                <div class="faq-answer">{{ faq.answer_zh }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA -->
+<section class="section" style="background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;text-align:center;">
+    <div class="container">
+        <h2 style="color:#fff;margin-bottom:16px;">准备好提升企业安全合规水平了吗？</h2>
+        <p style="opacity:0.9;margin-bottom:32px;font-size:1.1rem;">立即加入30天双体系落地营，让专业的人做专业的事</p>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-accent btn-lg">立即选购</a>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section">
+    <div class="container" style="text-align:center;">
+        <h2 class="section-title">订阅获取最新资讯</h2>
+        <p class="section-subtitle">第一时间获取新课程上线和安全合规资讯</p>
+        <form id="newsletterForm" style="max-width:480px;margin:0 auto;display:flex;gap:12px;">
+            <input type="email" name="email" class="form-input" placeholder="输入您的邮箱" required style="flex:1;">
+            <button type="submit" class="btn btn-primary">订阅</button>
+        </form>
+    </div>
+</section>
+
+<script>
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var fd = new FormData(this);
+    fetch('{% url "shop:newsletter_signup" %}', {method:'POST', body:fd, headers:{'X-Requested-With':'XMLHttpRequest'}})
+    .then(r => r.json()).then(d => showToast(d.message || d.status));
+});
+</script>
+{% endblock %}
