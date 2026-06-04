@@ -1,5 +1,12 @@
+/*
+*@Name: 母婴商城
+*@Author: xuzhiwen
+*@Copyright:layui.com
+*/
+
 layui.define(['layer'],function(exports){
 	var layer = layui.layer;
+	
 var car = {
   init : function(){
   		var uls = document.getElementById('list-cont').getElementsByTagName('ul');//每一行
@@ -20,6 +27,7 @@ var car = {
           SelectedPieces.innerHTML = seleted;
           piecesTotal.innerHTML = '￥' + price.toFixed(2);
       }
+
       function fn1(){
         alert(1)
       }
@@ -102,11 +110,20 @@ var car = {
           getTotal()
         }
       }
-
       batchdeletion.onclick = function(){
+        if(SelectedPieces.innerHTML != 0){
           layer.confirm('你确定要删除吗',{
             yes:function(index,layero){
               layer.close(index)
+              for(var i = 0;i < uls.length;i++){
+                var input = uls[i].getElementsByTagName('input')[0];
+                if(input.checked){
+                  uls[i].parentNode.removeChild(uls[i]); 
+                  i--;
+                }
+              }
+              getTotal();
+
               //发送ajax删除数据库的购物车信息
               var userId = document.getElementById("userId").innerHTML;
               var xhr = new XMLHttpRequest();
@@ -127,12 +144,21 @@ var car = {
                 console.log(json)
                 }
                 }
+
             }
+
           })
+        }else{
+          layer.msg('请选择商品')
+        }
+        
       }
         checkAll[0].checked = true;
         checkAll[0].onclick();
-  	  }
+  	  }  	
+
   }
+
+
   exports('car',car)
 }); 

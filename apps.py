@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class IndexConfig(AppConfig):
-    name = 'index'
+class ShopperConfig(AppConfig):
+    name = 'shopper'
