@@ -1,0 +1,138 @@
+# ============================================================
+# YigeWorks SaaS Platform -- docker-compose.yml (生产级)
+# ============================================================
+version: "3.9"
+
+services:
+  # =============================================
+  # Django Web + Gunicorn
+  # =============================================
+  web:
+    build: ./backend
+    container_name: yigeworks-web
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 4 --threads 2 --worker-class gthread --max-requests 1000 --timeout 60
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - ./backend/geoip:/app/geoip
+    env_file:
+      - .env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+  # =============================================
+  # PostgreSQL 15
+  # =============================================
+  db:
+    image: postgres:15
+    container_name: yigeworks-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.prod
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-yigeworks}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+  # =============================================
+  # Redis 7 (Cache + Celery Broker + Result Backend)
+  # =============================================
+  redis:
+    image: redis:7-alpine
+    container_name: yigeworks-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+  # =============================================
+  # Celery Worker (异步任务)
+  # =============================================
+  celery-worker:
+    build: ./backend
+    container_name: yigeworks-celery
+    command: celery -A config worker -l info -c 4
+    volumes:
+      - ./backend/geoip:/app/geoip
+    env_file:
+      - .env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+  # =============================================
+  # Celery Beat (定时任务调度)
+  # =============================================
+  celery-beat:
+    build: ./backend
+    container_name: yigeworks-beat
+    command: celery -A config beat -l info
+    env_file:
+      - .env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+  # =============================================
+  # Nginx (静态文件 + 反向代理)
+  # =============================================
+  nginx:
+    image: nginx:latest
+    container_name: yigeworks-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - static_volume:/app/staticfiles:ro
+      - media_volume:/app/media:ro
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      - yigeworks-net
+
+# ============================================================
+# Volumes
+# ============================================================
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:
+
+# ============================================================
+# Networks
+# ============================================================
+networks:
+  yigeworks-net:
+    driver: bridge

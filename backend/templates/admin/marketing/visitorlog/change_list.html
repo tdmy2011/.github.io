@@ -1,0 +1,152 @@
+{% extends "admin/change_list.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    .dashboard-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        border: 1px solid #e2e8f0;
+    }
+    .dashboard-card .value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1e3a5f;
+    }
+    .dashboard-card .label {
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 4px;
+    }
+    .dashboard-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+    }
+    .chart-container {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        border: 1px solid #e2e8f0;
+    }
+    .chart-container h3 {
+        margin-top: 0;
+        color: #1e3a5f;
+        font-size: 18px;
+    }
+</style>
+{% endblock %}
+
+{% block content_title %}
+<h1>🌍 Geo 全球获客仪表盘</h1>
+{% endblock %}
+
+{% block result_list %}
+<!-- 概览卡片 -->
+<div class="dashboard-grid">
+    <div class="dashboard-card">
+        <div class="value" id="val-visitors">--</div>
+        <div class="label">今日访客</div>
+    </div>
+    <div class="dashboard-card">
+        <div class="value" id="val-leads">--</div>
+        <div class="label">总线索数</div>
+    </div>
+    <div class="dashboard-card">
+        <div class="value" id="val-campaigns">--</div>
+        <div class="label">活跃活动</div>
+    </div>
+    <div class="dashboard-card">
+        <div class="value" id="val-today-leads">--</div>
+        <div class="label">今日新增线索</div>
+    </div>
+</div>
+
+<!-- 图表区 -->
+<div class="dashboard-row">
+    <div class="chart-container">
+        <h3>📈 近7天访客趋势</h3>
+        <canvas id="visitorTrendChart" height="200"></canvas>
+    </div>
+    <div class="chart-container">
+        <h3>🗺️ 访客国家 Top 10</h3>
+        <canvas id="countryPieChart" height="200"></canvas>
+    </div>
+</div>
+
+<hr style="margin: 24px 0;">
+
+<!-- 原始列表 -->
+{{ block.super }}
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("../dashboard-data/")
+        .then(r => r.json())
+        .then(data => {
+            // 概览卡片
+            document.getElementById("val-visitors").textContent = data.overview.today_visitors;
+            document.getElementById("val-leads").textContent = data.overview.total_leads;
+            document.getElementById("val-campaigns").textContent = data.overview.active_campaigns;
+            document.getElementById("val-today-leads").textContent = data.overview.today_leads;
+
+            // 访客趋势图
+            const days = data.daily_visitors.map(d => d.date.slice(5));
+            const counts = data.daily_visitors.map(d => d.count);
+            new Chart(document.getElementById("visitorTrendChart"), {
+                type: "line",
+                data: {
+                    labels: days,
+                    datasets: [{
+                        label: "访客数",
+                        data: counts,
+                        borderColor: "#3b82f6",
+                        backgroundColor: "rgba(59,130,246,0.1)",
+                        fill: true,
+                        tension: 0.3,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // 国家分布饼图
+            const colors = ["#3b82f6","#10b981","#f59e0b","#ef4444","#8b5cf6",
+                           "#ec4899","#06b6d4","#84cc16","#f97316","#6366f1"];
+            new Chart(document.getElementById("countryPieChart"), {
+                type: "doughnut",
+                data: {
+                    labels: data.top_countries.map(c => c.country || "未知"),
+                    datasets: [{
+                        data: data.top_countries.map(c => c.count),
+                        backgroundColor: colors.slice(0, data.top_countries.length),
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: "right" }
+                    }
+                }
+            });
+        });
+});
+</script>
+{% endblock %}
