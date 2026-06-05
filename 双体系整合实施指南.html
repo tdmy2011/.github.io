@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO 45001 + ISO 14001 双体系整合实施指南 | 安全生产专家</title>
+    <meta name="description" content="如何将ISO 45001和ISO 14001整合为EHS一体化管理体系，中资出海企业双体系建设路线图，含程序文件整合方案">
+    <style>
+        * { margin:0; padding:0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', serif; background: #f8fafc; color: #1e293b; line-height: 1.8; }
+        .page { max-width: 900px; margin: 0 auto; padding: 40px 32px; background: white; min-height: 100vh; }
+        h1 { font-size: 28px; font-weight: 800; color: #1e3a5f; margin-bottom: 8px; }
+        .subtitle { font-size: 14px; color: #64748b; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid #e2e8f0; }
+        h2 { font-size: 20px; font-weight: 700; color: #1e3a5f; margin: 32px 0 16px; padding-left: 12px; border-left: 4px solid #818cf8; }
+        h3 { font-size: 16px; font-weight: 600; color: #1e3a5f; margin: 20px 0 10px; }
+        .phase { background: #f8fafc; border-radius: 16px; padding: 24px 28px; margin-bottom: 20px; border-left: 5px solid #818cf8; }
+        .phase-num { font-size: 13px; font-weight: 700; color: #818cf8; letter-spacing: 1px; margin-bottom: 4px; }
+        .phase-title { font-size: 17px; font-weight: 700; color: #1e3a5f; margin-bottom: 8px; }
+        .phase-weeks { font-size: 12px; color: #64748b; margin-bottom: 12px; padding: 4px 10px; background: #e0e7ff; display: inline-block; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+        th { background: #1e3a5f; color: white; padding: 10px 12px; text-align: left; }
+        td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        .green { background: #dcfce7; color: #166534; }
+        .blue { background: #dbeafe; color: #1e40af; }
+        .purple { background: #ede9fe; color: #5b21b6; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+        .shared { background: #dbeafe; color: #1e40af; }
+        .unique45001 { background: #fce7f3; color: #9d174d; }
+        .unique14001 { background: #dcfce7; color: #166534; }
+        .box { padding: 16px 20px; border-radius: 10px; margin: 16px 0; }
+        .box-blue { background: #eff6ff; border-left: 4px solid #38bdf8; }
+        .box-green { background: #f0fdf4; border-left: 4px solid #22c55e; }
+        .box-orange { background: #fef9c3; border-left: 4px solid #f59e0b; }
+        .checklist { list-style: none; }
+        .checklist li { padding: 6px 0 6px 24px; position: relative; font-size: 14px; }
+        .checklist li:before { content: "✓"; color: #22c55e; font-weight: 700; position: absolute; left: 0; }
+        .timeline { margin: 20px 0; }
+        .tl-item { display: flex; gap: 16px; margin-bottom: 16px; }
+        .tl-dot { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+        .footer-note { font-size: 12px; color: #94a3b8; margin-top: 40px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+        @media print { .page { padding: 20px; } }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <h1>🔄 ISO 45001 + ISO 14001<br>双体系整合实施指南</h1>
+    <div class="subtitle">从独立运行到一体化管理 · 中资出海企业 EHS 体系建设路线图 · 直接用于双体系认证</div>
+
+    <div class="box box-blue">
+        <strong>📌 核心结论：</strong>ISO 45001（安全）和 ISO 14001（环保）采用统一的<strong>HLS（High Level Structure）高阶结构</strong>，核心条款完全一致。整合推进双体系可节省约<strong>30%文件工作量</strong>和<strong>40%审核时间</strong>。
+    </div>
+
+    <!-- 一、为什么要整合？ -->
+    <h2>一、为什么要整合？三张表说明白</h2>
+
+    <h3>表1：两体系条款对照</h3>
+    <table>
+        <tr><th>ISO 45001:2018</th><th>ISO 14001:2015</th><th>整合可行性</th></tr>
+        <tr><td>4. 组织所处环境</td><td>4. 组织所处环境</td><td><span class="tag shared">100%相同</span></td></tr>
+        <tr><td>5. 领导作用与工作人员参与</td><td>5. 领导作用</td><td><span class="tag shared">共享HSE方针</span></td></tr>
+        <tr><td>6.1 应对风险和机遇的措施</td><td>6.1 应对风险和机遇的措施</td><td><span class="tag shared">共享风险评价方法</span></td></tr>
+        <tr><td>6.1.2 危险源辨识</td><td>6.1.2 环境因素</td><td><span class="tag unique45001">45001独有</span> <span class="tag unique14001">14001独有</span> 各自独立做</td></tr>
+        <tr><td>6.1.3 法律法规要求</td><td>6.1.3 合规性义务</td><td><span class="tag shared">共享一个法规库</span></td></tr>
+        <tr><td>7. 支持（资源/能力/意识/沟通/文件）</td><td>7. 支持（资源/能力/意识/沟通/文件）</td><td><span class="tag shared">100%共享</span></td></tr>
+        <tr><td>8.1 运行策划和控制</td><td>8.1 运行策划和控制</td><td><span class="tag shared">共享作业规程</span></td></tr>
+        <tr><td>8.2 应急准备和响应</td><td>8.2 应急准备和响应</td><td><span class="tag shared">共享应急预案</span></td></tr>
+        <tr><td>9. 绩效评价（监视/内审/管审）</td><td>9. 绩效评价（监视/内审/管审）</td><td><span class="tag shared">共享内审+管审</span></td></tr>
+        <tr><td>10. 改进</td><td>10. 改进</td><td><span class="tag shared">共享整改流程</span></td></tr>
+    </table>
+
+    <h3>表2：整合前后工作量对比</h3>
+    <table>
+        <tr><th>工作项</th><th>分开做（两套体系）</th><th>整合做（EHS一体化）</th><th>节省</th></tr>
+        <tr><td>程序文件数量</td><td>约30份（各15份）</td><td>约18份（共享+HSE名义）</td><td class="green">40%</td></tr>
+        <tr><td>内审时间</td><td>2 × 2.5天 = 5天</td><td>1 × 3天 = 3天</td><td class="green">40%</td></tr>
+        <tr><td>管理评审</td><td>2次会议（各1天）</td><td>1次会议（1.5天）</td><td class="green">25%</td></tr>
+        <tr><td>文件修订维护</td><td>维护2套体系</td><td>维护1套体系</td><td class="green">50%</td></tr>
+        <tr><td>培训课时</td><td>各模块独立培训</td><td>整合模块培训</td><td class="green">30%</td></tr>
+    </table>
+
+    <h3>表3：15份程序文件整合方案</h3>
+    <table>
+        <tr><th>编号</th><th>程序文件名称</th><th>整合结果</th><th>说明</th></tr>
+        <tr><td>HSE-PRO-001</td><td>危险源辨识与风险评估程序</td><td class="blue">45001专属</td><td>危险性/环境性各自独立识别</td></tr>
+        <tr><td>HSE-PRO-001E</td><td>环境因素识别与评价程序</td><td class="green">14001专属</td><td>新增（配合HSE-PRO-001使用）</td></tr>
+        <tr><td>HSE-PRO-002</td><td>法律法规识别与更新程序</td><td class="purple">整合版</td><td>安全+环保法规共用一个程序</td></tr>
+        <tr><td>HSE-PRO-003</td><td>目标指标与管理方案程序</td><td class="purple">整合版</td><td>HSE目标共用一份文件</td></tr>
+        <tr><td>HSE-PRO-004</td><td>能力意识与培训程序</td><td class="purple">整合版</td><td>安全+环保培训共用一个程序</td></tr>
+        <tr><td>HSE-PRO-005</td><td>沟通与信息交流程序</td><td class="purple">整合版</td><td>HSE信息共享一个沟通渠道</td></tr>
+        <tr><td>HSE-PRO-006</td><td>文件与记录控制程序</td><td class="purple">整合版</td><td>HSE文件共用一个管理系统</td></tr>
+        <tr><td>HSE-PRO-007</td><td>运行控制程序</td><td class="purple">整合版</td><td>覆盖安全+环保运行控制要求</td></tr>
+        <tr><td>HSE-PRO-008</td><td>变更管理程序</td><td class="purple">整合版</td><td>同时评估安全+环保变更影响</td></tr>
+        <tr><td>HSE-PRO-009</td><td>承包商安全管理程序</td><td class="blue">45001专属</td><td>安全管理为主，但需加环保条款</td></tr>
+        <tr><td>HSE-PRO-010</td><td>应急准备与响应程序</td><td class="purple">整合版</td><td>安全事故+环境事故应急共用</td></tr>
+        <tr><td>HSE-PRO-011</td><td>绩效监视与测量程序</td><td class="purple">整合版</td><td>安全KPI+环保KPI共用</td></tr>
+        <tr><td>HSE-PRO-012</td><td>合规性评价程序</td><td class="purple">整合版</td><td>安全法规+环保法规同步评价</td></tr>
+        <tr><td>HSE-PRO-013</td><td>事件调查与不符合控制程序</td><td class="purple">整合版</td><td>安全事故+环境事件共用流程</td></tr>
+        <tr><td>HSE-PRO-014</td><td>内部审核程序</td><td class="purple">整合版</td><td>双体系同期内审</td></tr>
+        <tr><td>HSE-PRO-015</td><td>管理评审程序</td><td class="purple">整合版</td><td>双体系同期管审</td></tr>
+    </table>
+
+    <!-- 二、实施路线图 -->
+    <h2>二、30天整合实施路线图</h2>
+
+    <div class="timeline">
+
+        <div class="phase">
+            <div class="phase-num">第1周</div>
+            <div class="phase-title">🏗️ 基础搭建 · 整合框架建立</div>
+            <div class="phase-weeks">Day 1-7 · 核心任务：建立统一HSE框架</div>
+            <ul class="checklist">
+                <li>STEP 1: 组织背景分析——识别影响安全+环保的内外部因素</li>
+                <li>STEP 2: 确定HSE方针——统一的安全+环保方针（不超过一页纸）</li>
+                <li>STEP 3: 明确组织架构——确定HSE管理委员会、HSE代表</li>
+                <li>STEP 4: 建立法律法规库——整合安全+环保法规（使用HSE-PRO-002）</li>
+                <li>STEP 5: 确定文件编号规则——统一用HSE-PRO-XXX命名</li>
+            </ul>
+            <div class="box box-blue">
+                <strong>💡 本周关键决策：</strong>是分别申请ISO 45001和ISO 14001两张证书，还是申请一份EHS整合管理体系证书？两种方式都可以，关键是文件的一致性。
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-num">第2周</div>
+            <div class="phase-title">🔍 核心分析 · 危险源+环境因素识别</div>
+            <div class="phase-weeks">Day 8-14 · 核心任务：完成双体系的核心识别工作</div>
+            <ul class="checklist">
+                <li>STEP 1: 危险源辨识（JSA/JHA方法）——全厂所有区域逐岗位辨识</li>
+                <li>STEP 2: 环境因素识别（输入→输出分析）——全厂所有活动逐工序识别</li>
+                <li>STEP 3: 风险评估——安全风险+环境风险分别评价</li>
+                <li>STEP 4: 识别重要危险源+重要环境因素——确定管理优先级</li>
+                <li>STEP 5: 制定HSE目标——安全指标（如：事故率为0）+ 环保指标（如：废水COD达标率100%）</li>
+            </ul>
+            <div class="box box-orange">
+                <strong>⚠️ 本周易出错点：</strong>危险源辨识和环境因素识别最容易遗漏的点——仓库、食堂、宿舍、承包商作业区域、危废暂存间。请对照平面图逐区域排查。
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-num">第3周</div>
+            <div class="phase-title">📝 文件编写 · 程序文件编写与整合</div>
+            <div class="phase-weeks">Day 15-21 · 核心任务：完成HSE程序文件体系</div>
+            <ul class="checklist">
+                <li>STEP 1: 编写15份核心程序文件（使用HSE-PRO-001~015模板）</li>
+                <li>STEP 2: 编写环境因素识别程序（新增HSE-PRO-001E）</li>
+                <li>STEP 3: 文件审核——逐份审查"安全性"和"环保性"是否都有覆盖</li>
+                <li>STEP 4: 多语言版本——中文+英文+当地语言三版本</li>
+                <li>STEP 5: 文件的"HSE一体化"检查——确保没有"两张皮"现象</li>
+            </ul>
+            <div class="box box-green">
+                <strong>💡 文件整合技巧：</strong>用颜色编码区分安全/环保要求（蓝色=安全，绿色=环保，紫色=共性），方便一线员工快速识别。
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-num">第4周</div>
+            <div class="phase-title">✅ 审核冲刺 · 内审+管理评审+认证准备</div>
+            <div class="phase-weeks">Day 22-30 · 核心任务：内审、管理评审、认证前准备</div>
+            <ul class="checklist">
+                <li>STEP 1: HSE内审——一次性审核安全+环保两个体系</li>
+                <li>STEP 2: 开具不符合项——分类安全不符合 vs 环保不符合</li>
+                <li>STEP 3: 整改关闭——所有不符合项整改验证</li>
+                <li>STEP 4: 管理评审——高层主持HSE管理评审会议</li>
+                <li>STEP 5: 认证申请——联系SGS/BSI/TÜV等认证机构</li>
+                <li>STEP 6: 外审前72小时准备——资料整理+现场准备+人员培训</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- 三、整合常见问题 -->
+    <h2>三、双体系整合常见问题 FAQ</h2>
+
+    <h3>Q1: 安全体系和环保体系是不是必须分开建？</h3>
+    <p>不是。ISO鼓励组织将管理体系整合（ISO Annex SL标准的核心理念），现实中绝大多数企业都是建<strong>EHS一体化管理体系</strong>。</p>
+
+    <h3>Q2: 如果安全做好了，环保没做好，认证会怎样？</h3>
+    <p>如果是分开认证（分别拿ISO 45001和ISO 14001证书），安全通过环保失败，那就拿不到环保证书。如果是EHS整合认证，审核员会在审核报告中注明"环境管理不达标"。</p>
+
+    <h3>Q3: 两套体系共用一套程序文件，外审员认可吗？</h3>
+    <p>认可。前提是你的程序文件<strong>明确覆盖了安全+环保的所有条款要求</strong>。如果一份文件只写了安全要求，外审员会开不符合项。</p>
+
+    <h3>Q4: 中资出海企业做双体系，最省时间的做法是什么？</h3>
+    <p>
+        最省时间的做法是：<br>
+        <strong>① 用HSE一体化体系框架</strong>（不是分别建两个体系）<br>
+        <strong>② 用现成的程序文件模板</strong>（15份模板只需填企业信息）<br>
+        <strong>③ 找有双体系实战经验的顾问指导</strong>（我们的《30天双体系落地营》就是为这个设计的）
+    </p>
+
+    <h3>Q5: 整合后的内审怎么做？</h3>
+    <p>
+        HSE内审的原则：<strong>一个审核周期，覆盖两个体系</strong>。<br>
+        • 审核计划同时覆盖安全+环保条款<br>
+        • 审核检查表中每个问题标"安全"或"环保"或"HSE"<br>
+        • 不符合项报告中注明适用体系<br>
+        • 管理评审输入同时涵盖安全绩效+环保绩效
+    </p>
+
+    <!-- 四、整合检查表 -->
+    <h2>四、双体系整合完成后自检清单</h2>
+
+    <table>
+        <tr><th>#</th><th>检查项</th><th>完成状态</th></tr>
+        <tr><td>1</td><td>HSE方针是否同时包含安全和环保承诺？</td><td>☐</td></tr>
+        <tr><td>2</td><td>组织架构中是否明确了HSE管理委员会？</td><td>☐</td></tr>
+        <tr><td>3</td><td>危险源辨识是否覆盖全厂所有区域？</td><td>☐</td></tr>
+        <tr><td>4</td><td>环境因素识别是否覆盖全厂所有活动？</td><td>☐</td></tr>
+        <tr><td>5</td><td>法律法规库是否包含安全+环保两类法规？</td><td>☐</td></tr>
+        <tr><td>6</td><td>HSE目标是否同时包含安全KPI和环保KPI？</td><td>☐</td></tr>
+        <tr><td>7</td><td>程序文件是否用HSE-PRO统一命名？</td><td>☐</td></tr>
+        <tr><td>8</td><td>文件内容是否覆盖安全+环保所有条款要求？</td><td>☐</td></tr>
+        <tr><td>9</td><td>培训计划是否包含安全+环保所有培训？</td><td>☐</td></tr>
+        <tr><td>10</td><td>内审是否同时审核安全+环保两个体系？</td><td>☐</td></tr>
+        <tr><td>11</td><td>管理评审输入是否涵盖安全+环保绩效？</td><td>☐</td></tr>
+        <tr><td>12</td><td>是否符合东南亚当地法规中的安全+环保要求？</td><td>☐</td></tr>
+    </table>
+
+    <div class="box box-green">
+        <strong>✅ 通过以上12项自检，您的企业已经做好准备申请ISO 45001+ISO 14001双体系（或EHS整合管理体系）认证了。</strong>
+    </div>
+
+    <h2>五、本课程整合交付物清单</h2>
+    <ul class="checklist">
+        <li>15份可编辑程序文件模板（HSE-PRO-001~015，.docx格式）</li>
+        <li>1份环境因素识别程序模板（HSE-PRO-001E，新增）</li>
+        <li>1份双体系整合指南（本文档）</li>
+        <li>1份HSE内审检查表模板（覆盖安全+环保条款）</li>
+        <li>1份HSE管理评审模板</li>
+        <li>东南亚四国法规对照表</li>
+        <li>外审常见问题20题+标准应答话术</li>
+    </ul>
+
+    <div class="footer-note">
+        <p>📋 本文档为《30天ISO 45001+ISO 14001双体系落地营》配套资料。</p>
+        <p>© 2026 安全生产专家 | <a href="https://yigeworks.com">yigeworks.com</a> | <a href="course.html">查看课程详情</a></p>
+    </div>
+
+</div>
+</body>
+</html>
