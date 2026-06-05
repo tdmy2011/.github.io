@@ -160,8 +160,8 @@
     }
     </script>
 
-    <!-- ===== Google Analytics ===== -->
-    <!-- TODO: 替换 G-XXXXXXXXXX 为你的实际 GA4 测量 ID -->
+    <!-- ===== Google Analytics (GA4) ===== -->
+    <!-- 配置: 前往 analytics.google.com 创建 GA4 属性, 将下方 G-XXXXXXXXXX 替换为实际 Measurement ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -170,9 +170,9 @@
         gtag('config', 'G-XXXXXXXXXX');
     </script>
 
-    <!-- ===== PayPal SDK ===== -->
-    <!-- TODO: 替换 client-id 为你的 PayPal 商户 client-id -->
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture" data-namespace="paypal_sdk"></script>
+    <!-- ===== PayPal SDK (Sandbox) ===== -->
+    <!-- 上线前切换为生产环境: 将 sdk/js 改为生产, 替换 client-id 为 Live Client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=Abx9jaJI_yKFrGrq6JcqKH47vWRFOFZWUv8pORx-ZenstcwhaU8qDtReCfoEdzbFDCDrNy3VmnXt37BU&currency=USD&intent=capture" data-namespace="paypal_sdk"></script>
 
     <style>
         * { margin:0; padding:0; box-sizing: border-box; }
@@ -266,10 +266,6 @@
         /* Stripe 支付面板 */
         .stripe-panel { display: none; margin-top: 16px; }
         .stripe-panel.active { display: block; }
-        .stripe-panel h4 { font-size: 16px; color: #1e3a5f; margin-bottom: 12px; }
-        #stripe-card-element { border: 2px solid #e2e8f0; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
-        .stripe-loading { text-align: center; padding: 20px; color: #64748b; }
-        .stripe-error { color: #ef4444; font-size: 14px; margin-bottom: 12px; }
 
         /* PayPal 容器 */
         .paypal-panel { display: none; margin-top: 16px; }
@@ -325,10 +321,6 @@
         .toast.active { display: block; animation: slideDown 0.3s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
-        /* 配置提醒条 */
-        .config-banner { background: #fef3c7; border-bottom: 2px solid #f59e0b; padding: 10px 24px; text-align: center; font-size: 13px; color: #92400e; position: fixed; top: 70px; left: 0; right: 0; z-index: 999; }
-        .config-banner strong { color: #b45309; }
-        .config-banner .close-banner { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; color: #92400e; background: none; border: none; }
 
         /* 响应式 */
         @media (max-width: 768px) {
@@ -349,11 +341,6 @@
         <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
     </div>
 
-    <!-- 配置提醒 (部署前请删除此条) -->
-    <div class="config-banner" id="configBanner">
-        <span data-zh="⚠️ <strong>开发者模式</strong>：请先配置 Stripe / PayPal / Mailchimp / GA4 后再上线部署。查看 index.html 中的 TODO 标记。" data-en="⚠️ <strong>Dev Mode</strong>: Configure Stripe / PayPal / Mailchimp / GA4 before going live. Search TODO in index.html.">⚠️ <strong>开发者模式</strong>：请先配置 Stripe / PayPal / Mailchimp / GA4 后再上线部署。查看 index.html 中的 TODO 标记。</span>
-        <button class="close-banner" onclick="document.getElementById('configBanner').style.display='none'">&times;</button>
-    </div>
 
     <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
@@ -361,9 +348,10 @@
             <div class="logo"><span data-zh="安全" data-en="Safety">安全</span><span data-zh="专家" data-en="Expert">专家</span></div>
             <ul class="nav-links">
                 <li><a href="#home" data-zh="首页" data-en="Home">首页</a></li>
+                <li><a href="course.html" data-zh="课程产品" data-en="Courses">课程产品</a></li>
                 <li><a href="#subscribe" data-zh="订阅更新" data-en="Subscribe">订阅更新</a></li>
-                <li><a href="#products" data-zh="课程产品" data-en="Courses">课程产品</a></li>
                 <li><a href="#faq" data-zh="常见问题" data-en="FAQ">常见问题</a></li>
+                <li><a href="东南亚四国法规对照表.html" data-zh="法规对照" data-en="Regulations">法规对照</a></li>
                 <li><a href="#about" data-zh="关于专家" data-en="About">关于专家</a></li>
             </ul>
             <button class="nav-cta" onclick="scrollToSection('products')" data-zh="立即咨询" data-en="Get Started">立即咨询</button>
@@ -396,9 +384,9 @@
             <p class="subscribe-subtitle" data-zh="每周接收最新的东南亚/非洲安全法规更新、事故案例分析和高价值安全管理工作指南" data-en="Receive the latest Southeast Asia/Africa safety regulations, accident case studies and management guides every week">
                 每周接收最新的东南亚/非洲安全法规更新、事故案例分析和高价值安全管理工作指南
             </p>
-            <!-- TODO: 将 action 替换为你的 Mailchimp 表单 URL -->
-            <!-- 获取方式: Mailchimp → Audience → Signup forms → Embedded forms → 复制 action URL -->
-            <form class="subscribe-form" id="mc-embedded-subscribe-form" action="https://yourdomain.us1.list-manage.com/subscribe/post?u=XXXXX&id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+            <!-- Mailchimp 订阅表单 -->
+            <!-- 配置: Mailchimp → Audience → Signup forms → Embedded forms → 复制 action URL 替换下方 -->
+            <form class="subscribe-form" id="mc-embedded-subscribe-form" action="https://yigeworks.usXX.list-manage.com/subscribe/post?u=XXXXX&amp;id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
                 <input type="email" name="EMAIL" class="subscribe-input" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
                 <!-- Mailchimp anti-bot (隐藏) -->
                 <div style="position:absolute;left:-5000px;" aria-hidden="true">
@@ -646,12 +634,11 @@
                     <div class="payment-method-desc" data-zh="Visa / MasterCard / JCB / UnionPay" data-en="Visa / MasterCard / JCB / UnionPay">Visa / MasterCard / JCB / UnionPay</div>
                 </div>
             </div>
-            <!-- Stripe 信用卡输入面板 -->
+            <!-- Stripe Payment Links（静态站点推荐方案，无需后端） -->
             <div class="stripe-panel" id="stripePanel">
-                <h4 data-zh=" securely 输入卡号信息" data-en=" securely enter card details"> securely 输入卡号信息</h4>
-                <div id="stripe-card-element"></div>
-                <div class="stripe-error" id="stripeError"></div>
-                <button class="btn-primary" style="width:100%;" onclick="handleStripePayment()" id="stripePayBtn" data-zh="确认支付" data-en="Pay Now">确认支付</button>
+                <p style="font-size:14px;color:#64748b;margin-bottom:16px;" data-zh="点击下方按钮跳转到 Stripe 安全支付页面完成付款" data-en="Click below to complete payment on Stripe's secure checkout page">点击下方按钮跳转到 Stripe 安全支付页面完成付款</p>
+                <button class="btn-primary" style="width:100%;" onclick="handleStripePayment()" id="stripePayBtn" data-zh="前往 Stripe 支付" data-en="Pay with Stripe">前往 Stripe 支付</button>
+                <p style="font-size:12px;color:#94a3b8;margin-top:12px;text-align:center;" data-zh="支持 Visa / MasterCard / JCB / UnionPay" data-en="Visa / MasterCard / JCB / UnionPay accepted">支持 Visa / MasterCard / JCB / UnionPay</p>
             </div>
 
             <!-- PayPal 支付 -->
@@ -693,8 +680,9 @@
             <p class="lead-desc" data-zh="输入您的邮箱地址，我们将把《东南亚工厂安全合规自查清单100条》发送到您的邮箱。" data-en="Enter your email address, and we will send the Southeast Asia Factory Safety Compliance Checklist (100 Items) to your inbox.">
                 输入您的邮箱地址，我们将把《东南亚工厂安全合规自查清单100条》发送到您的邮箱。
             </p>
-            <!-- TODO: 替换为 Mailchimp 的 lead magnet 专用表单 action URL -->
-            <form class="lead-form" id="mc-lead-form" action="https://yourdomain.us1.list-manage.com/subscribe/post?u=XXXXX&id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+            <!-- Mailchimp Lead Magnet 表单 -->
+            <!-- 配置: 替换为 Mailchimp 中 lead magnet 专用 Audience 的 form action URL -->
+            <form class="lead-form" id="mc-lead-form" action="https://yigeworks.usXX.list-manage.com/subscribe/post?u=XXXXX&amp;id=XXXXX" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
                 <input type="text" name="FNAME" class="lead-input" placeholder="请输入您的姓名" data-zh-placeholder="请输入您的姓名" data-en-placeholder="Enter your name" required>
                 <input type="email" name="EMAIL" class="lead-input" placeholder="输入您的邮箱地址" data-zh-placeholder="输入您的邮箱地址" data-en-placeholder="Enter your email address" required>
                 <input type="text" name="COMPANY" class="lead-input" placeholder="您的企业名称（选填）" data-zh-placeholder="您的企业名称（选填）" data-en-placeholder="Your enterprise name (optional)">
@@ -710,40 +698,23 @@
     <div class="toast" id="toast"></div>
 
     <!-- ===== Stripe.js SDK ===== -->
-    <!-- TODO: 替换 pk_test_XXXXX 为你的 Stripe Publishable Key -->
+    <!-- 配置: Stripe Dashboard → Developers → API keys → Publishable key 替换下方 -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // ============================
         // Stripe 配置
         // ============================
-        // TODO: 替换为你的 Stripe Publishable Key
-        // 获取方式: Stripe Dashboard → Developers → API keys → Publishable key
-        const STRIPE_PK = 'pk_test_XXXXXXXXXXXXXXXXXXXXXXXX';
+        const STRIPE_PK = 'pk_live_XXXXXXXXXXXXXXXXXXXXXXXX';
 
-        // 产品价格映射 (单位: 美分，USD)
-        const STRIPE_PRICES = {
-            'self-study': { price: 6900, label_zh: '¥499 自学版', label_en: '$69 Self-Study', priceId: 'price_XXXXXXXXXXXXXXXXXXXXXXXX' },
-            'guided':    { price: 17900, label_zh: '¥1,298 带教版', label_en: '$179 Guided', priceId: 'price_XXXXXXXXXXXXXXXXXXXXXXXX' },
-            'enterprise': { price: 69700, label_zh: '¥4,980 企业版', label_en: '$697 Enterprise', priceId: 'price_XXXXXXXXXXXXXXXXXXXXXXXX' }
+        // Stripe Payment Links (静态站点推荐方案, 无需后端)
+        // 配置: Stripe Dashboard → Payment Links → 创建产品链接, 复制 URL 替换下方
+        const STRIPE_PAYMENT_LINKS = {
+            'self-study': 'https://buy.stripe.com/XXXXXXXXXXXXX',
+            'guided':    'https://buy.stripe.com/XXXXXXXXXXXXX',
+            'enterprise': 'https://buy.stripe.com/XXXXXXXXXXXXX'
         };
 
-        let stripe, elements, cardElement;
         let currentPlan = 'self-study';
-
-        // 初始化 Stripe (页面加载后)
-        try {
-            stripe = Stripe(STRIPE_PK);
-            elements = stripe.elements();
-            cardElement = elements.create('card', {
-                style: {
-                    base: { fontSize: '16px', color: '#1e293b' },
-                    invalid: { color: '#ef4444' }
-                }
-            });
-            cardElement.mount('#stripe-card-element');
-        } catch(e) {
-            console.warn('Stripe SDK not configured yet. Replace STRIPE_PK with your publishable key.');
-        }
 
         // ============================
         // PayPal 配置
@@ -855,39 +826,14 @@
             }
         }
 
-        // Stripe 支付处理
-        async function handleStripePayment() {
-            if (!stripe || STRIPE_PK.includes('XXXX')) {
-                showToast(currentLang === 'zh' ? 'Stripe 正在配置中，请稍后再试' : 'Stripe is being configured, please try again later');
+        // Stripe 支付 - Payment Links 跳转（静态站点无需后端）
+        function handleStripePayment() {
+            const link = STRIPE_PAYMENT_LINKS[currentPlan];
+            if (!link || link.includes('XXXX')) {
+                showToast(currentLang === 'zh' ? 'Stripe 支付链接正在配置中，请使用 PayPal 支付' : 'Stripe payment link is being configured. Please use PayPal.');
                 return;
             }
-
-            const payBtn = document.getElementById('stripePayBtn');
-            const errEl = document.getElementById('stripeError');
-            payBtn.disabled = true;
-            payBtn.textContent = currentLang === 'zh' ? '处理中...' : 'Processing...';
-            errEl.textContent = '';
-
-            try {
-                // TODO: 这需要后端创建 PaymentIntent。对于静态站点，推荐使用 Stripe Payment Links：
-                // 在 Stripe Dashboard → Payment Links 中创建产品链接，直接用 window.location.href 跳转
-                const { paymentIntent, error } = await stripe.confirmCardPayment(
-                    'CLIENT_SECRET_FROM_BACKEND', // 需要后端提供
-                    { payment_method: { card: cardElement } }
-                );
-
-                if (error) {
-                    errEl.textContent = error.message;
-                } else if (paymentIntent.status === 'succeeded') {
-                    showToast(currentLang === 'zh' ? '支付成功！课程访问权限将在24小时内开通。' : 'Payment successful! Course access will be activated within 24 hours.');
-                    closePayment();
-                }
-            } catch(e) {
-                errEl.textContent = currentLang === 'zh' ? '支付处理失败，请重试或使用PayPal。' : 'Payment failed. Please retry or use PayPal.';
-            } finally {
-                payBtn.disabled = false;
-                payBtn.textContent = currentLang === 'zh' ? '确认支付' : 'Pay Now';
-            }
+            window.open(link, '_blank');
         }
 
         // PayPal 按钮渲染
@@ -916,19 +862,16 @@
             }).render('#paypal-button-container');
         }
 
-        // 微信/支付宝 (国内支付)
+        // 微信/支付宝 (国内支付 - 配置后取消注释)
         function handleChinaPay(method) {
-            // TODO: 替换为实际的支付链接
-            // 微信支付: 使用微信支付商户平台生成 Native 支付链接
-            // 支付宝: 使用支付宝开放平台生成支付链接
+            // 配置: 替换为微信支付商户平台 / 支付宝开放平台生成的支付链接
             const payLinks = {
                 'wechat': 'weixin://wxpay/bizpayurl?pr=XXXXXX',
                 'alipay': 'https://openapi.alipay.com/gateway.do?XXXXXX'
             };
             showToast(currentLang === 'zh'
-                ? (method === 'wechat' ? '正在打开微信支付...' : '正在跳转支付宝...')
-                : 'Redirecting to payment...');
-            // window.location.href = payLinks[method];
+                ? (method === 'wechat' ? '微信支付正在配置中，请使用 PayPal 支付' : '支付宝正在配置中，请使用 PayPal 支付')
+                : 'This payment method is being configured. Please use PayPal.');
         }
 
         // ============================
