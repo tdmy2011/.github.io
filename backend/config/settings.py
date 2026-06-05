@@ -155,9 +155,20 @@ CELERY_TIMEZONE = "Asia/Shanghai"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60  # 30分钟超时
 CELERY_BEAT_SCHEDULE = {
+    # 每日 Geo 报告 (每天 08:00 Asia/Shanghai)
     "daily-geo-report": {
         "task": "marketing.daily_geo_report",
-        "schedule": 86400.0,  # 每天一次
+        "schedule": 86400.0,
+    },
+    # 弃单挽回检查 (每小时)
+    "check-abandoned-intents": {
+        "task": "marketing.check_abandoned_intents",
+        "schedule": 3600.0,
+    },
+    # 30天复购激活 (每天)
+    "check-reengagement": {
+        "task": "marketing.check_reengagement",
+        "schedule": 86400.0,
     },
 }
 
@@ -271,6 +282,14 @@ LOGGING = {
         "apps.marketing": {"handlers": ["console", "file"], "level": "DEBUG", "propagate": False},
     },
 }
+
+# ============================================================
+# Marketing / Email Settings
+# ============================================================
+UNSUBSCRIBE_BASE_URL = config(
+    "UNSUBSCRIBE_BASE_URL",
+    default="https://yigeworks.com/unsubscribe/",
+)
 
 # ============================================================
 # Default Auto Field
